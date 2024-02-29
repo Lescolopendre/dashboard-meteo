@@ -1,2 +1,2 @@
-# DashBoard du futur
-Ceci est le dashboard de notre projet 
+# Backend-du-futur
+Ceci est le backend de notre projet
