@@ -65,11 +65,15 @@ class _MyHomePageState extends State<MyHomePage> {
               '$_counter',
               style: Theme.of(context).textTheme.headlineMedium,
             ),
-            FloatingActionButton(
-              onPressed: _incrementCounter,
-              tooltip: 'Increment',
-              child: const Icon(Icons.add),
+            Align(
+              alignment: Alignment.bottomRight,
+              child : FloatingActionButton(
+                onPressed: _incrementCounter,
+                tooltip: 'Increment',
+                child: const Icon(Icons.add),
+              ),
             ),
+
             FloatingActionButton(
               onPressed: _resetCounter,
               tooltip: 'Reset',
