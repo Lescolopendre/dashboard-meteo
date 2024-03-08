@@ -1,83 +1,83 @@
 import 'package:flutter/material.dart';
 
+
 void main() {
-  runApp(const MyApp());
+  runApp(MyApp());
 }
 
-class MyApp extends StatelessWidget {
+class MyApp extends StatelessWidget{
   const MyApp({super.key});
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context){
     return MaterialApp(
-      title: 'Hell on earth',
-      theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.blue),
-        useMaterial3: true,
-      ),
-      home: const MyHomePage(title: 'Big and Bright Future'),
+      home: Scaffold(
 
-    );
-  }
-}
-
-class MyHomePage extends StatefulWidget {
-  const MyHomePage({super.key, required this.title});
-  final String title;
-
-  @override
-  State<MyHomePage> createState() => _MyHomePageState();
-}
-
-class _MyHomePageState extends State<MyHomePage> {
-  int _counter = 0;
-
-  void _incrementCounter() {
-    setState(() {
-      _counter++;
-    });
-  }
-  void _resetCounter(){
-    setState(() {
-      _counter = 0;
-    });
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        backgroundColor: Theme.of(context).colorScheme.inversePrimary,
-        title: Text(widget.title),
-      ),
-      bottomNavigationBar: BottomAppBar(
-        shape: const CircularNotchedRectangle(),
-        child: Container(height: 50.0),
-      ),
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            const Text(
-              'You have pushed the button this many times:',
+        appBar: AppBar(
+          title: Text("La meteo"),
+          centerTitle: true,
+          backgroundColor: Colors.red[500],
+        ),
+        drawer: Drawer(
+          child: ListView(
+            padding: EdgeInsets.all(16.0),
+            children: [
+              TextField(
+                decoration:  InputDecoration(
+                  prefixIcon: const Icon(Icons.search),
+                  hintText: 'Rechercher une ville',
+                  border: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(20),
+                    borderSide: const BorderSide(color: Colors.red),
+                  ),
+                ),
+              ),
+            ],
+          ),
+        ),
+        body: Center(
+          child: Text("big guys assembly",
+            style: TextStyle(
+              fontSize: 30,
+              fontWeight: FontWeight.bold,
+              letterSpacing: 2.0,
+              color: Colors.green,
             ),
-            Text(
-              '$_counter',
-              style: Theme.of(context).textTheme.headlineMedium,
-            ),
-            FloatingActionButton(
-              onPressed: _incrementCounter,
-              tooltip: 'Increment',
-              child: const Icon(Icons.add),
-            ),
-            FloatingActionButton(
-              onPressed: _resetCounter,
-              tooltip: 'Reset',
-              child: const Icon(Icons.restart_alt),
-            ),
-          ],
+          ),
+        ),
+        floatingActionButton: FloatingActionButton(
+          onPressed: () {  },
+          child: Text("Guns"),
+          backgroundColor: Colors.red[500],
         ),
       ),
     );
+
   }
 }
+class Ville {
+  final String nom;
+  const Ville({
+    required this.nom,
+  });
+}
+const allVille=[
+  Ville(
+    nom:'Mazan',
+  ),
+  Ville(
+    nom:'Carpentras',
+  ),
+  Ville(
+    nom:'Lyon',
+  ),
+  Ville(
+    nom:'Paris',
+  ),
+  Ville(
+    nom:'Bordeaux',
+  ),
+  Ville(
+    nom:'Lille',
+  ),
+];
