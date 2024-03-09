@@ -28,6 +28,12 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
+  String city='Big Guys';
+  callback(varCity){
+    setState(() {
+      city=varCity;
+    });
+  }
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -35,14 +41,14 @@ class _HomePageState extends State<HomePage> {
         toolbarHeight: 72,
         centerTitle: true,
         title: Text("La meteo"),
-        actions: const [
+        actions: [
           SizedBox(
             width: 250.0,
             child: Padding(
               padding: EdgeInsets.all(8),
               child: Column(
                 children: <Widget>[
-                  AutocompleteBasicExample(),
+                  CitySearch(callback:callback),
                 ],
               ),
             ),
@@ -50,10 +56,10 @@ class _HomePageState extends State<HomePage> {
         ],
         backgroundColor: Colors.blue,
       ),
-      body: const Center(
+      body: Center(
         child: Text(
-          "big guys assembly",
-          style: TextStyle(
+          city,
+          style: const TextStyle(
             fontSize: 30,
             fontWeight: FontWeight.bold,
             letterSpacing: 2.0,
@@ -70,9 +76,9 @@ class _HomePageState extends State<HomePage> {
   }
 }
 
-class AutocompleteBasicExample extends StatelessWidget {
-  const AutocompleteBasicExample({super.key});
-
+class CitySearch extends StatelessWidget {
+  final Function callback;
+  CitySearch({required this.callback});
   static const List<String> villes = <String>[
     'Mazan',
     'Paris',
@@ -114,12 +120,12 @@ class AutocompleteBasicExample extends StatelessWidget {
           focusNode: focusNode,
           onFieldSubmitted: (String value) {
             onFieldSubmitted();
-            print('You just typed a new entry  $value');
+
           },
         );
       },
       onSelected: (String selection) {
-        debugPrint('You just selected $selection');
+        callback(selection);
       },
     );
   }
