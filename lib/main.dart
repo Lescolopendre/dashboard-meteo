@@ -1,42 +1,40 @@
 import 'package:flutter/material.dart';
-
+import 'package:flutter_typeahead/flutter_typeahead.dart';
 
 void main() {
   runApp(MyApp());
 }
 
-class MyApp extends StatelessWidget{
-  const MyApp({super.key});
+class MyApp extends StatelessWidget {
+  final TextEditingController _controller = TextEditingController();
+
 
   @override
-  Widget build(BuildContext context){
+  Widget build(BuildContext context) {
     return MaterialApp(
       home: Scaffold(
-
         appBar: AppBar(
-          title: Text("La meteo"),
+          toolbarHeight: 72,
           centerTitle: true,
-          backgroundColor: Colors.red[500],
-        ),
-        drawer: Drawer(
-          child: ListView(
-            padding: EdgeInsets.all(16.0),
-            children: [
-              TextField(
-                decoration:  InputDecoration(
-                  prefixIcon: const Icon(Icons.search),
-                  hintText: 'Rechercher une ville',
-                  border: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(20),
-                    borderSide: const BorderSide(color: Colors.red),
-                  ),
+          title: Text("La meteo"),
+          actions: const [
+            SizedBox(
+              width: 250.0,
+              child: Padding(
+                padding: EdgeInsets.all(8),
+                child: Column(
+                  children: <Widget>[
+                    AutocompleteBasicExample(),
+                  ],
                 ),
               ),
-            ],
-          ),
+            )
+          ],
+          backgroundColor: Colors.blue,
         ),
-        body: Center(
-          child: Text("big guys assembly",
+        body: const Center(
+          child: Text(
+            "big guys assembly",
             style: TextStyle(
               fontSize: 30,
               fontWeight: FontWeight.bold,
@@ -46,38 +44,88 @@ class MyApp extends StatelessWidget{
           ),
         ),
         floatingActionButton: FloatingActionButton(
-          onPressed: () {  },
+          onPressed: () {},
           child: Text("Guns"),
-          backgroundColor: Colors.red[500],
+          backgroundColor: Colors.lightBlue[50],
         ),
       ),
     );
-
   }
 }
-class Ville {
+class AutocompleteBasicExample extends StatelessWidget {
+  const AutocompleteBasicExample({super.key});
+
+  static const List<String> villes = <String>[
+    'Mazan',
+    'Paris',
+    'Lyon',
+    'Bordeaux',
+    'Lille'
+  ];
+
+  @override
+  Widget build(BuildContext context) {
+    return Autocomplete<String>(
+      optionsBuilder: (TextEditingValue textEditingValue) {
+        if (textEditingValue.text == '') {
+          return const Iterable<String>.empty();
+        }
+        return villes.where((String option) {
+          return option.contains(textEditingValue.text.toLowerCase());
+        });
+      },
+
+      fieldViewBuilder: (BuildContext context,
+          TextEditingController textEditingController,
+          FocusNode focusNode, VoidCallback onFieldSubmitted) {
+        return TextFormField(
+          controller: textEditingController,
+          decoration: InputDecoration(
+                      filled: true,
+                      fillColor: Colors.blue[100],
+                      prefixIcon: Icon(Icons.search),
+            hintText: 'Rechercher une ville',
+            border: OutlineInputBorder(
+              borderRadius: BorderRadius.circular(20),
+              borderSide: BorderSide(color: Colors.blue.shade100),
+            ),
+          ),
+          focusNode: focusNode,
+          onFieldSubmitted: (String value) {
+            onFieldSubmitted();
+            print('You just typed a new entry  $value');
+          },
+        );
+      },
+      onSelected: (String selection) {
+        debugPrint('You just selected $selection');
+      },
+    );
+  }
+}
+
+/*class Ville {
   final String nom;
+
   const Ville({
     required this.nom,
   });
 }
-const allVille=[
+
+const allVille = [
   Ville(
-    nom:'Mazan',
+    nom: 'Mazan',
   ),
   Ville(
-    nom:'Carpentras',
+    nom: 'Paris',
   ),
   Ville(
-    nom:'Lyon',
+    nom: 'Lyon',
   ),
   Ville(
-    nom:'Paris',
+    nom: 'Bordeaux',
   ),
   Ville(
-    nom:'Bordeaux',
+    nom: 'Lille',
   ),
-  Ville(
-    nom:'Lille',
-  ),
-];
+];*/
