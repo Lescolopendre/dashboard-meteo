@@ -89,14 +89,6 @@ class CitySearch extends StatelessWidget {
   }
   CitySearch({required this.callback});
 
-  static const List<String> villes = <String>[
-    'Mazan',
-    'Paris',
-    'Lyon',
-    'Bordeaux',
-    'Lille',
-    'AAAAA'
-  ];
 
   Future<void> readJson() async {
     final String response = await rootBundle.loadString('assets/cities.json');
