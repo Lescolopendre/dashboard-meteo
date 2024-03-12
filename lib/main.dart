@@ -1,8 +1,5 @@
-import 'dart:convert';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
-import 'villefrance.dart';
-import 'package:http/http.dart' as http;
+import 'package:flutter_typeahead/flutter_typeahead.dart';
 
 void main() => runApp(MyApp());
 
@@ -24,20 +21,19 @@ class MyApp extends StatelessWidget {
 class HomePage extends StatefulWidget {
   HomePage({Key? key, required this.title}) : super(key: key);
   final String title;
+  final TextEditingController _controller = TextEditingController();
 
   @override
   _HomePageState createState() => _HomePageState();
 }
 
 class _HomePageState extends State<HomePage> {
-  String city = 'Big Guys';
-
-  callback(varCity) {
+  String city='Big Guys';
+  callback(varCity){
     setState(() {
-      city = varCity;
+      city=varCity;
     });
   }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -52,7 +48,7 @@ class _HomePageState extends State<HomePage> {
               padding: EdgeInsets.all(8),
               child: Column(
                 children: <Widget>[
-                  CitySearch(callback: callback),
+                  CitySearch(callback:callback),
                 ],
               ),
             ),
@@ -82,13 +78,7 @@ class _HomePageState extends State<HomePage> {
 
 class CitySearch extends StatelessWidget {
   final Function callback;
-  loadDataVille() async{
-    final DataVille = await GetDataVille().getData();
-    print(DataVille.hourlyCLoudCover.length);
-    return DataVille;
-  }
   CitySearch({required this.callback});
-
   static const List<String> villes = <String>[
     'Mazan',
     'Paris',
@@ -97,11 +87,6 @@ class CitySearch extends StatelessWidget {
     'Lille',
     'AAAAA'
   ];
-
-  Future<void> readJson() async {
-    final String response = await rootBundle.loadString('assets/cities.json');
-    final data = await json.decode(response);
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -133,11 +118,10 @@ class CitySearch extends StatelessWidget {
             ),
           ),
           focusNode: focusNode,
-          onFieldSubmitted: (String value)  {
+          onFieldSubmitted: (String value) {
             onFieldSubmitted();
-            loadDataVille();
 
-            },
+          },
         );
       },
       onSelected: (String selection) {
@@ -147,3 +131,28 @@ class CitySearch extends StatelessWidget {
   }
 }
 
+/*class Ville {
+  final String nom;
+
+  const Ville({
+    required this.nom,
+  });
+}
+
+const allVille = [
+  Ville(
+    nom: 'Mazan',
+  ),
+  Ville(
+    nom: 'Paris',
+  ),
+  Ville(
+    nom: 'Lyon',
+  ),
+  Ville(
+    nom: 'Bordeaux',
+  ),
+  Ville(
+    nom: 'Lille',
+  ),
+];*/
