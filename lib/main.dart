@@ -4,19 +4,10 @@ import 'package:flutter/services.dart';
 import 'villefrance.dart';
 import 'package:http/http.dart' as http;
 
-void main() {
-  runApp(MyApp());
-}
-
-class Ville {
-  final String? nom;
-  final double? longitude;
-  final double? latitude;
-
-  const Ville({this.nom, this.longitude, this.latitude});
-}
+void main() => runApp(MyApp());
 
 class MyApp extends StatelessWidget {
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -29,6 +20,7 @@ class MyApp extends StatelessWidget {
   }
 }
 
+
 class HomePage extends StatefulWidget {
   HomePage({Key? key, required this.title}) : super(key: key);
   final String title;
@@ -39,6 +31,7 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> {
   String city = 'Big Guys';
+
   callback(varCity) {
     setState(() {
       city = varCity;
@@ -96,10 +89,13 @@ class CitySearch extends StatelessWidget {
   }
   CitySearch({required this.callback});
 
-  static const List<Ville> _villes = <Ville>[
-    Ville(nom: 'Paris', longitude: 2.3522, latitude: 48.8566),
-    Ville(nom: 'Marseille', longitude: 5.3698, latitude: 43.2965),
-    Ville(nom: 'Lyon', longitude: 4.8357, latitude: 45.7640),
+  static const List<String> villes = <String>[
+    'Mazan',
+    'Paris',
+    'Lyon',
+    'Bordeaux',
+    'Lille',
+    'AAAAA'
   ];
 
   Future<void> readJson() async {
@@ -114,11 +110,11 @@ class CitySearch extends StatelessWidget {
         if (textEditingValue.text == '') {
           return const Iterable<String>.empty();
         }
-        return _villes.where((Ville option) {
-          return option.nom!
+        return villes.where((String option) {
+          return option
               .toLowerCase()
               .contains(textEditingValue.text.toLowerCase());
-        }).map((Ville ville) => ville.nom!);
+        });
       },
       fieldViewBuilder: (BuildContext context,
           TextEditingController textEditingController,
@@ -139,7 +135,9 @@ class CitySearch extends StatelessWidget {
           focusNode: focusNode,
           onFieldSubmitted: (String value)  {
             onFieldSubmitted();
-          },
+            loadDataVille();
+
+            },
         );
       },
       onSelected: (String selection) {
