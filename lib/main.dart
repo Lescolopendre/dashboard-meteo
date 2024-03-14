@@ -3,7 +3,9 @@ import 'package:flutter_typeahead/flutter_typeahead.dart';
 import 'package:front/const/const.dart';
 import 'package:front/screens/main_screen.dart';
 
-void main() => runApp(MyApp());
+void main() {
+  runApp(MyApp());
+}
 
 class Ville {
   final String? nom;
@@ -14,8 +16,6 @@ class Ville {
 }
 
 class MyApp extends StatelessWidget {
-  const MyApp({super.key});
-
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -29,7 +29,6 @@ class MyApp extends StatelessWidget {
   }
 }
 
-
 class HomePage extends StatefulWidget {
   HomePage({Key? key, required this.title}) : super(key: key);
   final String title;
@@ -40,12 +39,9 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
+
   String city="Aujourd'hui";
-  callback(varCity){
-    setState(() {
-      city=varCity;
-    });
-  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -60,7 +56,7 @@ class _HomePageState extends State<HomePage> {
               padding: EdgeInsets.all(8),
               child: Column(
                 children: <Widget>[
-                  CitySearch(callback:callback),
+                  CitySearch(callback: callback),
                 ],
               ),
             ),
@@ -102,7 +98,9 @@ class _HomePageState extends State<HomePage> {
 class CitySearch extends StatelessWidget {
   final Function callback;
   CitySearch({required this.callback});
+
   static const List<Ville> villes = <Ville>[
+
     Ville(nom: 'Paris', longitude: 2.3522, latitude: 48.8566),
     Ville(nom: 'Marseille', longitude: 5.3698, latitude: 43.2965),
     Ville(nom: 'Lyon', longitude: 4.8357, latitude: 45.7640),
@@ -115,7 +113,7 @@ class CitySearch extends StatelessWidget {
         if (textEditingValue.text == '') {
           return const Iterable<String>.empty();
         }
-        return villes.where((Ville option) {
+        return _villes.where((Ville option) {
           return option.nom!
               .toLowerCase()
               .contains(textEditingValue.text.toLowerCase());
@@ -140,7 +138,6 @@ class CitySearch extends StatelessWidget {
           focusNode: focusNode,
           onFieldSubmitted: (String value) {
             onFieldSubmitted();
-
           },
         );
       },
