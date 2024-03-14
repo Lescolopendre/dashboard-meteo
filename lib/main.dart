@@ -1,13 +1,19 @@
-import 'dart:convert';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
-import 'villefrance.dart';
-import 'package:http/http.dart' as http;
+import 'package:flutter_typeahead/flutter_typeahead.dart';
 
-void main() => runApp(MyApp());
+void main() {
+  runApp(MyApp());
+}
+
+class Ville {
+  final String? nom;
+  final double? longitude;
+  final double? latitude;
+
+  const Ville({this.nom, this.longitude, this.latitude});
+}
 
 class MyApp extends StatelessWidget {
-
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -20,10 +26,10 @@ class MyApp extends StatelessWidget {
   }
 }
 
-
 class HomePage extends StatefulWidget {
   HomePage({Key? key, required this.title}) : super(key: key);
   final String title;
+  final TextEditingController _controller = TextEditingController();
 
   @override
   _HomePageState createState() => _HomePageState();
@@ -31,7 +37,6 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> {
   String city = 'Big Guys';
-
   callback(varCity) {
     setState(() {
       city = varCity;
@@ -82,26 +87,12 @@ class _HomePageState extends State<HomePage> {
 
 class CitySearch extends StatelessWidget {
   final Function callback;
-  loadDataVille() async{
-    final DataVille = await GetDataVille().getData();
-    print(DataVille.hourlyCLoudCover.length);
-    return DataVille;
-  }
   CitySearch({required this.callback});
-
-  static const List<String> villes = <String>[
-    'Mazan',
-    'Paris',
-    'Lyon',
-    'Bordeaux',
-    'Lille',
-    'AAAAA'
+  static const List<Ville> _villes = <Ville>[
+    Ville(nom: 'Paris', longitude: 2.3522, latitude: 48.8566),
+    Ville(nom: 'Marseille', longitude: 5.3698, latitude: 43.2965),
+    Ville(nom: 'Lyon', longitude: 4.8357, latitude: 45.7640),
   ];
-
-  Future<void> readJson() async {
-    final String response = await rootBundle.loadString('assets/cities.json');
-    final data = await json.decode(response);
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -110,11 +101,11 @@ class CitySearch extends StatelessWidget {
         if (textEditingValue.text == '') {
           return const Iterable<String>.empty();
         }
-        return villes.where((String option) {
-          return option
+        return _villes.where((Ville option) {
+          return option.nom!
               .toLowerCase()
               .contains(textEditingValue.text.toLowerCase());
-        });
+        }).map((Ville ville) => ville.nom!);
       },
       fieldViewBuilder: (BuildContext context,
           TextEditingController textEditingController,
@@ -133,11 +124,9 @@ class CitySearch extends StatelessWidget {
             ),
           ),
           focusNode: focusNode,
-          onFieldSubmitted: (String value)  {
+          onFieldSubmitted: (String value) {
             onFieldSubmitted();
-            loadDataVille();
-
-            },
+          },
         );
       },
       onSelected: (String selection) {
@@ -146,4 +135,3 @@ class CitySearch extends StatelessWidget {
     );
   }
 }
-
