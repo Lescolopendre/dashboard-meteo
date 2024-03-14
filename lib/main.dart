@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_typeahead/flutter_typeahead.dart';
 
 void main() {
   runApp(MyApp());
@@ -29,7 +28,6 @@ class MyApp extends StatelessWidget {
 class HomePage extends StatefulWidget {
   HomePage({Key? key, required this.title}) : super(key: key);
   final String title;
-  final TextEditingController _controller = TextEditingController();
 
   @override
   _HomePageState createState() => _HomePageState();
