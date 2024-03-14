@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_typeahead/flutter_typeahead.dart';
+import 'package:front/const/const.dart';
+import 'package:front/screens/main_screen.dart';
 
 void main() {
   runApp(MyApp());
@@ -19,9 +21,10 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'La météo',
       theme: ThemeData(
-        primarySwatch: Colors.blue,
+        backgroundColor: backGroundColor,
+        brightness: Brightness.light,
       ),
-      home: HomePage(title: 'La météo'),
+      home: HomePage(title: 'Fait-il bon ?'),
     );
   }
 }
@@ -36,12 +39,8 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-  String city = 'Big Guys';
-  callback(varCity) {
-    setState(() {
-      city = varCity;
-    });
-  }
+
+  String city="Aujourd'hui";
 
   @override
   Widget build(BuildContext context) {
@@ -63,32 +62,45 @@ class _HomePageState extends State<HomePage> {
             ),
           )
         ],
-        backgroundColor: Colors.blue,
+        backgroundColor: primaryBlueColor,
       ),
-      body: Center(
-        child: Text(
-          city,
-          style: const TextStyle(
-            fontSize: 30,
-            fontWeight: FontWeight.bold,
-            letterSpacing: 2.0,
-            color: Colors.green,
-          ),
+      body: Container(
+        margin: const EdgeInsets.symmetric(vertical: 100),
+        height: 2000,
+        child: ListView(
+          // This next line does the trick.
+          scrollDirection: Axis.horizontal,
+          children: <Widget>[
+            Container(
+              child: Text("Aujourd'hui"),
+              padding: EdgeInsets.fromLTRB(10, 5, 20, 20),
+              width: 1000,
+              color: primaryBlueColor,
+              margin: EdgeInsets.all(10),
+            ),
+            Container(
+              child: Text("Demain"),
+              padding: EdgeInsets.fromLTRB(10, 5, 20, 20),
+              width: 1000,
+              color: secondaryBlueColor,
+              margin: EdgeInsets.all(10),
+            ),
+
+          ],
         ),
-      ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: () {},
-        child: Text("Guns"),
-        backgroundColor: Colors.lightBlue[50],
       ),
     );
   }
 }
 
+
+
 class CitySearch extends StatelessWidget {
   final Function callback;
   CitySearch({required this.callback});
-  static const List<Ville> _villes = <Ville>[
+
+  static const List<Ville> villes = <Ville>[
+
     Ville(nom: 'Paris', longitude: 2.3522, latitude: 48.8566),
     Ville(nom: 'Marseille', longitude: 5.3698, latitude: 43.2965),
     Ville(nom: 'Lyon', longitude: 4.8357, latitude: 45.7640),
