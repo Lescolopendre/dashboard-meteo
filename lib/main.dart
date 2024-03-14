@@ -150,4 +150,3 @@ class CitySearch extends StatelessWidget {
     );
   }
 }
-
