@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_typeahead/flutter_typeahead.dart';
 import 'package:front/const/const.dart';
 import 'package:front/screens/main_screen.dart';
 
@@ -41,7 +40,11 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends State<HomePage> {
 
   String city="Aujourd'hui";
-
+  callback(varCity){
+    setState(() {
+      city=varCity;
+    });
+  }
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -113,7 +116,7 @@ class CitySearch extends StatelessWidget {
         if (textEditingValue.text == '') {
           return const Iterable<String>.empty();
         }
-        return _villes.where((Ville option) {
+        return villes.where((Ville option) {
           return option.nom!
               .toLowerCase()
               .contains(textEditingValue.text.toLowerCase());
