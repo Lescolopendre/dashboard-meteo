@@ -1,25 +1,45 @@
-import 'dart:convert';
 import 'package:flutter/material.dart';
-import 'package:front/const/const.dart';
-import 'package:front/screens/main_screen.dart';
+import 'dart:convert';
 
-void main() => runApp(MyApp());
+void main() {
+  runApp(MyApp());
+}
+
+class Ville {
+  String? nomAvecArticle;
+  double? longitude;
+  double? latitude;
+
+  Ville({this.nomAvecArticle, this.longitude, this.latitude});
+
+  Ville.fromJson(Map<String, dynamic> json) {
+    nomAvecArticle = json['Nom avec article'];
+    longitude = json['Longitude'];
+    latitude = json['Latitude'];
+  }
+
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> data = new Map<String, dynamic>();
+    data['Nom avec article'] = this.nomAvecArticle;
+    data['Longitude'] = this.longitude;
+    data['Latitude'] = this.latitude;
+    return data;
+  }
+}
 
 class MyApp extends StatelessWidget {
-
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'La météo',
       theme: ThemeData(
-        backgroundColor: backGroundColor,
+        backgroundColor: Colors.white,
         brightness: Brightness.light,
       ),
       home: HomePage(title: 'Fait-il bon ?'),
     );
   }
 }
-
 
 class HomePage extends StatefulWidget {
   HomePage({Key? key, required this.title}) : super(key: key);
@@ -31,12 +51,35 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> {
 
-  String city="Aujourd'hui";
+  String city = "Aujourd'hui";
+  late Future<List<Ville>> villes;
+  late List<Ville> allVilles = [];
+
   callback(varCity){
     setState(() {
-      city=varCity;
+      city = varCity;
     });
   }
+
+  @override
+  void initState() {
+    super.initState();
+    city = 'Big Guys';
+    villes = getVille(context);
+    villes.then((value) {
+      setState(() {
+        allVilles = value;
+      });
+    });
+  }
+
+  static Future<List<Ville>> getVille(BuildContext context) async {
+    final assetBundle = DefaultAssetBundle.of(context);
+    final data = await assetBundle.loadString('assets/villes.json');
+    final body = json.decode(data);
+    return body.map<Ville>((json) => Ville.fromJson(json)).toList();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -51,36 +94,34 @@ class _HomePageState extends State<HomePage> {
               padding: EdgeInsets.all(8),
               child: Column(
                 children: <Widget>[
-                  CitySearch(callback: callback),
+                  CitySearch(callback: callback, villes: allVilles),
                 ],
               ),
             ),
           )
         ],
-        backgroundColor: primaryBlueColor,
+        backgroundColor: Colors.blue,
       ),
       body: Container(
         margin: const EdgeInsets.symmetric(vertical: 100),
         height: 2000,
         child: ListView(
-          // This next line does the trick.
           scrollDirection: Axis.horizontal,
           children: <Widget>[
             Container(
               child: Text("Aujourd'hui"),
               padding: EdgeInsets.fromLTRB(10, 5, 20, 20),
               width: 1000,
-              color: primaryBlueColor,
+              color: Colors.blue,
               margin: EdgeInsets.all(10),
             ),
             Container(
               child: Text("Demain"),
               padding: EdgeInsets.fromLTRB(10, 5, 20, 20),
               width: 1000,
-              color: secondaryBlueColor,
+              color: Colors.green,
               margin: EdgeInsets.all(10),
             ),
-
           ],
         ),
       ),
@@ -88,28 +129,11 @@ class _HomePageState extends State<HomePage> {
   }
 }
 
-
-
 class CitySearch extends StatelessWidget {
   final Function callback;
-  loadDataVille() async{
-    final DataVille = await GetDataVille().getData();
-    print(DataVille.hourlyCLoudCover.length);
-    return DataVille;
-  }
-  CitySearch({required this.callback});
+  final List<Ville> villes;
 
-  static const List<Ville> villes = <Ville>[
-
-    Ville(nom: 'Paris', longitude: 2.3522, latitude: 48.8566),
-    Ville(nom: 'Marseille', longitude: 5.3698, latitude: 43.2965),
-    Ville(nom: 'Lyon', longitude: 4.8357, latitude: 45.7640),
-  ];
-
-  Future<void> readJson() async {
-    final String response = await rootBundle.loadString('assets/cities.json');
-    final data = await json.decode(response);
-  }
+  CitySearch({required this.callback, required this.villes});
 
   @override
   Widget build(BuildContext context) {
@@ -119,10 +143,10 @@ class CitySearch extends StatelessWidget {
           return const Iterable<String>.empty();
         }
         return villes.where((Ville option) {
-          return option.nom!
+          return option.nomAvecArticle!
               .toLowerCase()
               .contains(textEditingValue.text.toLowerCase());
-        });
+        }).map((Ville ville) => ville.nomAvecArticle!);
       },
       fieldViewBuilder: (BuildContext context,
           TextEditingController textEditingController,
@@ -141,11 +165,9 @@ class CitySearch extends StatelessWidget {
             ),
           ),
           focusNode: focusNode,
-          onFieldSubmitted: (String value)  {
+          onFieldSubmitted: (String value) {
             onFieldSubmitted();
-            loadDataVille();
-
-            },
+          },
         );
       },
       onSelected: (String selection) {
@@ -154,4 +176,3 @@ class CitySearch extends StatelessWidget {
     );
   }
 }
-
