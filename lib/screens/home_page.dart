@@ -32,7 +32,7 @@ class _HomePageState extends State<HomePage> {
   @override
   void initState() {
     super.initState();
-    city = 'Choisissez une ville.';
+    city = 'Big Guys';
     villes = getVille(context);
     villes.then((value) {
       setState(() {
@@ -77,24 +77,25 @@ class _HomePageState extends State<HomePage> {
           scrollDirection: Axis.horizontal,
           children: <Widget>[
             Container(
-              padding: EdgeInsets.fromLTRB(10, 5, 20, 20),
-              width: 1000,
-              color: Colors.blue,
-              margin: EdgeInsets.all(10),
-              child: selectedVille != null? Wrap(
-                direction: Axis.horizontal,
-                spacing: 8.0,
-                runSpacing: 4.0,
-                children: [
-                  Text(selectedVille!.nomAvecArticle!),
-                  Text("Longitude: ${selectedVille!.longitude}"),
-                  Text("Latitude: ${selectedVille!.latitude}"),
-                  for (var heure in time.toList()[1]) Text(heure.toString()+""),
-                  for (var temperature in temp.toList()[1]) Text(temperature.toString()+"")
+              child: selectedVille != null
+                  ? Wrap(
+                  direction: Axis.horizontal,
+                  spacing: 8.0,
+                  runSpacing: 4.0,
+                  children: [
+                    Text(selectedVille!.nomAvecArticle!),
+                    Text("Longitude: ${selectedVille!.longitude}"),
+                    Text("Latitude: ${selectedVille!.latitude}"),
+                    for (var heure in time.toList()[1]) Text(heure.toString()+""),
+                    for (var temperature in temp.toList()[1]) Text(temperature.toString()+"")
 
                 ],
               )
-                  : Text(city),
+                  
+              padding: EdgeInsets.fromLTRB(10, 5, 20, 20),
+              width: 1000,
+              color: Color(0xFF637E92),
+              margin: EdgeInsets.all(10),
             ),
             Container(
               child: Text("Demain"),
