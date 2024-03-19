@@ -7,8 +7,8 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'La météo',
       theme: ThemeData(
-        backgroundColor: Colors.white,
-        brightness: Brightness.light,
+        scaffoldBackgroundColor: Color(0xFF1A1423),
+        brightness: Brightness.dark,
       ),
       home: HomePage(title: 'Fait-il bon ?'),
     );

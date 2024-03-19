@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'dart:convert';
 import '../models/villes.dart';
 import '../widgets/city_search.dart';
+import '../const/const.dart';
 
 class HomePage extends StatefulWidget {
   HomePage({Key? key, required this.title}) : super(key: key);
@@ -45,6 +46,7 @@ class _HomePageState extends State<HomePage> {
 
   @override
   Widget build(BuildContext context) {
+
     return Scaffold(
       appBar: AppBar(
         toolbarHeight: 72,
@@ -63,7 +65,7 @@ class _HomePageState extends State<HomePage> {
             ),
           )
         ],
-        backgroundColor: Colors.blue,
+        backgroundColor: Color(0xFF637E92),
       ),
       body: Container(
         margin: const EdgeInsets.symmetric(vertical: 100),
@@ -84,14 +86,14 @@ class _HomePageState extends State<HomePage> {
                   : Text(city),
               padding: EdgeInsets.fromLTRB(10, 5, 20, 20),
               width: 1000,
-              color: Colors.blue,
+              color: Color(0xFF637E92),
               margin: EdgeInsets.all(10),
             ),
             Container(
               child: Text("Demain"),
               padding: EdgeInsets.fromLTRB(10, 5, 20, 20),
               width: 1000,
-              color: Colors.green,
+              color: Color(0xFF637E92),
               margin: EdgeInsets.all(10),
             ),
           ],
