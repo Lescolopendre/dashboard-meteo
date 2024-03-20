@@ -40,6 +40,8 @@ dependencies:
   csv: ^6.0.0
   http: ^1.2.1
   ffi: ^2.1.2
+  quiver: ^3.2.1
+  fl_chart: ^0.66.2
 
 dev_dependencies:
   flutter_test:

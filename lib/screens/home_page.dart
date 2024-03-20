@@ -2,7 +2,8 @@ import 'package:flutter/material.dart';
 import 'dart:convert';
 import '../models/villes.dart';
 import '../widgets/city_search.dart';
-
+import '../models/ville_france.dart';
+import 'package:fl_chart/fl_chart.dart';
 class HomePage extends StatefulWidget {
   HomePage({Key? key, required this.title}) : super(key: key);
   final String title;
@@ -14,20 +15,24 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends State<HomePage> {
   String city = "Aujourd'hui";
   Ville? selectedVille;
+  late Iterable<List<dynamic>> time;
+  late Iterable<List<dynamic>> temp;
   late Future<List<Ville>> villes;
   late List<Ville> allVilles = [];
 
-  callback(Ville varCity) {
-    setState(() {
+  callback(Ville varCity,dataVille data) {
+    setState(()  {
       city = varCity.nomAvecArticle!;
       selectedVille = varCity;
+      time=data.hourlyTime;
+      temp=data.hourlyTemp;
     });
   }
 
   @override
   void initState() {
     super.initState();
-    city = 'Big Guys';
+    city = 'Choisissez une ville.';
     villes = getVille(context);
     villes.then((value) {
       setState(() {
@@ -72,20 +77,24 @@ class _HomePageState extends State<HomePage> {
           scrollDirection: Axis.horizontal,
           children: <Widget>[
             Container(
-              child: selectedVille != null
-                  ? Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(selectedVille!.nomAvecArticle!),
-                  Text("Longitude: ${selectedVille!.longitude}"),
-                  Text("Latitude: ${selectedVille!.latitude}"),
-                ],
-              )
-                  : Text(city),
               padding: EdgeInsets.fromLTRB(10, 5, 20, 20),
               width: 1000,
               color: Colors.blue,
               margin: EdgeInsets.all(10),
+              child: selectedVille != null? Wrap(
+                direction: Axis.horizontal,
+                spacing: 8.0,
+                runSpacing: 4.0,
+                children: [
+                  Text(selectedVille!.nomAvecArticle!),
+                  Text("Longitude: ${selectedVille!.longitude}"),
+                  Text("Latitude: ${selectedVille!.latitude}"),
+                  for (var heure in time.toList()[1]) Text(heure.toString()+""),
+                  for (var temperature in temp.toList()[1]) Text(temperature.toString()+"")
+
+                ],
+              )
+                  : Text(city),
             ),
             Container(
               child: Text("Demain"),
