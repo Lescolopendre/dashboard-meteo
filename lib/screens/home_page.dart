@@ -52,12 +52,12 @@ class _HomePageState extends State<HomePage> {
 
   @override
   Widget build(BuildContext context) {
-
+    var screenSize = MediaQuery.of(context).size;
     return Scaffold(
       appBar: AppBar(
         toolbarHeight: 72,
         centerTitle: true,
-        title: Text("La meteo"),
+        title: Text("La Météo"),
         actions: [
           SizedBox(
             width: 250.0,
@@ -65,28 +65,31 @@ class _HomePageState extends State<HomePage> {
               padding: EdgeInsets.all(8),
               child: Column(
                 children: <Widget>[
+
                   CitySearch(callback: callback, villes: allVilles),
                 ],
               ),
             ),
           )
         ],
+
         backgroundColor: Color(0xFF637E92),
 
       ),
       body: Container(
-        margin: const EdgeInsets.symmetric(vertical: 100),
+        margin: const EdgeInsets.symmetric(vertical: 20),
         height: 2000,
+
         child: ListView(
           scrollDirection: Axis.horizontal,
           children: <Widget>[
             Container(
                 decoration: BoxDecoration(
                     borderRadius: BorderRadius.all(Radius.circular(10)),
-                    color: Color(0xFF637E92)
+                    color: Color(0xFF637E92),
                 ),
                 padding: EdgeInsets.fromLTRB(10, 5, 20, 20),
-                width: 1000,
+                width: screenSize.width-50,
                 margin: EdgeInsets.all(10),
                 child: selectedVille != null
                   ? Wrap(
@@ -94,23 +97,37 @@ class _HomePageState extends State<HomePage> {
                   spacing: 8.0,
                   runSpacing: 4.0,
                   children: [
+                    Text("Aujourd'hui\t"),
                     Text(selectedVille!.nomAvecArticle!),
-                    Text("Longitude: ${selectedVille!.longitude}"),
-                    Text("Latitude: ${selectedVille!.latitude}"),
+                    //Text("Longitude: ${selectedVille!.longitude}"),
+                   // Text("Latitude: ${selectedVille!.latitude}"),
                     for (var heure in time.toList()[1]) Text(heure.toString()+""),
                     for (var temperature in temp.toList()[1]) Text(temperature.toString()+""),
                 ],
-              ):Wrap()
+              ):Text(city),
             ),
             Container(
               decoration: BoxDecoration(
                   borderRadius: BorderRadius.all(Radius.circular(10)),
                   color: Color(0xFF637E92)
               ),
-              child: Text("Demain"),
               padding: EdgeInsets.fromLTRB(10, 5, 20, 20),
-              width: 1000,
+              width: screenSize.width-50,
               margin: EdgeInsets.all(10),
+              child: selectedVille != null
+                  ? Wrap(
+                  direction: Axis.horizontal,
+                  spacing: 8.0,
+                  runSpacing: 4.0,
+                  children: [
+                    Text("Demain\t"),
+                    Text(selectedVille!.nomAvecArticle!),
+                    //Text("Longitude: ${selectedVille!.longitude}"),
+                    //Text("Latitude: ${selectedVille!.latitude}"),
+                    for (var heure in time.toList()[2]) Text(heure.toString()+""),
+                    for (var temperature in temp.toList()[2]) Text(temperature.toString()+""),
+                ],
+              ):Text(city),
             ),
           ],
         ),

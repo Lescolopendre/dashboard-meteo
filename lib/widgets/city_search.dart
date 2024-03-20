@@ -29,7 +29,7 @@ class CitySearch extends StatelessWidget {
           controller: textEditingController,
           decoration: InputDecoration(
             filled: true,
-            fillColor: Colors.blue[100],
+            fillColor: Color(0xFF1A1423),
             prefixIcon: Icon(Icons.search),
             hintText: 'Rechercher une ville',
             border: OutlineInputBorder(
