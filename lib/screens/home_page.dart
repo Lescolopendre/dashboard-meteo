@@ -68,12 +68,20 @@ class _HomePageState extends State<HomePage> {
         backgroundColor: Color(0xFF637E92),
       ),
       body: Container(
+        decoration: BoxDecoration(
+            borderRadius: BorderRadius.all(Radius.circular(10))
+        ),
+
         margin: const EdgeInsets.symmetric(vertical: 100),
         height: 2000,
         child: ListView(
           scrollDirection: Axis.horizontal,
           children: <Widget>[
             Container(
+              decoration: BoxDecoration(
+                  borderRadius: BorderRadius.all(Radius.circular(10)),
+                  color: Color(0xFF637E92)
+              ),
               child: selectedVille != null
                   ? Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
@@ -86,14 +94,16 @@ class _HomePageState extends State<HomePage> {
                   : Text(city),
               padding: EdgeInsets.fromLTRB(10, 5, 20, 20),
               width: 1000,
-              color: Color(0xFF637E92),
               margin: EdgeInsets.all(10),
             ),
             Container(
+              decoration: BoxDecoration(
+                  borderRadius: BorderRadius.all(Radius.circular(10)),
+                  color: Color(0xFF637E92)
+              ),
               child: Text("Demain"),
               padding: EdgeInsets.fromLTRB(10, 5, 20, 20),
               width: 1000,
-              color: Color(0xFF637E92),
               margin: EdgeInsets.all(10),
             ),
           ],
