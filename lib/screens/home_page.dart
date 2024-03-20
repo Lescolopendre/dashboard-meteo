@@ -5,6 +5,7 @@ import '../widgets/city_search.dart';
 import '../models/ville_france.dart';
 import 'package:fl_chart/fl_chart.dart';
 import '../const/const.dart';
+
 class HomePage extends StatefulWidget {
   HomePage({Key? key, required this.title}) : super(key: key);
   final String title;
@@ -51,6 +52,7 @@ class _HomePageState extends State<HomePage> {
 
   @override
   Widget build(BuildContext context) {
+
     return Scaffold(
       appBar: AppBar(
         toolbarHeight: 72,
@@ -69,7 +71,8 @@ class _HomePageState extends State<HomePage> {
             ),
           )
         ],
-        backgroundColor: primaryBlueColor,
+        backgroundColor: Color(0xFF637E92),
+
       ),
       body: Container(
         margin: const EdgeInsets.symmetric(vertical: 100),
