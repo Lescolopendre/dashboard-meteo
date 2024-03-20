@@ -78,9 +78,12 @@ class _HomePageState extends State<HomePage> {
           scrollDirection: Axis.horizontal,
           children: <Widget>[
             Container(
+                decoration: BoxDecoration(
+                    borderRadius: BorderRadius.all(Radius.circular(10)),
+                    color: Color(0xFF637E92)
+                ),
                 padding: EdgeInsets.fromLTRB(10, 5, 20, 20),
                 width: 1000,
-                color: secondaryBlueColor,
                 margin: EdgeInsets.all(10),
                 child: selectedVille != null
                   ? Wrap(
@@ -97,10 +100,13 @@ class _HomePageState extends State<HomePage> {
               ):Wrap()
             ),
             Container(
+              decoration: BoxDecoration(
+                  borderRadius: BorderRadius.all(Radius.circular(10)),
+                  color: Color(0xFF637E92)
+              ),
               child: Text("Demain"),
               padding: EdgeInsets.fromLTRB(10, 5, 20, 20),
               width: 1000,
-              color: secondaryBlueColor,
               margin: EdgeInsets.all(10),
             ),
           ],
