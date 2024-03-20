@@ -3,6 +3,7 @@ import 'dart:convert';
 import '../models/villes.dart';
 import '../widgets/city_search.dart';
 import '../models/ville_france.dart';
+import 'graph_day.dart';
 import 'package:fl_chart/fl_chart.dart';
 import '../const/const.dart';
 
@@ -78,7 +79,6 @@ class _HomePageState extends State<HomePage> {
 
       ),
       body: Container(
-
         decoration: BoxDecoration(
           gradient: LinearGradient(
             colors: [Colors.blue.shade200, Colors.blue.shade50],
@@ -106,7 +106,7 @@ class _HomePageState extends State<HomePage> {
                     Text("Aujourd'hui\t"),
                     Text(selectedVille!.nomAvecArticle!),
                     //Text("Longitude: ${selectedVille!.longitude}"),
-                   // Text("Latitude: ${selectedVille!.latitude}"),
+                    // Text("Latitude: ${selectedVille!.latitude}"),
                     for (var heure in time.toList()[1]) Text(heure.toString()+""),
                     for (var temperature in temp.toList()[1]) Text(temperature.toString()+""),
                 ],
