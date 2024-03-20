@@ -4,6 +4,7 @@ import '../models/villes.dart';
 import '../widgets/city_search.dart';
 import '../models/ville_france.dart';
 import 'package:fl_chart/fl_chart.dart';
+import '../const/const.dart';
 class HomePage extends StatefulWidget {
   HomePage({Key? key, required this.title}) : super(key: key);
   final String title;
@@ -68,7 +69,7 @@ class _HomePageState extends State<HomePage> {
             ),
           )
         ],
-        backgroundColor: Colors.blue,
+        backgroundColor: primaryBlueColor,
       ),
       body: Container(
         margin: const EdgeInsets.symmetric(vertical: 100),
@@ -77,30 +78,29 @@ class _HomePageState extends State<HomePage> {
           scrollDirection: Axis.horizontal,
           children: <Widget>[
             Container(
-              padding: EdgeInsets.fromLTRB(10, 5, 20, 20),
-              width: 1000,
-              color: Colors.blue,
-              margin: EdgeInsets.all(10),
-              child: selectedVille != null? Wrap(
-                direction: Axis.horizontal,
-                spacing: 8.0,
-                runSpacing: 4.0,
-                children: [
-                  Text(selectedVille!.nomAvecArticle!),
-                  Text("Longitude: ${selectedVille!.longitude}"),
-                  Text("Latitude: ${selectedVille!.latitude}"),
-                  for (var heure in time.toList()[1]) Text(heure.toString()+""),
-                  for (var temperature in temp.toList()[1]) Text(temperature.toString()+"")
-
+                padding: EdgeInsets.fromLTRB(10, 5, 20, 20),
+                width: 1000,
+                color: secondaryBlueColor,
+                margin: EdgeInsets.all(10),
+                child: selectedVille != null
+                  ? Wrap(
+                  direction: Axis.horizontal,
+                  spacing: 8.0,
+                  runSpacing: 4.0,
+                  children: [
+                    Text(selectedVille!.nomAvecArticle!),
+                    Text("Longitude: ${selectedVille!.longitude}"),
+                    Text("Latitude: ${selectedVille!.latitude}"),
+                    for (var heure in time.toList()[1]) Text(heure.toString()+""),
+                    for (var temperature in temp.toList()[1]) Text(temperature.toString()+""),
                 ],
-              )
-                  : Text(city),
+              ):Wrap()
             ),
             Container(
               child: Text("Demain"),
               padding: EdgeInsets.fromLTRB(10, 5, 20, 20),
               width: 1000,
-              color: Colors.green,
+              color: secondaryBlueColor,
               margin: EdgeInsets.all(10),
             ),
           ],
