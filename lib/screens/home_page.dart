@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'dart:convert';
 import '../models/villes.dart';
 import '../widgets/city_search.dart';
+import '../models/ville_france.dart';
+import 'package:fl_chart/fl_chart.dart';
 import '../const/const.dart';
 
 class HomePage extends StatefulWidget {
@@ -15,20 +17,24 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends State<HomePage> {
   String city = "Aujourd'hui";
   Ville? selectedVille;
+  late Iterable<List<dynamic>> time;
+  late Iterable<List<dynamic>> temp;
   late Future<List<Ville>> villes;
   late List<Ville> allVilles = [];
 
-  callback(Ville varCity) {
-    setState(() {
+  callback(Ville varCity,dataVille data) {
+    setState(()  {
       city = varCity.nomAvecArticle!;
       selectedVille = varCity;
+      time=data.hourlyTime;
+      temp=data.hourlyTemp;
     });
   }
 
   @override
   void initState() {
     super.initState();
-    city = 'Big Guys';
+    city = 'Choisissez une ville.';
     villes = getVille(context);
     villes.then((value) {
       setState(() {
@@ -66,6 +72,7 @@ class _HomePageState extends State<HomePage> {
           )
         ],
         backgroundColor: Color(0xFF637E92),
+
       ),
       body: Container(
         margin: const EdgeInsets.symmetric(vertical: 100),
@@ -74,26 +81,35 @@ class _HomePageState extends State<HomePage> {
           scrollDirection: Axis.horizontal,
           children: <Widget>[
             Container(
-              child: selectedVille != null
-                  ? Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(selectedVille!.nomAvecArticle!),
-                  Text("Longitude: ${selectedVille!.longitude}"),
-                  Text("Latitude: ${selectedVille!.latitude}"),
+                decoration: BoxDecoration(
+                    borderRadius: BorderRadius.all(Radius.circular(10)),
+                    color: Color(0xFF637E92)
+                ),
+                padding: EdgeInsets.fromLTRB(10, 5, 20, 20),
+                width: 1000,
+                margin: EdgeInsets.all(10),
+                child: selectedVille != null
+                  ? Wrap(
+                  direction: Axis.horizontal,
+                  spacing: 8.0,
+                  runSpacing: 4.0,
+                  children: [
+                    Text(selectedVille!.nomAvecArticle!),
+                    Text("Longitude: ${selectedVille!.longitude}"),
+                    Text("Latitude: ${selectedVille!.latitude}"),
+                    for (var heure in time.toList()[1]) Text(heure.toString()+""),
+                    for (var temperature in temp.toList()[1]) Text(temperature.toString()+""),
                 ],
-              )
-                  : Text(city),
-              padding: EdgeInsets.fromLTRB(10, 5, 20, 20),
-              width: 1000,
-              color: Color(0xFF637E92),
-              margin: EdgeInsets.all(10),
+              ):Wrap()
             ),
             Container(
+              decoration: BoxDecoration(
+                  borderRadius: BorderRadius.all(Radius.circular(10)),
+                  color: Color(0xFF637E92)
+              ),
               child: Text("Demain"),
               padding: EdgeInsets.fromLTRB(10, 5, 20, 20),
               width: 1000,
-              color: Color(0xFF637E92),
               margin: EdgeInsets.all(10),
             ),
           ],

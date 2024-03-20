@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import '../models/villes.dart';
+import '../models/ville_france.dart';
 
 class CitySearch extends StatelessWidget {
   final Function callback;
@@ -42,8 +43,11 @@ class CitySearch extends StatelessWidget {
           },
         );
       },
-      onSelected: (String selection) {
-        callback(villes.firstWhere((ville) => ville.nomAvecArticle == selection));
+      onSelected: (String selection) async {
+        Ville selectedVille=villes.firstWhere((ville) => ville.nomAvecArticle == selection);
+        final data = await GetDataVille(selectedVille!.latitude,selectedVille!.longitude).getData();
+        callback(selectedVille,data);
+
       },
     );
   }

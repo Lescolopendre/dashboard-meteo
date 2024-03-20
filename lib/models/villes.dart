@@ -1,14 +1,14 @@
 class Ville {
-  String? nomAvecArticle;
-  double? longitude;
-  double? latitude;
+  String nomAvecArticle='';
+  String longitude='';
+  String latitude='';
 
-  Ville({this.nomAvecArticle, this.longitude, this.latitude});
+  Ville({required this.nomAvecArticle, required this.longitude, required this.latitude});
 
   Ville.fromJson(Map<String, dynamic> json) {
     nomAvecArticle = json['Nom avec article'];
-    longitude = json['Longitude'];
-    latitude = json['Latitude'];
+    longitude = json['Longitude'].toString();
+    latitude = json['Latitude'].toString();
   }
 
   Map<String, dynamic> toJson() {
