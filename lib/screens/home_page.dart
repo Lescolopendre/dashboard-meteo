@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/svg.dart';
 import 'dart:convert';
 import '../models/villes.dart';
 import '../widgets/city_search.dart';
