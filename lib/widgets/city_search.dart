@@ -26,12 +26,14 @@ class CitySearch extends StatelessWidget {
           FocusNode focusNode,
           VoidCallback onFieldSubmitted) {
         return TextFormField(
+          style: TextStyle(color: Colors.black),
           controller: textEditingController,
           decoration: InputDecoration(
             filled: true,
-            fillColor: Color(0xFF1A1423),
+            fillColor: Colors.white,//Color(0xFF1A1423),
             prefixIcon: Icon(Icons.search),
             hintText: 'Rechercher une ville',
+            hintStyle: TextStyle(color: Colors.grey),
             border: OutlineInputBorder(
               borderRadius: BorderRadius.circular(20),
               borderSide: BorderSide(color: Colors.blue.shade100),
