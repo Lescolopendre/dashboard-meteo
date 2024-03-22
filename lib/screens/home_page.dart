@@ -19,6 +19,7 @@ class _HomePageState extends State<HomePage> {
   late Iterable<List<dynamic>> temp;
   late Future<List<Ville>> villes;
   late List<Ville> allVilles = [];
+  bool isRectangleFirst = true;
 
   callback(Ville varCity, dataVille data) {
     setState(() {
@@ -67,7 +68,6 @@ class _HomePageState extends State<HomePage> {
     var screenSize = MediaQuery.of(context).size;
     return Scaffold(
       appBar: AppBar(
-
         toolbarHeight: 72,
         centerTitle: true,
         title: Text("La Météo"),
@@ -78,7 +78,6 @@ class _HomePageState extends State<HomePage> {
               padding: EdgeInsets.all(8),
               child: Column(
                 children: <Widget>[
-
                   CitySearch(callback: callback, villes: allVilles),
                 ],
               ),
@@ -88,25 +87,20 @@ class _HomePageState extends State<HomePage> {
         backgroundColor: Color(0xFF637E92),
       ),
       body: Container(
-        decoration: BoxDecoration(
-          gradient: LinearGradient(
-            colors: [Colors.blue.shade200, Colors.blue.shade50],
-            begin: Alignment.topCenter,
-            end: Alignment.bottomCenter,
-          ),
-        ),
+        margin: const EdgeInsets.symmetric(vertical: 20),
+        height: 2000,
         child: ListView(
           scrollDirection: Axis.horizontal,
           children: <Widget>[
             Container(
-                decoration: BoxDecoration(
-                    borderRadius: BorderRadius.all(Radius.circular(10)),
-                    color: Color(0xFF637E92).withOpacity(0.4), //couleur bulle 1
-                ),
-                padding: EdgeInsets.fromLTRB(10, 5, 20, 20),
-                width: screenSize.width-100,
-                margin: EdgeInsets.all(50),
-                child: selectedVille != null
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.all(Radius.circular(10)),
+                color: Color(0xFF637E92),
+              ),
+              padding: EdgeInsets.fromLTRB(10, 5, 20, 20),
+              width: screenSize.width - 50,
+              margin: EdgeInsets.all(10),
+              child: selectedVille != null
                   ? Wrap(
                 direction: Axis.horizontal,
                 spacing: 8.0,
@@ -114,21 +108,64 @@ class _HomePageState extends State<HomePage> {
                 children: [
                   Text("Aujourd'hui\t"),
                   Text(selectedVille!.nomAvecArticle!),
-                  for (var heure in time.toList()[1])
-                    Text(heure.toString() + ""),
-                  for (var temperature in temp.toList()[1])
-                    Text(temperature.toString() + ""),
+                  SizedBox(height: 10),
+                  Row(
+                    children: [
+                      Expanded(
+                        child: Container(
+                          height: screenSize.height * 0.35,
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.all(Radius.circular(10)),
+                            color: Color(0xFFB52003).withOpacity(0.5),
+                          ),
+                          margin: EdgeInsets.all(7),
+                        ),
+                      ),
+                      Expanded(
+                        child: Container(
+                          height: screenSize.height * 0.35,
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.all(Radius.circular(10)),
+                            color: Color(0xFFB52003).withOpacity(0.5),
+                          ),
+                          margin: EdgeInsets.all(7),
+                        ),
+                      ),
+                    ],
+                  ),
+                  SizedBox(height: 10),
+                  Column(
+                    children: [
+                      Container(
+                        height: screenSize.height * 0.1495,
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.all(Radius.circular(10)),
+                          color: Color(0xFFB52003).withOpacity(0.5),
+                        ),
+                        margin: EdgeInsets.all(7),
+                      ),
+                      Container(
+                        height: screenSize.height * 0.1495,
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.all(Radius.circular(10)),
+                          color: Color(0xFFB52003).withOpacity(0.5),
+                        ),
+                        margin: EdgeInsets.all(10),
+                      ),
+                    ],
+                  ),
                 ],
-              ):Text(city),
+              )
+                  : Text(city),
             ),
             Container(
               decoration: BoxDecoration(
-                  borderRadius: BorderRadius.all(Radius.circular(10)),
-                  color: Color(0xFF637E92).withOpacity(0.4)
+                borderRadius: BorderRadius.all(Radius.circular(10)),
+                color: Color(0xFF637E92),
               ),
               padding: EdgeInsets.fromLTRB(10, 5, 20, 20),
-              width: screenSize.width-100,
-              margin: EdgeInsets.all(50),
+              width: screenSize.width - 50,
+              margin: EdgeInsets.all(10),
               child: selectedVille != null
                   ? Wrap(
                 direction: Axis.horizontal,
@@ -137,12 +174,55 @@ class _HomePageState extends State<HomePage> {
                 children: [
                   Text("Demain\t"),
                   Text(selectedVille!.nomAvecArticle!),
-                  for (var heure in time.toList()[2])
-                    Text(heure.toString() + ""),
-                  for (var temperature in temp.toList()[2])
-                    Text(temperature.toString() + ""),
+                  SizedBox(height: 10),
+                  Row(
+                    children: [
+                      Expanded(
+                        child: Container(
+                          height: screenSize.height * 0.35,
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.all(Radius.circular(10)),
+                            color: Color(0xFFB52003).withOpacity(0.5),
+                          ),
+                          margin: EdgeInsets.all(7),
+                        ),
+                      ),
+                      Expanded(
+                        child: Container(
+                          height: screenSize.height * 0.35,
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.all(Radius.circular(10)),
+                            color: Color(0xFFB52003).withOpacity(0.5),
+                          ),
+                          margin: EdgeInsets.all(7),
+                        ),
+                      ),
+                    ],
+                  ),
+                  SizedBox(height: 10),
+                  Column(
+                    children: [
+                      Container(
+                        height: screenSize.height * 0.1495,
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.all(Radius.circular(10)),
+                          color: Color(0xFFB52003).withOpacity(0.5),
+                        ),
+                        margin: EdgeInsets.all(7),
+                      ),
+                      Container(
+                        height: screenSize.height * 0.1495,
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.all(Radius.circular(10)),
+                          color: Color(0xFFB52003).withOpacity(0.5),
+                        ),
+                        margin: EdgeInsets.all(10),
+                      ),
+                    ],
+                  ),
                 ],
-              ):Text(city),
+              )
+                  : Text(city),
             ),
           ],
         ),
