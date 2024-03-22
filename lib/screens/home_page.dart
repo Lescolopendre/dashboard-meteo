@@ -73,7 +73,7 @@ class _HomePageState extends State<HomePage> {
         title: Text("La Météo"),
         actions: [
           SizedBox(
-            width: 250.0,
+            width: 400.0,
             child: Padding(
               padding: EdgeInsets.all(8),
               child: Column(
@@ -87,20 +87,25 @@ class _HomePageState extends State<HomePage> {
         backgroundColor: Color(0xFF637E92),
       ),
       body: Container(
-        margin: const EdgeInsets.symmetric(vertical: 20),
-        height: 2000,
+        decoration: BoxDecoration(
+          gradient: LinearGradient(
+            colors: [Colors.blue.shade800, Colors.blue.shade200],
+            begin: Alignment.topCenter,
+            end: Alignment.bottomCenter,
+          ),
+        ),
         child: ListView(
           scrollDirection: Axis.horizontal,
           children: <Widget>[
             Container(
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.all(Radius.circular(10)),
-                color: Color(0xFF637E92),
-              ),
-              padding: EdgeInsets.fromLTRB(10, 5, 20, 20),
-              width: screenSize.width - 50,
-              margin: EdgeInsets.all(10),
-              child: selectedVille != null
+                decoration: BoxDecoration(
+                    borderRadius: BorderRadius.all(Radius.circular(10)),
+                    color: Color(0xFF637E92).withOpacity(0.4), //couleur bulle 1
+                ),
+                padding: EdgeInsets.fromLTRB(10, 5, 20, 20),
+                width: screenSize.width-100,
+                margin: EdgeInsets.all(25),
+                child: selectedVille != null
                   ? Wrap(
                 direction: Axis.horizontal,
                 spacing: 8.0,
@@ -113,20 +118,20 @@ class _HomePageState extends State<HomePage> {
                     children: [
                       Expanded(
                         child: Container(
-                          height: screenSize.height * 0.35,
+                          height: screenSize.height * 0.40,
                           decoration: BoxDecoration(
                             borderRadius: BorderRadius.all(Radius.circular(10)),
-                            color: Color(0xFFB52003).withOpacity(0.5),
+                            color: Color(0xFF637E92).withOpacity(0.4),
                           ),
                           margin: EdgeInsets.all(7),
                         ),
                       ),
                       Expanded(
                         child: Container(
-                          height: screenSize.height * 0.35,
+                          height: screenSize.height * 0.40,
                           decoration: BoxDecoration(
                             borderRadius: BorderRadius.all(Radius.circular(10)),
-                            color: Color(0xFFB52003).withOpacity(0.5),
+                            color: Color(0xFF637E92).withOpacity(0.4),
                           ),
                           margin: EdgeInsets.all(7),
                         ),
@@ -137,20 +142,20 @@ class _HomePageState extends State<HomePage> {
                   Column(
                     children: [
                       Container(
-                        height: screenSize.height * 0.1495,
+                        height: screenSize.height * 0.15,
                         decoration: BoxDecoration(
                           borderRadius: BorderRadius.all(Radius.circular(10)),
-                          color: Color(0xFFB52003).withOpacity(0.5),
+                          color: Color(0xFF637E92).withOpacity(0.4),
                         ),
                         margin: EdgeInsets.all(7),
                       ),
                       Container(
-                        height: screenSize.height * 0.1495,
+                        height: screenSize.height * 0.15,
                         decoration: BoxDecoration(
                           borderRadius: BorderRadius.all(Radius.circular(10)),
-                          color: Color(0xFFB52003).withOpacity(0.5),
+                          color: Color(0xFF637E92).withOpacity(0.4),
                         ),
-                        margin: EdgeInsets.all(10),
+                        margin: EdgeInsets.all(7),
                       ),
                     ],
                   ),
@@ -161,11 +166,11 @@ class _HomePageState extends State<HomePage> {
             Container(
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.all(Radius.circular(10)),
-                color: Color(0xFF637E92),
+                color: Color(0xFF637E92).withOpacity(0.4),
               ),
               padding: EdgeInsets.fromLTRB(10, 5, 20, 20),
-              width: screenSize.width - 50,
-              margin: EdgeInsets.all(10),
+              width: screenSize.width-100,
+              margin: EdgeInsets.all(25),
               child: selectedVille != null
                   ? Wrap(
                 direction: Axis.horizontal,
@@ -179,20 +184,20 @@ class _HomePageState extends State<HomePage> {
                     children: [
                       Expanded(
                         child: Container(
-                          height: screenSize.height * 0.35,
+                          height: screenSize.height * 0.40,
                           decoration: BoxDecoration(
                             borderRadius: BorderRadius.all(Radius.circular(10)),
-                            color: Color(0xFFB52003).withOpacity(0.5),
+                            color: Color(0xFF637E92).withOpacity(0.5),
                           ),
                           margin: EdgeInsets.all(7),
                         ),
                       ),
                       Expanded(
                         child: Container(
-                          height: screenSize.height * 0.35,
+                          height: screenSize.height * 0.40,
                           decoration: BoxDecoration(
                             borderRadius: BorderRadius.all(Radius.circular(10)),
-                            color: Color(0xFFB52003).withOpacity(0.5),
+                            color: Color(0xFF637E92).withOpacity(0.5),
                           ),
                           margin: EdgeInsets.all(7),
                         ),
@@ -203,20 +208,20 @@ class _HomePageState extends State<HomePage> {
                   Column(
                     children: [
                       Container(
-                        height: screenSize.height * 0.1495,
+                        height: screenSize.height * 0.15,
                         decoration: BoxDecoration(
                           borderRadius: BorderRadius.all(Radius.circular(10)),
-                          color: Color(0xFFB52003).withOpacity(0.5),
+                          color: Color(0xFF637E92).withOpacity(0.5),
                         ),
                         margin: EdgeInsets.all(7),
                       ),
                       Container(
-                        height: screenSize.height * 0.1495,
+                        height: screenSize.height * 0.15,
                         decoration: BoxDecoration(
                           borderRadius: BorderRadius.all(Radius.circular(10)),
-                          color: Color(0xFFB52003).withOpacity(0.5),
+                          color: Color(0xFF637E92).withOpacity(0.5),
                         ),
-                        margin: EdgeInsets.all(10),
+                        margin: EdgeInsets.all(7),
                       ),
                     ],
                   ),
