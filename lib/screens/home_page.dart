@@ -67,6 +67,7 @@ class _HomePageState extends State<HomePage> {
     var screenSize = MediaQuery.of(context).size;
     return Scaffold(
       appBar: AppBar(
+
         toolbarHeight: 72,
         centerTitle: true,
         title: Text("La Météo"),
@@ -77,6 +78,7 @@ class _HomePageState extends State<HomePage> {
               padding: EdgeInsets.all(8),
               child: Column(
                 children: <Widget>[
+
                   CitySearch(callback: callback, villes: allVilles),
                 ],
               ),
@@ -86,20 +88,25 @@ class _HomePageState extends State<HomePage> {
         backgroundColor: Color(0xFF637E92),
       ),
       body: Container(
-        margin: const EdgeInsets.symmetric(vertical: 20),
-        height: 2000,
+        decoration: BoxDecoration(
+          gradient: LinearGradient(
+            colors: [Colors.blue.shade200, Colors.blue.shade50],
+            begin: Alignment.topCenter,
+            end: Alignment.bottomCenter,
+          ),
+        ),
         child: ListView(
           scrollDirection: Axis.horizontal,
           children: <Widget>[
             Container(
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.all(Radius.circular(10)),
-                color: Color(0xFF637E92),
-              ),
-              padding: EdgeInsets.fromLTRB(10, 5, 20, 20),
-              width: screenSize.width - 50,
-              margin: EdgeInsets.all(10),
-              child: selectedVille != null
+                decoration: BoxDecoration(
+                    borderRadius: BorderRadius.all(Radius.circular(10)),
+                    color: Color(0xFF637E92).withOpacity(0.4), //couleur bulle 1
+                ),
+                padding: EdgeInsets.fromLTRB(10, 5, 20, 20),
+                width: screenSize.width-100,
+                margin: EdgeInsets.all(50),
+                child: selectedVille != null
                   ? Wrap(
                 direction: Axis.horizontal,
                 spacing: 8.0,
@@ -112,17 +119,16 @@ class _HomePageState extends State<HomePage> {
                   for (var temperature in temp.toList()[1])
                     Text(temperature.toString() + ""),
                 ],
-              )
-                  : Text(city),
+              ):Text(city),
             ),
             Container(
               decoration: BoxDecoration(
-                borderRadius: BorderRadius.all(Radius.circular(10)),
-                color: Color(0xFF637E92),
+                  borderRadius: BorderRadius.all(Radius.circular(10)),
+                  color: Color(0xFF637E92).withOpacity(0.4)
               ),
               padding: EdgeInsets.fromLTRB(10, 5, 20, 20),
-              width: screenSize.width - 50,
-              margin: EdgeInsets.all(10),
+              width: screenSize.width-100,
+              margin: EdgeInsets.all(50),
               child: selectedVille != null
                   ? Wrap(
                 direction: Axis.horizontal,
@@ -136,8 +142,7 @@ class _HomePageState extends State<HomePage> {
                   for (var temperature in temp.toList()[2])
                     Text(temperature.toString() + ""),
                 ],
-              )
-                  : Text(city),
+              ):Text(city),
             ),
           ],
         ),
