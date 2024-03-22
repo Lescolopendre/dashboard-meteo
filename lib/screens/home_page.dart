@@ -68,6 +68,7 @@ class _HomePageState extends State<HomePage> {
     var screenSize = MediaQuery.of(context).size;
     return Scaffold(
       appBar: AppBar(
+
         toolbarHeight: 72,
         centerTitle: true,
         title: Text("La Météo"),
@@ -89,7 +90,9 @@ class _HomePageState extends State<HomePage> {
       body: Container(
         decoration: BoxDecoration(
           gradient: LinearGradient(
+
             colors: [Colors.blue.shade800, Colors.blue.shade200],
+
             begin: Alignment.topCenter,
             end: Alignment.bottomCenter,
           ),
