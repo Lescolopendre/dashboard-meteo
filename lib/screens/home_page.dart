@@ -132,6 +132,7 @@ class _HomePageState extends State<HomePage> {
                               // Changer la largeur selon vos besoins
                               decoration: BoxDecoration(
                                 borderRadius:BorderRadius.all(Radius.circular(10)),
+
                                 color: Color(0xFFF5F5F5).withOpacity(0.1),
                               ),
                               margin: EdgeInsets.all(7),
