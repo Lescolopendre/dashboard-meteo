@@ -274,7 +274,6 @@ class _HomePageState extends State<HomePage> {
                         ),
                       ],
                     )
-=======
                   : Text(city),
             ),
           ],
