@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'dart:convert';
 import '../screens/home_page.dart';
 
-Widget getContent() {
+Widget getContentTopContainers() {
   return Container(
       margin: EdgeInsets.all(0.5),
       decoration: BoxDecoration(
