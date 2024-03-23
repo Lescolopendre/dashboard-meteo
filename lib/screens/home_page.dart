@@ -6,6 +6,7 @@ import '../widgets/city_search.dart';
 import '../models/ville_france.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/services.dart';
+import '../screens/top_left.dart';
 
 class HomePage extends StatefulWidget {
   HomePage({Key? key, required this.title}) : super(key: key);
@@ -129,12 +130,13 @@ class _HomePageState extends State<HomePage> {
                               width: screenSize.width * 0.2,
                               // Changer la largeur selon vos besoins
                               decoration: BoxDecoration(
-                                borderRadius:
-                                    BorderRadius.all(Radius.circular(10)),
+                                borderRadius:BorderRadius.all(Radius.circular(10)),
                                 color: Color(0xFFF5F5F5).withOpacity(0.1),
                               ),
                               margin: EdgeInsets.all(7),
+                              child: getContent(), //recup donnée top_left
                             ),
+
                             // Rectangle à droite (plus long)
                             Expanded(
                               child: Container(
