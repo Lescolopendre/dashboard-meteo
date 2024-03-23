@@ -6,6 +6,8 @@ import '../widgets/city_search.dart';
 import '../models/ville_france.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/services.dart';
+import '../screens/top_left.dart';
+import '../screens/bottom_left.dart';
 
 class HomePage extends StatefulWidget {
   HomePage({Key? key, required this.title}) : super(key: key);
@@ -123,18 +125,20 @@ class _HomePageState extends State<HomePage> {
                         SizedBox(height: 10),
                         Row(
                           children: [
-                            // Carré à gauche
+                            // Carré à gauche en haut
                             Container(
                               height: screenSize.height * 0.33,
                               width: screenSize.width * 0.2,
                               // Changer la largeur selon vos besoins
                               decoration: BoxDecoration(
-                                borderRadius:
-                                    BorderRadius.all(Radius.circular(10)),
+                                borderRadius:BorderRadius.all(Radius.circular(10)),
+
                                 color: Color(0xFFF5F5F5).withOpacity(0.1),
                               ),
                               margin: EdgeInsets.all(7),
+                              child: getContentTopContainers(), //recup donnée top_left
                             ),
+
                             // Rectangle à droite (plus long)
                             Expanded(
                               child: Container(
@@ -154,7 +158,7 @@ class _HomePageState extends State<HomePage> {
                         SizedBox(height: 7),
                         Row(
                           children: [
-                            // Carré à gauche
+                            // Carré à gauche en bas
                             Container(
                               height: screenSize.height * 0.33,
                               width: screenSize.width * 0.2,
@@ -165,6 +169,7 @@ class _HomePageState extends State<HomePage> {
                                 color: Color(0xFFF5F5F5).withOpacity(0.1),
                               ),
                               margin: EdgeInsets.all(7),
+                              child: getContentBottomContainers(), //recup donnée bottom_left
                             ),
                             // Rectangle à droite (plus long)
                             Expanded(
