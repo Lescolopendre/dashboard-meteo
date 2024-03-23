@@ -4,7 +4,7 @@ import '../screens/home_page.dart';
 
 Widget getContent() {
   return Container(
-      margin: EdgeInsets.all(0),
+      margin: EdgeInsets.all(0.5),
       decoration: BoxDecoration(
       borderRadius:BorderRadius.all(Radius.circular(10)),
       ),
@@ -47,6 +47,7 @@ Widget getContent() {
 
                       ),
                       height: 34,
+                      margin: EdgeInsets.all(0.5),
                     ),
                     ),
                   ]
@@ -76,7 +77,6 @@ Widget getContent() {
         height: 85,
         width: double.infinity, // Pour occuper toute la largeur de la colonne
         margin: EdgeInsets.symmetric(vertical: 2),
-
         child: Row(
             children:[
               Expanded(child:
