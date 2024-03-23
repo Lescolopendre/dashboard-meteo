@@ -89,7 +89,7 @@ class _HomePageState extends State<HomePage> {
             ),
           )
         ],
-        backgroundColor: Color(0xFF637E92).withOpacity(1),
+        backgroundColor: Color(0xFF07549D),
       ),
       body: Container(
         decoration: BoxDecoration(
@@ -107,7 +107,7 @@ class _HomePageState extends State<HomePage> {
             Container(
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.all(Radius.circular(10)),
-                color: Color(0xFF637E92).withOpacity(0.4), //couleur bulle 1
+                color: Color(0xFFF5F5F5).withOpacity(0.2), //couleur bulle 1
               ),
               padding: EdgeInsets.fromLTRB(10, 5, 20, 20),
               width: screenSize.width - 100,
@@ -115,8 +115,8 @@ class _HomePageState extends State<HomePage> {
               child: selectedVille != null
                   ? Wrap(
                       direction: Axis.horizontal,
-                      spacing: 8.0,
-                      runSpacing: 4.0,
+                      spacing: 2.0,
+                      runSpacing: 1.0,
                       children: [
                         Text("Aujourd'hui\t"),
                         Text(selectedVille!.nomAvecArticle!),
@@ -125,57 +125,57 @@ class _HomePageState extends State<HomePage> {
                           children: [
                             // Carré à gauche
                             Container(
-                              height: screenSize.height * 0.35,
+                              height: screenSize.height * 0.33,
                               width: screenSize.width * 0.2,
                               // Changer la largeur selon vos besoins
                               decoration: BoxDecoration(
                                 borderRadius:
                                     BorderRadius.all(Radius.circular(10)),
-                                color: Color(0xFF637E92).withOpacity(0.5),
+                                color: Color(0xFFF5F5F5).withOpacity(0.1),
                               ),
                               margin: EdgeInsets.all(7),
                             ),
                             // Rectangle à droite (plus long)
                             Expanded(
                               child: Container(
-                                height: screenSize.height * 0.35,
+                                height: screenSize.height * 0.33,
                                 width: screenSize.width * 0.8,
                                 // Changer la largeur selon vos besoins
                                 decoration: BoxDecoration(
                                   borderRadius:
                                       BorderRadius.all(Radius.circular(10)),
-                                  color: Color(0xFF637E92).withOpacity(0.5),
+                                  color: Color(0xFFF5F5F5).withOpacity(0.1),
                                 ),
                                 margin: EdgeInsets.all(7),
                               ),
                             ),
                           ],
                         ),
-                        SizedBox(height: 10),
+                        SizedBox(height: 7),
                         Row(
                           children: [
                             // Carré à gauche
                             Container(
-                              height: screenSize.height * 0.35,
+                              height: screenSize.height * 0.33,
                               width: screenSize.width * 0.2,
                               // Changer la largeur selon vos besoins
                               decoration: BoxDecoration(
                                 borderRadius:
                                     BorderRadius.all(Radius.circular(10)),
-                                color: Color(0xFF637E92).withOpacity(0.5),
+                                color: Color(0xFFF5F5F5).withOpacity(0.1),
                               ),
                               margin: EdgeInsets.all(7),
                             ),
                             // Rectangle à droite (plus long)
                             Expanded(
                               child: Container(
-                                height: screenSize.height * 0.35,
+                                height: screenSize.height * 0.33,
                                 width: screenSize.width * 0.8,
                                 // Changer la largeur selon vos besoins
                                 decoration: BoxDecoration(
                                   borderRadius:
                                       BorderRadius.all(Radius.circular(10)),
-                                  color: Color(0xFF637E92).withOpacity(0.5),
+                                  color: Color(0xFFF5F5F5).withOpacity(0.1),
                                 ),
                                 margin: EdgeInsets.all(7),
                               ),
@@ -190,7 +190,7 @@ class _HomePageState extends State<HomePage> {
             Container(
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.all(Radius.circular(10)),
-                color: Color(0xFF637E92).withOpacity(0.4), //couleur bulle 1
+                color: Color(0xFFF5F5F5).withOpacity(0.2), //couleur bulle 1
               ),
               padding: EdgeInsets.fromLTRB(10, 5, 20, 20),
               width: screenSize.width - 100,
@@ -208,11 +208,11 @@ class _HomePageState extends State<HomePage> {
                           children: [
                             // Carré à gauche
                             Container(
-                              height: screenSize.height * 0.35,
+                              height: screenSize.height * 0.33,
                               width: screenSize.width * 0.2,
                               decoration: BoxDecoration(
                                 borderRadius: BorderRadius.all(Radius.circular(10)),
-                                color: Color(0xFF637E92).withOpacity(0.5),
+                                color: Color(0xFFF5F5F5).withOpacity(0.1),
                               ),
                               margin: EdgeInsets.all(7),
                             ),
@@ -222,11 +222,11 @@ class _HomePageState extends State<HomePage> {
                                 children: [
                                   // Premier rectangle (1/3 de la hauteur)
                                   Container(
-                                    height: 2* (screenSize.height * 0.35 - 14) / 5, // 1/3 de la hauteur disponible
+                                    height: 2* (screenSize.height * 0.33 - 14) / 5, // 1/3 de la hauteur disponible
                                     width: screenSize.width * 0.8,
                                     decoration: BoxDecoration(
                                       borderRadius: BorderRadius.all(Radius.circular(10)),
-                                      color: Color(0xFF637E92).withOpacity(0.5),
+                                      color: Color(0xFFF5F5F5).withOpacity(0.1),
                                     ),
                                     margin: EdgeInsets.only(left: 7, right: 7, top: 7),
                                     child: Icon(
@@ -238,11 +238,11 @@ class _HomePageState extends State<HomePage> {
                                   SizedBox(height: 7), // Espacement entre les deux rectangles
                                   // Deuxième rectangle (2/3 de la hauteur)
                                   Container(
-                                    height: 3 * (screenSize.height * 0.35 - 14) / 5, // 2/3 de la hauteur disponible
+                                    height: 3 * (screenSize.height * 0.33 - 14) / 5, // 2/3 de la hauteur disponible
                                     width: screenSize.width * 0.8,
                                     decoration: BoxDecoration(
                                       borderRadius: BorderRadius.all(Radius.circular(10)),
-                                      color: Color(0xFF637E92).withOpacity(0.5),
+                                      color: Color(0xFFF5F5F5).withOpacity(0.1),
                                     ),
                                     margin: EdgeInsets.only(left: 7, right: 7, bottom: 7),
 
@@ -264,7 +264,7 @@ class _HomePageState extends State<HomePage> {
                               decoration: BoxDecoration(
                                 borderRadius:
                                     BorderRadius.all(Radius.circular(10)),
-                                color: Color(0xFF637E92).withOpacity(0.5),
+                                color: Color(0xFFF5F5F5).withOpacity(0.1),
                               ),
                               margin: EdgeInsets.all(7),
 
