@@ -184,6 +184,7 @@ class _HomePageState extends State<HomePage> {
                         ),
                       ],
                     )
+
                   : Text(city),
             ),
             Container(
@@ -273,6 +274,7 @@ class _HomePageState extends State<HomePage> {
                         ),
                       ],
                     )
+=======
                   : Text(city),
             ),
           ],
