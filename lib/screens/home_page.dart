@@ -16,10 +16,18 @@ class HomePage extends StatefulWidget {
   final String title;
 
   @override
-  _HomePageState createState() => _HomePageState();
+  HomePageState createState() => HomePageState();
+
+  // Méthode publique pour accéder à la variable temp
+  List<dynamic> getTempMax() {
+    return HomePageState().tempMax;
+  }
+  List<dynamic> getTempMin() {
+    return HomePageState().tempMin;
+  }
 }
 
-class _HomePageState extends State<HomePage> {
+class HomePageState extends State<HomePage> {
   String city = "Aujourd'hui";
   Ville? selectedVille;
   late Iterable<List<dynamic>> time;
@@ -29,6 +37,9 @@ class _HomePageState extends State<HomePage> {
   late Future<List<Ville>> villes;
   late List<Ville> allVilles = [];
   bool isRectangleFirst = true;
+  List<dynamic> tempMax = [];
+  List<dynamic> tempMin = [];
+
 
   callback(Ville varCity, dataVille data) {
     setState(() {
@@ -36,10 +47,13 @@ class _HomePageState extends State<HomePage> {
       selectedVille = varCity;
       time = data.hourlyTime;
       temp = data.hourlyTemp;
-      maxTemp = data.dailyMaxTemp;
-      minTemp = data.dailyMinTemp;
+      tempMax = data.dailyMaxTemp;
+      tempMin = data.dailyMinTemp;
+
     });
   }
+
+
 
   @override
   void initState() {
@@ -63,8 +77,9 @@ class _HomePageState extends State<HomePage> {
       selectedVille = city;
       time = data.hourlyTime;
       temp = data.hourlyTemp;
-      maxTemp = data.dailyMaxTemp;
-      minTemp = data.dailyMinTemp;
+      tempMax = data.dailyMaxTemp;
+      tempMin = data.dailyMinTemp;
+
 
       // Affichez les données de la ville directement une fois récupérées
       city = selectedVille!;
