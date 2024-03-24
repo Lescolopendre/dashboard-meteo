@@ -9,6 +9,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/services.dart';
 import '../screens/top_left.dart';
 import '../screens/bottom_left.dart';
+import 'package:weather_icons/weather_icons.dart';
 
 class HomePage extends StatefulWidget {
   HomePage({Key? key, required this.title}) : super(key: key);
@@ -59,6 +60,9 @@ class _HomePageState extends State<HomePage> {
       selectedVille = city;
       time = data.hourlyTime;
       temp = data.hourlyTemp;
+      maxTemp = data.dailyMaxTemp;
+      minTemp = data.dailyMinTemp;
+
       // Affichez les données de la ville directement une fois récupérées
       city = selectedVille!;
     });
