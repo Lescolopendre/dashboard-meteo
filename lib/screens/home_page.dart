@@ -23,8 +23,9 @@ class _HomePageState extends State<HomePage> {
   String city = "Aujourd'hui";
   Ville? selectedVille;
   late Iterable<List<dynamic>> time;
-
   Iterable<List<dynamic>> temp = [];
+  late List<dynamic> maxTemp;
+  late List<dynamic> minTemp;
   late Future<List<Ville>> villes;
   late List<Ville> allVilles = [];
   bool isRectangleFirst = true;
@@ -35,6 +36,8 @@ class _HomePageState extends State<HomePage> {
       selectedVille = varCity;
       time = data.hourlyTime;
       temp = data.hourlyTemp;
+      maxTemp = data.dailyMaxTemp;
+      minTemp = data.dailyMinTemp;
     });
   }
 
