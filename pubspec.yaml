@@ -30,6 +30,7 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
+  weather_icons: ^3.0.0
   flutter_typeahead: ^4.6.2
   geolocator: ^7.6.2
   flutter_svg: ^0.22.0
@@ -71,15 +72,7 @@ flutter:
     - assets/villes.json
   #   - images/a_dot_burr.jpe g
   #   - images/a_dot_ham.jpeg
-    - assets/icon_meteo/air-24px.xml
-    - assets/icon_meteo/aq-24px.xml
-    - assets/icon_meteo/clear_night-24px.xml
-    - assets/icon_meteo/cloud-24px.xml
-    - assets/icon_meteo/cloudy_snowing-24px.xml
-    - assets/icon_meteo/heat-24px.xml
-    - assets/icon_meteo/partly_cloudy_day-24px.xml
-    - assets/icon_meteo/rainy-24px.xml
-    - assets/icon_meteo/sunny-24px.xml
+
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware
