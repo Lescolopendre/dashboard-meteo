@@ -9,6 +9,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/services.dart';
 import '../screens/top_left.dart';
 import '../screens/bottom_left.dart';
+import 'package:weather_icons/weather_icons.dart';
 
 class HomePage extends StatefulWidget {
   HomePage({Key? key, required this.title}) : super(key: key);
@@ -31,6 +32,8 @@ class HomePageState extends State<HomePage> {
   Ville? selectedVille;
   late Iterable<List<dynamic>> time;
   Iterable<List<dynamic>> temp = [];
+  late List<dynamic> maxTemp;
+  late List<dynamic> minTemp;
   late Future<List<Ville>> villes;
   late List<Ville> allVilles = [];
   bool isRectangleFirst = true;
@@ -45,7 +48,8 @@ class HomePageState extends State<HomePage> {
       time = data.hourlyTime;
       temp = data.hourlyTemp;
       tempMax = data.dailyMaxTemp;
-      tempMin = data.dailyApparentMinTemp;
+      tempMin = data.dailyMinTemp;
+
     });
   }
 
@@ -74,7 +78,8 @@ class HomePageState extends State<HomePage> {
       time = data.hourlyTime;
       temp = data.hourlyTemp;
       tempMax = data.dailyMaxTemp;
-      tempMin = data.dailyApparentMinTemp;
+      tempMin = data.dailyMinTemp;
+
 
       // Affichez les données de la ville directement une fois récupérées
       city = selectedVille!;
