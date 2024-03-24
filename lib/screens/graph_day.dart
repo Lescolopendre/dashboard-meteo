@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'dart:convert';
 import '../screens/home_page.dart';
 import 'package:fl_chart/fl_chart.dart';
-  import 'dart:math';
+import 'dart:math';
 
 class GraphDay extends StatelessWidget {
   final points;
