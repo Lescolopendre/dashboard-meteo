@@ -8,7 +8,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'La météo',
       theme: ThemeData(
-        scaffoldBackgroundColor: Color(0xFF07549D),
+        scaffoldBackgroundColor: Color(0xFF63B0F8),
         brightness: Brightness.dark,
       ),
 

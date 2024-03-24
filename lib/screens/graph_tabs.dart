@@ -11,11 +11,28 @@ class GraphTabs extends StatelessWidget {
   Widget build(BuildContext context) {
     return DefaultTabController(
         length: 2,
-        child: TabBar(
-          tabs: [
+      child: Scaffold(
+
+        backgroundColor: Colors.transparent,
+        appBar: PreferredSize(
+          preferredSize: Size.fromHeight(50),
+          child: AppBar(
+            elevation: 0,
+            backgroundColor: Colors.transparent,
+          bottom: const TabBar(
+            tabs: [
+              Tab(icon: Icon(Icons.thermostat)),
+              Tab(icon: Icon(Icons.water_drop)),
+            ],
+          ),
+          )
+        ),
+        body: TabBarView(
+          children: [
             GraphTempDay(points: temp.toList()[0]),
             GraphRainDay(points: pluie.toList()[0]),
           ],
-        ));
+        ),
+      ),);
   }
 }

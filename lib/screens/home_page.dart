@@ -34,7 +34,7 @@ class HomePageState extends State<HomePage> {
   Iterable<List<dynamic>> temp = [];
   late List<dynamic> maxTemp;
   late List<dynamic> minTemp;
-  late var precipitationDaily;
+  late var precipitationHourlyProba;
   late Future<List<Ville>> villes;
   late List<Ville> allVilles = [];
   bool isRectangleFirst = true;
@@ -50,7 +50,7 @@ class HomePageState extends State<HomePage> {
       temp = data.hourlyTemp;
       tempMax = data.dailyMaxTemp;
       tempMin = data.dailyMinTemp;
-      precipitationDaily=data.hourlyPrecipitation;
+      precipitationHourlyProba=data.hourlyPrecipitationProba;
     });
   }
 
@@ -80,7 +80,7 @@ class HomePageState extends State<HomePage> {
       temp = data.hourlyTemp;
       tempMax = data.dailyMaxTemp;
       tempMin = data.dailyMinTemp;
-      precipitationDaily=data.hourlyPrecipitation;
+      precipitationHourlyProba=data.hourlyPrecipitationProba;
 
       // Affichez les données de la ville directement une fois récupérées
       city = selectedVille!;
@@ -207,7 +207,7 @@ class HomePageState extends State<HomePage> {
                                   color: Color(0xFFF5F5F5).withOpacity(0.1),
                                 ),
                                 margin: EdgeInsets.all(7),
-                                child: GraphTabs(temp: temp, pluie: precipitationDaily,)
+                                child: GraphTabs(temp: temp, pluie: precipitationHourlyProba,)
                               ),
                             ),
                           ],

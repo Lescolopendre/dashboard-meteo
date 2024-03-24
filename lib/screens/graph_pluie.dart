@@ -10,17 +10,17 @@ class GraphRainDay extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-
     List<double> times = [0,1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23];
     return Container(
       margin: const EdgeInsets.only( right: 40.0),
       child:BarChart(
         BarChartData(
-          maxY: (points.reduce((curr, next) => curr > next? curr: next)+20).round(),
+          maxY: 100,
+          minY: 0 ,
           barGroups: [
             for(var i=0; i<24; i++) BarChartGroupData(x: i,
               barRods: [BarChartRodData(
-                toY: points.toList()[0][i],
+                toY: points[i],
               )],),
           ],
           gridData: FlGridData(
@@ -28,7 +28,7 @@ class GraphRainDay extends StatelessWidget {
           ),
           titlesData: const FlTitlesData(
             topTitles: AxisTitles(
-              axisNameWidget: Text("Précipitation",style: TextStyle(fontSize: 20),),
+              axisNameWidget: Text("Probabilité de précipitation",style: TextStyle(fontSize: 20),),
               axisNameSize: 40,
               sideTitles: SideTitles(showTitles: false),
             ),
@@ -39,7 +39,6 @@ class GraphRainDay extends StatelessWidget {
               sideTitles: SideTitles(
                 getTitlesWidget: bottomTitlesWidget,
                 showTitles: true,
-                interval: 1,
                 reservedSize: 40,
               ),
             ),
@@ -47,7 +46,7 @@ class GraphRainDay extends StatelessWidget {
               sideTitles: SideTitles(
                 getTitlesWidget: leftTitlesWidget,
                 showTitles: true,
-                interval: 2,
+                interval: 25,
                 reservedSize: 40,
               ),
             ),
@@ -60,7 +59,7 @@ class GraphRainDay extends StatelessWidget {
 
 Widget bottomTitlesWidget(double value, TitleMeta meta){
   const style = TextStyle(
-    fontSize: 15,
+    fontSize: 10,
     fontWeight: FontWeight.bold,
     color:Colors.white,
   );
