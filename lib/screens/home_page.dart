@@ -267,7 +267,7 @@ class HomePageState extends State<HomePage> {
                                     margin: EdgeInsets.only(
                                         left: 7, right: 7, top: 7),
                                     child: Icon(
-                                      Icons.wb_twighlight,
+                                      WeatherIcons.day_cloudy,
                                       color: Colors.deepOrangeAccent,
                                       size: 50.0,
                                     ),
