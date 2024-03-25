@@ -20,7 +20,7 @@ class GraphRainDay extends StatelessWidget {
           barGroups: [
             for(var i=0; i<24; i++) BarChartGroupData(x: i,
               barRods: [BarChartRodData(
-                toY: points[i],
+                toY: points[i]+1,
               )],),
           ],
           gridData: FlGridData(

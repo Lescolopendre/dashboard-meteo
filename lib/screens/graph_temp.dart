@@ -49,7 +49,7 @@ class GraphTempDay extends StatelessWidget {
               sideTitles: SideTitles(
                 getTitlesWidget: leftTitlesWidget,
                 showTitles: true,
-                interval: 4,
+                interval: 100,
                 reservedSize: 40,
               ),
             ),
