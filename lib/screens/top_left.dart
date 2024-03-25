@@ -1,15 +1,22 @@
 import 'package:flutter/material.dart';
 import 'dart:convert';
 import '../screens/home_page.dart';
-import '../models/get_data.dart';
 import 'package:weather_icons/weather_icons.dart';
+
 
 class getContentTopContainers extends StatelessWidget {
   final tempMin;
   final tempMax;
-  final tempCurrent;
+  final hourlyTemp;
+  final currentHour;
+  final dynamic city;
+  final dailySunsetHour;
+  final dailySunriseHour;
 
-  const getContentTopContainers({super.key, required this.tempMax, required this.tempMin, required this.tempCurrent});
+  const getContentTopContainers({super.key, required this.tempMax,
+    required this.tempMin, required this.hourlyTemp,
+    required this.currentHour, required this.city,
+    required this.dailySunsetHour, required this.dailySunriseHour});
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -46,8 +53,12 @@ class getContentTopContainers extends StatelessWidget {
                         ),
                         height: 50,
                         margin: EdgeInsets.all(0.5),
-                        child: Text(tempCurrent.toString()+"°C")
-                      ),
+                        child://recup heure
+                          //isole heure actuelle
+                          //index dans le tableaux hourlyTemp
+
+                          Text((hourlyTemp.toList()[0][currentHour]).toString()+" °C")
+                      )
                     ),
                     Expanded(
                       child: Container(
@@ -58,7 +69,7 @@ class getContentTopContainers extends StatelessWidget {
                         ),
                         height: 34,
                         margin: EdgeInsets.all(0.5),
-                        child: Text("min "+ tempMin.toString()[1] +" / max "+ tempMax.toString()[10]+"°C"),
+                        child: Text("min "+ (tempMin.toList()[0]).toString() +" / max "+ (tempMax.toList()[0]).toString()+"°C"),
                       ),
                     ),
                   ]),
@@ -94,6 +105,8 @@ class getContentTopContainers extends StatelessWidget {
                   ),
                   height: 85,
                   margin: EdgeInsets.all(0.5),
+                  child:
+                  Text(city)
                 ),
               ),
               Expanded(
@@ -116,6 +129,13 @@ class getContentTopContainers extends StatelessWidget {
                           ),
                           height: 41.5,
                           margin: EdgeInsets.all(0.5),
+                          child:Row(
+                            children: <Widget>[
+                              Icon(WeatherIcons.sunrise,size: 20,color: Colors.pink),
+                              SizedBox(width: 8), // Adding some space between icon and text
+                             // Text((dailySunriseHour.toList()[0]).toString()),
+                            ],
+                          ),
                         ),
                       ),
                       Expanded(
@@ -127,6 +147,13 @@ class getContentTopContainers extends StatelessWidget {
                           ),
                           height: 41.5,
                           margin: EdgeInsets.all(0.5),
+                          child:Row(
+                            children: <Widget>[
+                              Icon(WeatherIcons.sunset,size: 20,color: Colors.deepOrange),
+                              SizedBox(width: 8), // Adding some space between icon and text
+                             // Text((dailySunsetHour.toList()[0]).toString()),
+                            ],
+                          ),
                         ),
                       ),
                     ],
