@@ -4,12 +4,12 @@ import 'dart:convert';
 import '../models/villes.dart';
 import '../widgets/city_search.dart';
 import '../models/ville_france.dart';
-import 'graph_day.dart';
+import 'graph_temp.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/services.dart';
 import '../screens/top_left.dart';
 import '../screens/bottom_left.dart';
-import 'package:weather_icons/weather_icons.dart';
+import 'graph_tabs.dart';
 
 class HomePage extends StatefulWidget {
   HomePage({Key? key, required this.title}) : super(key: key);
@@ -34,6 +34,7 @@ class HomePageState extends State<HomePage> {
   Iterable<List<dynamic>> temp = [];
   late List<dynamic> maxTemp;
   late List<dynamic> minTemp;
+  late var precipitationHourlyProba;
   late Future<List<Ville>> villes;
   late List<Ville> allVilles = [];
   bool isRectangleFirst = true;
@@ -49,7 +50,7 @@ class HomePageState extends State<HomePage> {
       temp = data.hourlyTemp;
       tempMax = data.dailyMaxTemp;
       tempMin = data.dailyMinTemp;
-
+      precipitationHourlyProba=data.hourlyPrecipitationProba;
     });
   }
 
@@ -79,7 +80,7 @@ class HomePageState extends State<HomePage> {
       temp = data.hourlyTemp;
       tempMax = data.dailyMaxTemp;
       tempMin = data.dailyMinTemp;
-
+      precipitationHourlyProba=data.hourlyPrecipitationProba;
 
       // Affichez les données de la ville directement une fois récupérées
       city = selectedVille!;
@@ -206,7 +207,7 @@ class HomePageState extends State<HomePage> {
                                   color: Color(0xFFF5F5F5).withOpacity(0.1),
                                 ),
                                 margin: EdgeInsets.all(7),
-                                child: GraphDay(points: temp.toList()[0]),
+                                child: GraphTabs(temp: temp, pluie: precipitationHourlyProba,)
                               ),
                             ),
                           ],
@@ -284,7 +285,7 @@ class HomePageState extends State<HomePage> {
                                     ),
                                     margin: EdgeInsets.only(
                                         left: 7, right: 7, bottom: 7),
-                                    child: GraphDay(points: temp.toList()[0]),
+                                    child: GraphTempDay(points: temp.toList()[0]),
                                   ),
                                 ],
                               ),
