@@ -17,14 +17,6 @@ class HomePage extends StatefulWidget {
 
   @override
   HomePageState createState() => HomePageState();
-
-  // Méthode publique pour accéder à la variable temp
-  List<dynamic> getTempMax() {
-    return HomePageState().tempMax;
-  }
-  List<dynamic> getTempMin() {
-    return HomePageState().tempMin;
-  }
 }
 
 class HomePageState extends State<HomePage> {
@@ -32,14 +24,14 @@ class HomePageState extends State<HomePage> {
   Ville? selectedVille;
   late Iterable<List<dynamic>> time;
   Iterable<List<dynamic>> temp = [];
-  late List<dynamic> maxTemp;
-  late List<dynamic> minTemp;
   late var precipitationHourlyProba;
   late Future<List<Ville>> villes;
   late List<Ville> allVilles = [];
   bool isRectangleFirst = true;
   List<dynamic> tempMax = [];
   List<dynamic> tempMin = [];
+  List<dynamic> tempCurrent = [];
+  List<dynamic> relativeHumidity = [];
 
 
   callback(Ville varCity, dataVille data) {
@@ -50,6 +42,8 @@ class HomePageState extends State<HomePage> {
       temp = data.hourlyTemp;
       tempMax = data.dailyMaxTemp;
       tempMin = data.dailyMinTemp;
+      tempCurrent = data.currentTemperature;
+      relativeHumidity = data.relativeHumidity;
       precipitationHourlyProba=data.hourlyPrecipitationProba;
     });
   }
@@ -159,7 +153,7 @@ class HomePageState extends State<HomePage> {
                               ),
                               margin: EdgeInsets.all(7),
                               child:
-                                  getContentTopContainers(), //recup donnée top_left
+                                  getContentTopContainers(tempMin: tempMin, tempMax: tempMax, tempCurrent: tempCurrent,), //recup donnée top_left
                             ),
 
                             // Rectangle à droite (plus long)
