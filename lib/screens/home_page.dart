@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
+import 'package:lottie/lottie.dart';
 import 'package:weather_icons/weather_icons.dart';
 import 'dart:convert';
 import '../models/villes.dart';
@@ -276,8 +277,8 @@ class HomePageState extends State<HomePage> {
                                     ),
                                     margin: EdgeInsets.only(
                                         left: 7, right: 7, top: 7),
-                                    child: Image.asset(
-                                      "assets/loading.gif",
+                                    child: Lottie.asset(
+                                      "assets/icone/clear_night.json",
                                       height: 125.0,
                                       width: 125.0,
                                     ),
