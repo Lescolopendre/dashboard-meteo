@@ -274,10 +274,10 @@ class HomePageState extends State<HomePage> {
                                     ),
                                     margin: EdgeInsets.only(
                                         left: 7, right: 7, top: 7),
-                                    child: Icon(
-                                      WeatherIcons.day_cloudy,
-                                      color: Colors.deepOrangeAccent,
-                                      size: 50.0,
+                                    child: Image.asset(
+                                      "assets/loading.gif",
+                                      height: 125.0,
+                                      width: 125.0,
                                     ),
                                   ),
                                   SizedBox(
