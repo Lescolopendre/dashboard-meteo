@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:weather_icons/weather_icons.dart';
-
+import 'package:intl/intl.dart';
 
 class getContentTopContainers extends StatelessWidget {
   final tempMin;
@@ -14,7 +14,9 @@ class getContentTopContainers extends StatelessWidget {
   const getContentTopContainers({super.key, required this.tempMax,
     required this.tempMin, required this.hourlyTemp,
     required this.currentHour, required this.city,
-    required this.dailySunsetHour, required this.dailySunriseHour});
+    required this.dailySunsetHour, required this.dailySunriseHour,
+
+    });
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -51,10 +53,7 @@ class getContentTopContainers extends StatelessWidget {
                         ),
                         height: 50,
                         margin: EdgeInsets.all(0.5),
-                        child://recup heure
-                          //isole heure actuelle
-                          //index dans le tableaux hourlyTemp
-
+                        child:
                           Text((hourlyTemp.toList()[0][currentHour]).toString()+" °C")
                       )
                     ),
@@ -67,7 +66,7 @@ class getContentTopContainers extends StatelessWidget {
                         ),
                         height: 34,
                         margin: EdgeInsets.all(0.5),
-                        child: Text("min "+ (tempMin.toList()[0]).toString() +" / max "+ (tempMax.toList()[0]).toString()+"°C"),
+                        child: Text("min "+ (tempMin.toList()[0]).toString() +"°C" +" / max "+ (tempMax.toList()[0]).toString()+"°C"),
                       ),
                     ),
                   ]),
@@ -88,7 +87,7 @@ class getContentTopContainers extends StatelessWidget {
           ),
           Container(
             decoration: BoxDecoration(
-                borderRadius: BorderRadius.all(Radius.circular(10))),
+            borderRadius: BorderRadius.all(Radius.circular(10))),
             height: 85,
             width: double.infinity,
             // Pour occuper toute la largeur de la colonne
@@ -104,6 +103,7 @@ class getContentTopContainers extends StatelessWidget {
                   height: 85,
                   margin: EdgeInsets.all(0.5),
                   child:
+                   //ajouter ivry comme la ville par défaut
                   Text(city)
                 ),
               ),
@@ -129,9 +129,10 @@ class getContentTopContainers extends StatelessWidget {
                           margin: EdgeInsets.all(0.5),
                           child:Row(
                             children: <Widget>[
+                              SizedBox(width: 20),
                               Icon(WeatherIcons.sunrise,size: 20,color: Colors.pink),
-                              SizedBox(width: 8), // Adding some space between icon and text
-                             // Text((dailySunriseHour.toList()[0]).toString()),
+                              SizedBox(width: 10), // Adding some space between icon and text
+                              Text(DateFormat('HH:mm').format(DateTime.parse(dailySunriseHour[0]))),
                             ],
                           ),
                         ),
@@ -147,9 +148,10 @@ class getContentTopContainers extends StatelessWidget {
                           margin: EdgeInsets.all(0.5),
                           child:Row(
                             children: <Widget>[
+                              SizedBox(width: 20),
                               Icon(WeatherIcons.sunset,size: 20,color: Colors.deepOrange),
-                              SizedBox(width: 8), // Adding some space between icon and text
-                             // Text((dailySunsetHour.toList()[0]).toString()),
+                              SizedBox(width: 10), // Adding some space between icon and text
+                              Text(DateFormat('HH:mm').format(DateTime.parse(dailySunsetHour[0]))),
                             ],
                           ),
                         ),

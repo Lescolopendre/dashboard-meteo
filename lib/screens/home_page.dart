@@ -27,6 +27,10 @@ class HomePageState extends State<HomePage> {
   Ville? selectedVille;
   late Iterable<List<dynamic>> time;
   Iterable<List<dynamic>> temp = [];
+  Iterable<List<dynamic>> tempApparent = [];
+  Iterable<List<dynamic>> windSpeed = [];
+  Iterable<List<dynamic>> humidity = [];
+  Iterable<List<dynamic>> uvIndex = [];
   late var precipitationHourlyProba;
   late Future<List<Ville>> villes;
   late List<Ville> allVilles = [];
@@ -43,8 +47,12 @@ class HomePageState extends State<HomePage> {
       selectedVille = varCity;
       time = data.hourlyTime;
       temp = data.hourlyTemp;
+      tempApparent=data.hourlyApparentTemp;
       tempMax = data.dailyMaxTemp;
       tempMin = data.dailyMinTemp;
+      windSpeed = data.hourlyWindSpeed;
+      humidity = data.hourlyHumidity;
+      uvIndex = data.hourlyUVIndex;
       precipitationHourlyProba=data.hourlyPrecipitationProba;
       currentHour=DateTime.now().hour;
       dailySunriseHour= data.dailySunriseHour;
@@ -73,16 +81,21 @@ class HomePageState extends State<HomePage> {
 
   void getDataForCity(Ville city) async {
     final data = await GetDataVille(city.latitude, city.longitude).getData();
-    setState(() {
+    return setState(() {
       selectedVille = city;
       time = data.hourlyTime;
       temp = data.hourlyTemp;
+      tempApparent=data.hourlyApparentTemp;
       tempMax = data.dailyMaxTemp;
       tempMin = data.dailyMinTemp;
+      windSpeed = data.hourlyWindSpeed;
+      humidity = data.hourlyHumidity;
+      uvIndex = data.hourlyUVIndex;
       precipitationHourlyProba=data.hourlyPrecipitationProba;
       currentHour=DateTime.now().hour;
       dailySunriseHour= data.dailySunriseHour;
       dailySunsetHour= data.dailySunsetHour;
+
 
       // Affichez les données de la ville directement une fois récupérées
       city = selectedVille!;
@@ -211,7 +224,7 @@ class HomePageState extends State<HomePage> {
                               ),
                               margin: EdgeInsets.all(7),
                               child:
-                                  getContentBottomContainers(), //recup donnée bottom_left
+                                  getContentBottomContainers(hourlyApparentTemp: tempApparent, currentHour:currentHour, hourlyWindSpeed:windSpeed, hourlyHumidity:humidity,hourlyUVIndex:uvIndex), //recup donnée bottom_left
                             ),
                             // Rectangle à droite (plus long)
                             Expanded(
