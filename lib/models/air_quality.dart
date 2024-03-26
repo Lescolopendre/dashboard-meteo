@@ -1,98 +1,62 @@
-/*import 'package:flutter/material.dart';
+import 'package:flutter/material.dart';
 import 'package:air_quality/air_quality.dart';
+import '../screens/home_page.dart';
 
-class airQuality extends StatelessWidget {
-  String _key = '9e538456b2b85c92647d8b65090e29f957638c77';
-  final AirQuality _airQuality;
-  final List<AirQualityData> _data;
+@override
+class getAirQuality extends StatefulWidget {
+  AirQuality _airQuality = AirQuality('https://waqi.info/#/c/47.527/3.538/5z');
+  final String _cityName = 'Lyon';
+  double _aqiValue = 0.0;
+  String _aqiIndex = 'Unknown';
 
-const airQuality({super.key,
-  required this._airQuality
-});
-  @override
-
-  Future download() async {
-    _data = [];
-
+  String _getAQIIndex(double aqiValue) {
+    if (aqiValue >= 0 && aqiValue <= 50) {
+      return 'Good';
+    } else if (aqiValue > 50 && aqiValue <= 100) {
+      return 'Moderate';
+    } else if (aqiValue > 100 && aqiValue <= 150) {
+      return 'Unhealthy for Sensitive Groups';
+    } else if (aqiValue > 150 && aqiValue <= 200) {
+      return 'Unhealthy';
+    } else if (aqiValue > 200 && aqiValue <= 300) {
+      return 'Very Unhealthy';
+    } else if (aqiValue > 300) {
+      return 'Hazardous';
+    } else {
+      return 'Unknown';
     }
-
-    /// Via city name (Munich)
-    AirQualityData feedFromCity = await _airQuality.feedFromCity('munich');
-
-
-    /// Via Geo Location (Berlin)
-    AirQualityData feedFromGeoLocation =
-    await _airQuality.feedFromGeoLocation(52.6794, 12.5346);
-
-    // Update screen state
-    setState(() {
-      _data.add(feedFromCity);
-    });
-
-  Widget contentFinishedDownload() {
-    return Center(
-      child: ListView.separated(
-        itemCount: _data.length,
-        itemBuilder: (context, index) {
-          return ListTile(
-            title: Text(_data[index].toString()),
-          );
-        },
-        separatorBuilder: (context, index) {
-          return Divider();
-        },
-      ),
-    );
   }
 
-  Widget build(BuildContext context) {
-    return Container(
-        margin: EdgeInsets.all(25),
-        child: Column(children: [
-          Text(
-            'Fetching Air Quality...',
-            style: TextStyle(fontSize: 20),
-          ),
-          Container(
-              margin: EdgeInsets.only(top: 50),
-              child: Center(child: CircularProgressIndicator(strokeWidth: 10)))
-        ]));
-  }
-
-  Widget contentNotDownloaded() {
-    return Center(
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: <Widget>[
-          Text(
-            'Press the button to download the Air Quality',
-          ),
-        ],
-      ),
-    );
-  }
 
   @override
   Widget build(BuildContext context) {
-    // This method is rerun every time setState is called, for instance as done
-    // by the _incrementCounter method above.
-    //
-    // The Flutter framework has been optimized to make rerunning build methods
-    // fast, so that you can just rebuild anything that needs updating rather
-    // than having to individually change instances of widgets.
     return Scaffold(
       appBar: AppBar(
-        // Here we take the value from the MyHomePage object that was created by
-        // the App.build method, and use it to set our appbar title.
-        title: Text(widget.title!),
+        title: Text("Qualité de l'air"),
       ),
-      body: showContent(),
-      floatingActionButton: FloatingActionButton(
-        onPressed: download,
-        tooltip: 'Download',
-        child: Icon(Icons.cloud_download),
-      ), // This trailing comma makes auto-formatting nicer for build methods.
+      body: Center(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Text(
+              'Current AQI:',
+              style: TextStyle(fontSize: 24),
+            ),
+            SizedBox(height: 10),
+            Text(
+              _aqiValue.toString(),
+              style: TextStyle(fontSize: 36, fontWeight: FontWeight.bold),
+            ),
+          ],
+
+        ),
+      ),
     );
   }
-  }*/
 
+  @override
+  State<StatefulWidget> createState() {
+    // TODO: implement createState
+    throw UnimplementedError();
+  }
+}

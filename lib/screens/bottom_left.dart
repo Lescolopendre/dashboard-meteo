@@ -146,7 +146,8 @@ class getContentBottomContainers extends StatelessWidget {
                 height: 85,
                 width: double.infinity,
                 margin: EdgeInsets.all(3),
-
+                child:
+                    getAirQuality()
               ),
             ]
         )
