@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:weather_icons/weather_icons.dart';
 import 'dart:convert';
 import '../models/villes.dart';
 import '../widgets/city_search.dart';
@@ -8,7 +9,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/services.dart';
 import '../screens/top_left.dart';
 import '../screens/bottom_left.dart';
-import '../models/current_hour.dart';
+import '../screens/top_right.dart';
 import 'graph_tabs.dart';
 
 class HomePage extends StatefulWidget {
@@ -146,41 +147,48 @@ class HomePageState extends State<HomePage> {
                         SizedBox(height: 10),
                         Row(
                           children: [
-                            // Carré à gauche en haut
+                            // Carré à gauche
                             Container(
                               height: screenSize.height * 0.33,
                               width: screenSize.width * 0.2,
-                              // Changer la largeur selon vos besoins
                               decoration: BoxDecoration(
-                                borderRadius:
-                                    BorderRadius.all(Radius.circular(10)),
+                                borderRadius: BorderRadius.all(Radius.circular(10)),
                                 color: Color(0xFFF5F5F5).withOpacity(0.1),
                               ),
                               margin: EdgeInsets.all(7),
-                              child:
-                                  getContentTopContainers(tempMin: tempMin,
-                                      tempMax: tempMax, hourlyTemp: temp,
-                                      currentHour : currentHour, city: city,
-                                      dailySunriseHour:dailySunriseHour,
-                                      dailySunsetHour:dailySunsetHour), //recup donnée top_left
+                              child: getContentTopContainers(
+                                tempMin: tempMin,
+                                tempMax: tempMax,
+                                hourlyTemp: temp,
+                                currentHour: currentHour,
+                                city: city,
+                                dailySunriseHour: dailySunriseHour,
+                                dailySunsetHour: dailySunsetHour,
+                              ), //recup donnée top_left
+                            ),
+                            SizedBox(width: 7), // Espacement entre le carré et le rectangle
+
+                            // Rectangle au milieu
+                            Container(
+                              height: screenSize.height * 0.33,
+                              width: screenSize.width * 0.47, // Augmentation de la largeur à 0.5
+                              decoration: BoxDecoration(
+                                borderRadius: BorderRadius.all(Radius.circular(10)),
+                                color: Color(0xFFF5F5F5).withOpacity(0.1),
+                              ),
+                              margin: EdgeInsets.all(7),
+                              // Contenu du rectangle au milieu
                             ),
 
-                            // Rectangle à droite (plus long)
-                            Expanded(
-                              child: Container(
-                                height: screenSize.height * 0.33,
-                                width: screenSize.width * 0.8,
-                                // Changer la largeur selon vos besoins
-                                decoration: BoxDecoration(
-                                  borderRadius:
-                                      BorderRadius.all(Radius.circular(10)),
-                                  color: Color(0xFFF5F5F5).withOpacity(0.1),
-                                ),
-                                margin: EdgeInsets.all(7),
-                              ),
-                            ),
+                            SizedBox(width: 7), // Espacement entre le rectangle et le carré à droite
+
+                            // Carré à droite
+                            TopRightWidget(), // Utilisation du widget défini dans top_right.dart
                           ],
                         ),
+
+
+
                         SizedBox(height: 7),
                         Row(
                           children: [
