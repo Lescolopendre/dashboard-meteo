@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:weather_icons/weather_icons.dart';
-import '../models/current_hour.dart';
+import '../models/air_quality.dart';
+
 class getContentBottomContainers extends StatelessWidget {
   final hourlyApparentTemp;
   final currentHour;
@@ -137,26 +138,13 @@ class getContentBottomContainers extends StatelessWidget {
               ),
               Container( //pollution display
                 decoration: BoxDecoration(
+                    color: Color(0xFF07549D).withOpacity(0.1),
                     borderRadius: BorderRadius.all(Radius.circular(10))
                 ),
                 height: 85,
                 width: double.infinity,
-                // Pour occuper toute la largeur de la colonne
-                margin: EdgeInsets.symmetric(vertical: 2),
-                child: Row(
-                    children: [
-                      Expanded(child:
-                      Container( //ville display
-                        decoration: BoxDecoration(
-                          color: Color(0xFF07549D).withOpacity(0.1),
-                          borderRadius: BorderRadius.all(Radius.circular(10)),
-                        ),
-                        height: 85,
-                        margin: EdgeInsets.all(3),
-                      ),
-                      ),
-                    ]
-                ),
+                margin: EdgeInsets.all(3),
+
               ),
             ]
         )
