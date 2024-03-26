@@ -16,6 +16,7 @@ class TopRightWidget extends StatelessWidget {
       margin: EdgeInsets.all(7),
       child: DefaultTabController(
         length: 3, // Nombre d'onglets
+
         child: Column(
           children: [
             TabBar(
