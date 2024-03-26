@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:weather_icons/weather_icons.dart';
 import 'dart:convert';
 import '../models/villes.dart';
@@ -104,16 +105,17 @@ class HomePageState extends State<HomePage> {
         title: Text("La Météo"),
         actions: [
           SizedBox(
-            width: 400.0,
+            width: 300.0,
             child: Padding(
               padding: EdgeInsets.all(8),
               child: Column(
                 children: <Widget>[
                   CitySearch(callback: callback, villes: allVilles),
                 ],
+
               ),
             ),
-          )
+          ),
         ],
         backgroundColor: Color(0xFF07549D),
       ),
