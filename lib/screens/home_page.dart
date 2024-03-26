@@ -12,6 +12,7 @@ import '../screens/top_left.dart';
 import '../screens/bottom_left.dart';
 import '../screens/top_right.dart';
 import 'graph_tabs.dart';
+import 'package:flutter/painting.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({Key? key, required this.title}) : super(key: key);
@@ -102,7 +103,11 @@ class HomePageState extends State<HomePage> {
       appBar: AppBar(
         toolbarHeight: 72,
         centerTitle: true,
-        title: Text("La Météo"),
+        title: Text("La Météo",
+            style:TextStyle( fontSize: 25,
+                    color:Colors.white,
+                  ),
+        ),
         actions: [
           SizedBox(
             width: 300.0,
