@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'dart:convert';
 import '../screens/home_page.dart';
+import 'package:weather_icons/weather_icons.dart';
 
 Widget getContentBottomContainers() {
   return Container(
@@ -72,6 +73,13 @@ Widget getContentBottomContainers() {
                               ),
                               height: 50,
                               margin: EdgeInsets.all(0.5),
+                              child:Row(
+                                children: <Widget>[
+                                  Icon(WeatherIcons.humidity, color: Colors.blue),
+                                  SizedBox(width: 8), // Adding some space between icon and text
+                                  //Text((dailySunriseHour.toList()[0]).toString()),,
+                                ],
+                              ),
                             ),
                             ),
                             Expanded(child:
@@ -83,6 +91,13 @@ Widget getContentBottomContainers() {
                               ),
                               height: 34,
                               margin: EdgeInsets.all(0.5),
+                              child:Row(
+                                children: <Widget>[
+                                  Icon(WeatherIcons.day_lightning,size: 20,color: Colors.red),
+                                  SizedBox(width: 8), // Adding some space between icon and text
+                                  //Text((dailySunriseHour.toList()[0]).toString()),
+                                ],
+                              ),
                             ),
                             ),
                           ]

@@ -9,22 +9,15 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/services.dart';
 import '../screens/top_left.dart';
 import '../screens/bottom_left.dart';
+import '../models/current_hour.dart';
 import 'graph_tabs.dart';
 
 class HomePage extends StatefulWidget {
-  HomePage({Key? key, required this.title}) : super(key: key);
+  const HomePage({Key? key, required this.title}) : super(key: key);
   final String title;
 
   @override
   HomePageState createState() => HomePageState();
-
-  // Méthode publique pour accéder à la variable temp
-  List<dynamic> getTempMax() {
-    return HomePageState().tempMax;
-  }
-  List<dynamic> getTempMin() {
-    return HomePageState().tempMin;
-  }
 }
 
 class HomePageState extends State<HomePage> {
@@ -32,15 +25,15 @@ class HomePageState extends State<HomePage> {
   Ville? selectedVille;
   late Iterable<List<dynamic>> time;
   Iterable<List<dynamic>> temp = [];
-  late List<dynamic> maxTemp;
-  late List<dynamic> minTemp;
   late var precipitationHourlyProba;
   late Future<List<Ville>> villes;
   late List<Ville> allVilles = [];
   bool isRectangleFirst = true;
   List<dynamic> tempMax = [];
   List<dynamic> tempMin = [];
-
+  late int currentHour ;
+  List<dynamic> dailySunriseHour = [];
+  List<dynamic> dailySunsetHour = [];
 
   callback(Ville varCity, dataVille data) {
     setState(() {
@@ -51,6 +44,10 @@ class HomePageState extends State<HomePage> {
       tempMax = data.dailyMaxTemp;
       tempMin = data.dailyMinTemp;
       precipitationHourlyProba=data.hourlyPrecipitationProba;
+      currentHour=DateTime.now().hour;
+      dailySunriseHour= data.dailySunriseHour;
+      dailySunsetHour= data.dailySunsetHour;
+
     });
   }
 
@@ -81,6 +78,9 @@ class HomePageState extends State<HomePage> {
       tempMax = data.dailyMaxTemp;
       tempMin = data.dailyMinTemp;
       precipitationHourlyProba=data.hourlyPrecipitationProba;
+      currentHour=DateTime.now().hour;
+      dailySunriseHour= data.dailySunriseHour;
+      dailySunsetHour= data.dailySunsetHour;
 
       // Affichez les données de la ville directement une fois récupérées
       city = selectedVille!;
@@ -159,7 +159,11 @@ class HomePageState extends State<HomePage> {
                               ),
                               margin: EdgeInsets.all(7),
                               child:
-                                  getContentTopContainers(), //recup donnée top_left
+                                  getContentTopContainers(tempMin: tempMin,
+                                      tempMax: tempMax, hourlyTemp: temp,
+                                      currentHour : currentHour, city: city,
+                                      dailySunriseHour:dailySunriseHour,
+                                      dailySunsetHour:dailySunsetHour), //recup donnée top_left
                             ),
 
                             // Rectangle à droite (plus long)

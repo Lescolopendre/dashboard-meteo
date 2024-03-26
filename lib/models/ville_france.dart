@@ -31,6 +31,7 @@ class dataVille {
   final List<dynamic> dailyPrecipitationHours;
   final List<dynamic> dailyWindDirectionDominant;
 
+
   const dataVille({
     required this.hourlyTime,
     required this.hourlyTemp,
@@ -59,6 +60,7 @@ class dataVille {
     required this.dailySumPrecipitation,
     required this.dailyPrecipitationHours,
     required this.dailyWindDirectionDominant,
+
 
   });
 
@@ -91,7 +93,8 @@ class dataVille {
         dailyMaxUVIndex: json['daily']['uv_index_max'],
         dailySumPrecipitation: json['daily']['precipitation_sum'],
         dailyPrecipitationHours: json['daily']['precipitation_hours'],
-        dailyWindDirectionDominant: json['daily']['wind_direction_10m_dominant'],
+        dailyWindDirectionDominant: json['daily']['wind_direction_10m_dominant']
+
     );
   }
 }
