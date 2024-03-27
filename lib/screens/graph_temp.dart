@@ -18,13 +18,17 @@ class GraphTempDay extends StatelessWidget {
         minY: (points.reduce((curr, next) => curr < next? curr: next)-3).round(),
         lineBarsData: [
             LineChartBarData(
+              barWidth:1.0,
               spots: newSpots,
-              color: Colors.blue,
+              color: Colors.white,
               isCurved: true,
             ),
           ],
           gridData: FlGridData(
             show: false,
+          ),
+          borderData: FlBorderData(
+            border: Border.all(color :Colors.white.withOpacity(0.3))
           ),
           titlesData: const FlTitlesData(
             topTitles: AxisTitles(
@@ -60,8 +64,7 @@ class GraphTempDay extends StatelessWidget {
 
 Widget bottomTitlesWidget(double value, TitleMeta meta){
   const style = TextStyle(
-    fontSize: 15,
-    fontWeight: FontWeight.bold,
+    fontSize: 13,
     color:Colors.white,
   );
   return Text(value.toString()+"h",style: style,textAlign: TextAlign.center,);
