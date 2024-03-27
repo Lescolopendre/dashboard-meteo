@@ -17,6 +17,7 @@ class dataVille {
   final Iterable<List<dynamic>> hourlyWindDirecion;
   final Iterable<List<dynamic>> hourlyUVIndex;
   final Iterable<List<dynamic>> isDay;
+  final Iterable<List<dynamic>> hourlyWeatherCode;
   final List<dynamic> dailyDate;
   final List<dynamic> dailyMaxTemp;
   final List<dynamic> dailyMinTemp;
@@ -28,7 +29,6 @@ class dataVille {
   final List<dynamic> dailySunshineDuration;
   final List<dynamic> dailyMaxUVIndex;
   final List<dynamic> dailySumPrecipitation;
-  final List<dynamic> dailyPrecipitationHours;
   final List<dynamic> dailyWindDirectionDominant;
 
 
@@ -46,6 +46,7 @@ class dataVille {
     required this.hourlyWindSpeed,
     required this.hourlyWindDirecion,
     required this.hourlyUVIndex,
+    required this.hourlyWeatherCode,
     required this.isDay,
     required this.dailyDate,
     required this.dailyMaxTemp,
@@ -58,9 +59,7 @@ class dataVille {
     required this.dailySunshineDuration,
     required this.dailyMaxUVIndex,
     required this.dailySumPrecipitation,
-    required this.dailyPrecipitationHours,
     required this.dailyWindDirectionDominant,
-
 
   });
 
@@ -80,6 +79,7 @@ class dataVille {
         hourlyWindSpeed: partition(json['hourly']['wind_speed_10m'],24),
         hourlyWindDirecion: partition(json['hourly']['wind_direction_10m'],24),
         hourlyUVIndex: partition(json['hourly']['uv_index'],24),
+        hourlyWeatherCode: partition(json['hourly']['weather_code'],24),
         isDay: partition(json['hourly']['is_day'],24),
         dailyDate: json['daily']['time'],
         dailyMaxTemp: json['daily']['temperature_2m_max'],
@@ -92,9 +92,7 @@ class dataVille {
         dailySunshineDuration: json['daily']['sunshine_duration'],
         dailyMaxUVIndex: json['daily']['uv_index_max'],
         dailySumPrecipitation: json['daily']['precipitation_sum'],
-        dailyPrecipitationHours: json['daily']['precipitation_hours'],
         dailyWindDirectionDominant: json['daily']['wind_direction_10m_dominant']
-
     );
   }
 }
@@ -105,7 +103,7 @@ class GetDataVille {
   GetDataVille(this.latitude, this.longitude);
 
   Future<dataVille> getData() async{
-    final response = await http.get(Uri.parse("https://api.open-meteo.com/v1/forecast?latitude="+latitude+"&longitude="+longitude+"&hourly=temperature_2m,relative_humidity_2m,apparent_temperature,precipitation_probability,precipitation,cloud_cover,cloud_cover_low,cloud_cover_mid,cloud_cover_high,wind_speed_10m,wind_direction_10m,uv_index,is_day&daily=temperature_2m_max,temperature_2m_min,apparent_temperature_max,apparent_temperature_min,sunrise,sunset,daylight_duration,sunshine_duration,uv_index_max,precipitation_sum,precipitation_hours,wind_direction_10m_dominant&timezone=auto"));
+    final response = await http.get(Uri.parse("https://api.open-meteo.com/v1/forecast?latitude="+latitude+"&longitude="+longitude+"&hourly=temperature_2m,relative_humidity_2m,apparent_temperature,precipitation_probability,precipitation,weather_code,cloud_cover,cloud_cover_low,cloud_cover_mid,cloud_cover_high,wind_speed_10m,wind_direction_10m,uv_index,is_day&daily=temperature_2m_max,temperature_2m_min,apparent_temperature_max,apparent_temperature_min,sunrise,sunset,daylight_duration,sunshine_duration,uv_index_max,precipitation_sum,wind_direction_10m_dominant&timezone=auto"));
   if(response.statusCode==200){
     final data= jsonDecode(response.body);
     return dataVille.fromJson(data);

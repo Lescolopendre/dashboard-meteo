@@ -70,7 +70,7 @@ class HomePageState extends State<HomePage> {
   @override
   void initState() {
     super.initState();
-    city = 'Choisissez une ville.';
+    city = 'Ivry-sur-Seine';
     villes = getVille(context);
     villes.then((value) {
       setState(() {
@@ -165,7 +165,6 @@ class HomePageState extends State<HomePage> {
                       runSpacing: 1.0,
                       children: [
                         Text("Aujourd'hui\t"),
-                        Text(selectedVille!.nomAvecArticle),
                         SizedBox(height: 10),
                         Row(
                           children: [

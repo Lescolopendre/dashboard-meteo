@@ -153,6 +153,7 @@ class getContentBottomContainers extends StatelessWidget {
                 child:
                   Text((hourlyAqi.toList()[0][currentHour]).toString()),
 
+
               ),
             ]
         )
