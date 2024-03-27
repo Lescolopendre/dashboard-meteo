@@ -12,6 +12,9 @@ import '../screens/top_right.dart';
 import '../screens/top_center.dart';
 import 'graph_tabs.dart';
 import 'package:flutter/painting.dart';
+import 'package:front/models/data_pollution.dart';
+import 'package:lottie/lottie.dart';
+import 'package:weather_icons/weather_icons.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({Key? key, required this.title}) : super(key: key);
@@ -30,6 +33,7 @@ class HomePageState extends State<HomePage> {
   Iterable<List<dynamic>> windSpeed = [];
   Iterable<List<dynamic>> humidity = [];
   Iterable<List<dynamic>> uvIndex = [];
+  Iterable<List<dynamic>> hourlyAqi = [];
   late var precipitationHourlyProba;
   late var weather;
   late Future<List<Ville>> villes;
@@ -42,7 +46,7 @@ class HomePageState extends State<HomePage> {
   List<dynamic> dailySunriseHour = [];
   List<dynamic> dailySunsetHour = [];
 
-  callback(Ville varCity, dataVille data) {
+  callback(Ville varCity, dataVille data,dataPollution datapollution) {
     setState(() {
       city = varCity.nomAvecArticle;
       selectedVille = varCity;
@@ -51,7 +55,7 @@ class HomePageState extends State<HomePage> {
       tempApparent=data.hourlyApparentTemp;
       tempMax = data.dailyMaxTemp;
       tempMin = data.dailyMinTemp;
-
+      hourlyAqi= datapollution.hourlyAqi;
       weather = data.hourlyWeatherCode;
       windSpeed = data.hourlyWindSpeed;
       humidity = data.hourlyHumidity;
@@ -81,6 +85,7 @@ class HomePageState extends State<HomePage> {
 
   void getDataForCity(Ville city) async {
     final data = await GetDataVille(city.latitude, city.longitude).getData();
+    final datapollution=await GetDataPollution(city.latitude,city.longitude).getData();
     return setState(() {
       selectedVille = city;
       time = data.hourlyTime;
@@ -88,7 +93,7 @@ class HomePageState extends State<HomePage> {
       tempApparent=data.hourlyApparentTemp;
       tempMax = data.dailyMaxTemp;
       tempMin = data.dailyMinTemp;
-
+      hourlyAqi= datapollution.hourlyAqi;
       weather = data.hourlyWeatherCode;
       windSpeed = data.hourlyWindSpeed;
       humidity = data.hourlyHumidity;
@@ -213,7 +218,7 @@ class HomePageState extends State<HomePage> {
                               ),
                               margin: EdgeInsets.all(7),
                               child:
-                                  getContentBottomContainers(hourlyApparentTemp: tempApparent, currentHour:currentHour, hourlyWindSpeed:windSpeed, hourlyHumidity:humidity,hourlyUVIndex:uvIndex), //recup donnée bottom_left
+                                  getContentBottomContainers(hourlyApparentTemp: tempApparent, currentHour:currentHour, hourlyWindSpeed:windSpeed, hourlyHumidity:humidity,hourlyUVIndex:uvIndex, hourlyAqi: hourlyAqi,), //recup donnée bottom_left
                             ),
                             // Rectangle à droite (plus long)
                             Expanded(
