@@ -37,7 +37,7 @@ dependencies:
   flutter_map: ^6.1.0
   latlong2: ^0.9.0
   flutter_gif: any
-
+  air_quality: ^4.0.0
 
 
 
@@ -52,8 +52,8 @@ dependencies:
   quiver: ^3.2.1
   fl_chart: ^0.66.2
   lottie: ^3.1.0
-  intl: ^0.19.0
-  air_quality: ^4.0.0
+
+
 
 dev_dependencies:
   flutter_test:
@@ -99,6 +99,13 @@ flutter:
     - assets/icone/thunderstorms_night.json
     - assets/icone/thunderstorms_night_rain.json
     - assets/icone/thunderstorms_rain.json
+    - assets/icone/thermometer.json
+    - assets/icone/uv_index.json
+    - assets/icone/wind.json
+    - assets/icone/smoke_particles.json
+    - assets/icone/humidity.json
+    - assets/icone/raindrops.json
+
   #   - images/a_dot_burr.jpe g
   #   - images/a_dot_ham.jpeg
   # An image asset can refer to one or more resolution-specific "variants", see
