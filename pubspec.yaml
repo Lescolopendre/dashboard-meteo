@@ -107,6 +107,10 @@ flutter:
     - assets/icone/humidity.json
     - assets/icone/raindrops.json
     - assets/icone/raindrop.json
+    - assets/icone/drizzle.json
+    - assets/icone/rain.json
+    - assets/icone/sleet.json
+    - assets/icone/snow.json
 
   #   - images/a_dot_burr.jpe g
   #   - images/a_dot_ham.jpeg
