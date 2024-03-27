@@ -12,7 +12,7 @@ import 'package:flutter/services.dart';
 import '../screens/top_left.dart';
 import '../screens/bottom_left.dart';
 import '../screens/top_right.dart';
-import '../screens/LottieWithDate.dart';
+import '../screens/top_center.dart';
 import 'graph_tabs.dart';
 
 class HomePage extends StatefulWidget {
@@ -172,7 +172,7 @@ class HomePageState extends State<HomePage> {
                             // Espacement entre le carré et le rectangle
 
                             // Rectangle au milieu
-                            LottieWithDateHorizontal(),
+                            topCenterWidget(),
                             SizedBox(width: 7),
                             // Espacement entre le rectangle et le carré à droite
 
