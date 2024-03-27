@@ -28,7 +28,6 @@ class dataVille {
   final List<dynamic> dailySunshineDuration;
   final List<dynamic> dailyMaxUVIndex;
   final List<dynamic> dailySumPrecipitation;
-  final List<dynamic> dailyPrecipitationHours;
   final List<dynamic> dailyWindDirectionDominant;
 
 
@@ -58,7 +57,6 @@ class dataVille {
     required this.dailySunshineDuration,
     required this.dailyMaxUVIndex,
     required this.dailySumPrecipitation,
-    required this.dailyPrecipitationHours,
     required this.dailyWindDirectionDominant,
 
 
@@ -92,9 +90,7 @@ class dataVille {
         dailySunshineDuration: json['daily']['sunshine_duration'],
         dailyMaxUVIndex: json['daily']['uv_index_max'],
         dailySumPrecipitation: json['daily']['precipitation_sum'],
-        dailyPrecipitationHours: json['daily']['precipitation_hours'],
         dailyWindDirectionDominant: json['daily']['wind_direction_10m_dominant']
-
     );
   }
 }
@@ -105,7 +101,7 @@ class GetDataVille {
   GetDataVille(this.latitude, this.longitude);
 
   Future<dataVille> getData() async{
-    final response = await http.get(Uri.parse("https://api.open-meteo.com/v1/forecast?latitude="+latitude+"&longitude="+longitude+"&hourly=temperature_2m,relative_humidity_2m,apparent_temperature,precipitation_probability,precipitation,cloud_cover,cloud_cover_low,cloud_cover_mid,cloud_cover_high,wind_speed_10m,wind_direction_10m,uv_index,is_day&daily=temperature_2m_max,temperature_2m_min,apparent_temperature_max,apparent_temperature_min,sunrise,sunset,daylight_duration,sunshine_duration,uv_index_max,precipitation_sum,precipitation_hours,wind_direction_10m_dominant&timezone=auto"));
+    final response = await http.get(Uri.parse("https://api.open-meteo.com/v1/forecast?latitude="+latitude+"&longitude="+longitude+"&hourly=temperature_2m,relative_humidity_2m,apparent_temperature,precipitation_probability,precipitation,weather_code,cloud_cover,cloud_cover_low,cloud_cover_mid,cloud_cover_high,wind_speed_10m,wind_direction_10m,uv_index,is_day&daily=temperature_2m_max,temperature_2m_min,apparent_temperature_max,apparent_temperature_min,sunrise,sunset,daylight_duration,sunshine_duration,uv_index_max,precipitation_sum,wind_direction_10m_dominant&timezone=auto"));
   if(response.statusCode==200){
     final data= jsonDecode(response.body);
     return dataVille.fromJson(data);

@@ -17,12 +17,15 @@ class GraphRainDay extends StatelessWidget {
           minY: 0 ,
           barGroups: [
             for(var i=0; i<24; i++) BarChartGroupData(x: i,
-              barRods: [BarChartRodData(
+              barRods: [BarChartRodData(color: Colors.blue.shade400,
                 toY: points[i]+1,
               )],),
           ],
           gridData: FlGridData(
             show: false,
+          ),
+          borderData: FlBorderData(
+              border: Border.all(color :Colors.white.withOpacity(0.3))
           ),
           titlesData: const FlTitlesData(
             topTitles: AxisTitles(
@@ -57,8 +60,7 @@ class GraphRainDay extends StatelessWidget {
 
 Widget bottomTitlesWidget(double value, TitleMeta meta){
   const style = TextStyle(
-    fontSize: 10,
-    fontWeight: FontWeight.bold,
+    fontSize: 13,
     color:Colors.white,
   );
   return Text(value.toString()+"h",style: style,textAlign: TextAlign.center,);
