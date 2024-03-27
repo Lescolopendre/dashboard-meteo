@@ -17,6 +17,7 @@ class dataVille {
   final Iterable<List<dynamic>> hourlyWindDirecion;
   final Iterable<List<dynamic>> hourlyUVIndex;
   final Iterable<List<dynamic>> isDay;
+  final Iterable<List<dynamic>> hourlyWeatherCode;
   final List<dynamic> dailyDate;
   final List<dynamic> dailyMaxTemp;
   final List<dynamic> dailyMinTemp;
@@ -45,6 +46,7 @@ class dataVille {
     required this.hourlyWindSpeed,
     required this.hourlyWindDirecion,
     required this.hourlyUVIndex,
+    required this.hourlyWeatherCode,
     required this.isDay,
     required this.dailyDate,
     required this.dailyMaxTemp,
@@ -58,7 +60,6 @@ class dataVille {
     required this.dailyMaxUVIndex,
     required this.dailySumPrecipitation,
     required this.dailyWindDirectionDominant,
-
 
   });
 
@@ -78,6 +79,7 @@ class dataVille {
         hourlyWindSpeed: partition(json['hourly']['wind_speed_10m'],24),
         hourlyWindDirecion: partition(json['hourly']['wind_direction_10m'],24),
         hourlyUVIndex: partition(json['hourly']['uv_index'],24),
+        hourlyWeatherCode: partition(json['hourly']['weather_code'],24),
         isDay: partition(json['hourly']['is_day'],24),
         dailyDate: json['daily']['time'],
         dailyMaxTemp: json['daily']['temperature_2m_max'],
