@@ -22,16 +22,20 @@ class topCenterWidget extends StatelessWidget {
             child: Center(
               child: ListView.builder(
                 scrollDirection: Axis.horizontal,
-                itemCount: 7, // 7 jours
+                itemCount: 24, // 24 heures dans une journée
                 itemBuilder: (BuildContext context, int index) {
+                  // Calcul de l'heure correspondante
+                  int hourValue = (index + 1) % 24; // Pour commencer à 1h et aller jusqu'à 00h
+                  String formattedHour = DateFormat('HH:00').format(DateTime(2022, 1, 1, hourValue)); // Format HH:00
+
                   return Padding(
                     padding: const EdgeInsets.all(8.0),
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        Lottie.asset("assets/icone/raindrop.json", width: 100, height: 100),
-                        SizedBox(height: 10), // Espacement entre l'animation et la date
-                        Text(DateTime.now().add(Duration(days: index)).toString().substring(0, 10)), // Affiche la date pour chaque jour
+                        Lottie.asset("assets/icone/clear_day.json", width: 100, height: 100),
+                        SizedBox(height: 10), // Espacement entre l'animation et l'heure
+                        Text(formattedHour), // Affiche l'heure correspondante
                       ],
                     ),
                   );
@@ -44,4 +48,3 @@ class topCenterWidget extends StatelessWidget {
     );
   }
 }
-
