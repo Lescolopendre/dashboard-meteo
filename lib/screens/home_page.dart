@@ -36,6 +36,8 @@ class HomePageState extends State<HomePage> {
   Iterable<List<dynamic>> hourlyAqi = [];
   Iterable<List<dynamic>> precipitationHourlyProba = [];
   late var weather;
+  late var precipitationHourlyProba;
+  late var weather;
   late Future<List<Ville>> villes;
   late List<Ville> allVilles = [];
   bool isRectangleFirst = true;
@@ -55,6 +57,8 @@ class HomePageState extends State<HomePage> {
       tempApparent=data.hourlyApparentTemp;
       tempMax = data.dailyMaxTemp;
       tempMin = data.dailyMinTemp;
+
+      weather = data.hourlyWeatherCode;
       hourlyAqi= datapollution.hourlyAqi;
       weather = data.hourlyWeatherCode;
       windSpeed = data.hourlyWindSpeed;
@@ -64,8 +68,10 @@ class HomePageState extends State<HomePage> {
       currentHour=DateTime.now().hour;
       dailySunriseHour= data.dailySunriseHour;
       dailySunsetHour= data.dailySunsetHour;
+      hourlyAqi= datapollution.hourlyAqi;
     });
   }
+
 
   @override
   void initState() {
@@ -294,53 +300,50 @@ class HomePageState extends State<HomePage> {
                           SizedBox(width: 7),
                           // Espacement entre le rectangle et le carré à droite
 
-                          // Carré à droite
-                          TopRightWidget(),
-
-                          // Utilisation du widget défini dans top_right.dart
-                        ],
-                      ),
-                      SizedBox(height: 7),
-                      Row(
-                        children: [
-                          // Carré à gauche en bas
-                          Container(
-                            height: screenSize.height * 0.33,
-                            width: screenSize.width * 0.2,
-                            // Changer la largeur selon vos besoins
-                            decoration: BoxDecoration(
-                              borderRadius:
-                              BorderRadius.all(Radius.circular(10)),
-                              color: Color(0xFFF5F5F5).withOpacity(0.1),
+                            // Carré à droite
+                            TopRightWidget(),
+                            // Utilisation du widget défini dans top_right.dart
+                          ],
+                        ),
+                        SizedBox(height: 7),
+                        Row(
+                          children: [
+                            // Carré à gauche en bas
+                            Container(
+                              height: screenSize.height * 0.33,
+                              width: screenSize.width * 0.2,
+                              // Changer la largeur selon vos besoins
+                              decoration: BoxDecoration(
+                                borderRadius:
+                                    BorderRadius.all(Radius.circular(10)),
+                                color: Color(0xFFF5F5F5).withOpacity(0.1),
+                              ),
+                              margin: EdgeInsets.all(7),
+                              child:
+                                  getContentBottomContainers(hourlyApparentTemp: tempApparent, currentHour:currentHour, hourlyWindSpeed:windSpeed, hourlyHumidity:humidity,hourlyUVIndex:uvIndex, hourlyAqi: hourlyAqi), //recup donnée bottom_left
                             ),
-                            margin: EdgeInsets.all(7),
-                            child:
-                            getContentBottomContainers(hourlyApparentTemp: tempApparent, currentHour:currentHour, hourlyWindSpeed:windSpeed, hourlyHumidity:humidity,hourlyUVIndex:uvIndex, hourlyAqi: hourlyAqi,), //recup donnée bottom_left
-                          ),
-                          // Rectangle à droite (plus long)
-                          Expanded(
-                            child: Container(
-                                height: screenSize.height * 0.33,
-                                width: screenSize.width * 0.8,
-                                // Changer la largeur selon vos besoins
-                                decoration: BoxDecoration(
-                                  borderRadius:
-                                  BorderRadius.all(Radius.circular(10)),
-                                  color: Color(0xFFF5F5F5).withOpacity(0.1),
-                                ),
-                                margin: EdgeInsets.all(7),
-                                child: GraphTabs(
-                                  temp: temp.toList()[1],
-                                  pluie: precipitationHourlyProba.toList()[1],
-                                )),
-                          ),
-                        ],
-                      ),
-                    ],
-                  )
-                      : Text(city),
-                ),
-              ],
+                            // Rectangle à droite (plus long)
+                            Expanded(
+                              child: Container(
+                                  height: screenSize.height * 0.33,
+                                  width: screenSize.width * 0.8,
+                                  // Changer la largeur selon vos besoins
+                                  decoration: BoxDecoration(
+                                    borderRadius:
+                                        BorderRadius.all(Radius.circular(10)),
+                                    color: Color(0xFFF5F5F5).withOpacity(0.1),
+                                  ),
+                                  margin: EdgeInsets.all(7),
+                                  child: GraphTabs(
+                                    temp: temp,
+                                    pluie: precipitationHourlyProba,
+                                  )),
+                            ),
+                          ],
+                        ),
+                      ],
+                    )
+                  : Text(city),
             ),
           ],
         ),
