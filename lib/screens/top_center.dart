@@ -29,7 +29,7 @@ class topCenterWidget extends StatelessWidget {
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        Lottie.asset("assets/icone/raindrops.json", width: 100, height: 100),
+                        Lottie.asset("assets/icone/raindrop.json", width: 100, height: 100),
                         SizedBox(height: 10), // Espacement entre l'animation et la date
                         Text(DateTime.now().add(Duration(days: index)).toString().substring(0, 10)), // Affiche la date pour chaque jour
                       ],

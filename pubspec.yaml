@@ -105,6 +105,7 @@ flutter:
     - assets/icone/smoke_particles.json
     - assets/icone/humidity.json
     - assets/icone/raindrops.json
+    - assets/icone/raindrop.json
 
   #   - images/a_dot_burr.jpe g
   #   - images/a_dot_ham.jpeg
