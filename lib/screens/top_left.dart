@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:lottie/lottie.dart';
 import 'package:weather_icons/weather_icons.dart';
 import 'package:intl/intl.dart';
 
@@ -129,10 +130,11 @@ class getContentTopContainers extends StatelessWidget {
                           margin: EdgeInsets.all(0.5),
                           child:Row(
                             children: <Widget>[
-                              SizedBox(width: 20),
-                              Icon(WeatherIcons.sunrise,size: 20,color: Colors.pink),
-                              SizedBox(width: 10), // Adding some space between icon and text
-                              Text(DateFormat('HH:mm').format(DateTime.parse(dailySunriseHour[0]))),
+                              Lottie.asset(
+                                  "assets/icone/sunrise.json"),
+                              SizedBox(width: 8), // Adding some space between icon and text
+                             // Text((dailySunriseHour.toList()[0]).toString()),
+
                             ],
                           ),
                         ),
@@ -148,10 +150,11 @@ class getContentTopContainers extends StatelessWidget {
                           margin: EdgeInsets.all(0.5),
                           child:Row(
                             children: <Widget>[
-                              SizedBox(width: 20),
-                              Icon(WeatherIcons.sunset,size: 20,color: Colors.deepOrange),
-                              SizedBox(width: 10), // Adding some space between icon and text
-                              Text(DateFormat('HH:mm').format(DateTime.parse(dailySunsetHour[0]))),
+                              Lottie.asset(
+                                  "assets/icone/sunset.json"),
+                              SizedBox(width: 8), // Adding some space between icon and text
+                             // Text((dailySunsetHour.toList()[0]).toString()),
+
                             ],
                           ),
                         ),
