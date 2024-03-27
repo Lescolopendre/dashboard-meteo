@@ -3,6 +3,8 @@ import 'dart:convert';
 import '../screens/home_page.dart';
 import 'package:weather_icons/weather_icons.dart';
 import '../models/data_pollution.dart';
+import 'package:percent_indicator/percent_indicator.dart';
+import '../models/pollution_indicator.dart';
 
 class getContentBottomContainers extends StatelessWidget {
   final hourlyApparentTemp;
@@ -152,7 +154,6 @@ class getContentBottomContainers extends StatelessWidget {
                 margin: EdgeInsets.all(3),
                 child:
                   Text((hourlyAqi.toList()[0][currentHour]).toString()),
-
 
               ),
             ]
