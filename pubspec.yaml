@@ -87,8 +87,8 @@ flutter:
     - assets/icone/overcast.json
     - assets/icone/overcast_day.json
     - assets/icone/partly_cloudy_day.json
-    - assets/icone/partly_cloudy_night_drizzle.json
-    - assets/icone/partly_cloudy_night_rain.json
+    - assets/icone/partly_cloudy_day_drizzle.json
+    - assets/icone/partly_cloudy_day_rain.json
     - assets/icone/partly_cloudy_night.json
     - assets/icone/partly_cloudy_night_drizzle.json
     - assets/icone/partly_cloudy_night_rain.json
@@ -107,6 +107,10 @@ flutter:
     - assets/icone/humidity.json
     - assets/icone/raindrops.json
     - assets/icone/raindrop.json
+    - assets/icone/drizzle.json
+    - assets/icone/rain.json
+    - assets/icone/sleet.json
+    - assets/icone/snow.json
 
   #   - images/a_dot_burr.jpe g
   #   - images/a_dot_ham.jpeg

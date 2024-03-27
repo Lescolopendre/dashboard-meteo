@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:lottie/lottie.dart';
 import 'graph_temp.dart';
 import 'graph_pluie.dart';
 
@@ -9,6 +10,8 @@ class GraphTabs extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+
+
     return DefaultTabController(
         length: 2,
       child: Scaffold(
@@ -19,16 +22,32 @@ class GraphTabs extends StatelessWidget {
           child: AppBar(
             elevation: 0,
             backgroundColor: Colors.transparent,
-          bottom: const TabBar(
-            tabs: [
-              Tab(icon: Icon(Icons.thermostat)),
-              Tab(icon: Icon(Icons.water_drop)),
-            ],
-          ),
+            bottom: TabBar(
+              tabs: [
+                Tab(
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Lottie.asset("assets/icone/thermometer.json"),
+                    ],
+                  ),
+                ),
+                Tab(
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Lottie.asset("assets/icone/raindrop.json"),
+                    ],
+                  ),
+                ),
+              ],
+            ),
+
           )
         ),
         body: TabBarView(
           children: [
+
             GraphTempDay(points: temp.toList()[0]),
             GraphRainDay(points: pluie.toList()[0]),
           ],
