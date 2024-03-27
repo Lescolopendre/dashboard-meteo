@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'dart:convert';
+import '../screens/home_page.dart';
 import 'package:weather_icons/weather_icons.dart';
-import '../models/air_quality.dart';
+import '../models/data_pollution.dart';
 
 class getContentBottomContainers extends StatelessWidget {
   final hourlyApparentTemp;
@@ -8,12 +10,16 @@ class getContentBottomContainers extends StatelessWidget {
   final hourlyWindSpeed;
   final hourlyHumidity;
   final hourlyUVIndex;
+  final hourlyAqi;
+
 
   const getContentBottomContainers({super.key,
     required this.hourlyApparentTemp, required this.currentHour,
     required this.hourlyWindSpeed, required this.hourlyHumidity,
-    required this.hourlyUVIndex
+    required this.hourlyUVIndex, required this.hourlyAqi,
   });
+
+  //Pollution setup
 
   @override
   Widget build(BuildContext context) {
@@ -136,7 +142,7 @@ class getContentBottomContainers extends StatelessWidget {
 
 
               ),
-              Container( //pollution display
+             Container( //pollution display
                 decoration: BoxDecoration(
                     color: Color(0xFF07549D).withOpacity(0.1),
                     borderRadius: BorderRadius.all(Radius.circular(10))
@@ -144,8 +150,10 @@ class getContentBottomContainers extends StatelessWidget {
                 height: 85,
                 width: double.infinity,
                 margin: EdgeInsets.all(3),
-                //child:
-                   // getAirQuality()
+                child:
+                  Text((hourlyAqi.toList()[0][currentHour]).toString()),
+
+
               ),
             ]
         )

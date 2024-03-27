@@ -44,19 +44,21 @@ class getContentTopContainers extends StatelessWidget {
                   ),
                   height: 85,
                   margin: EdgeInsets.all(0.5),
-                  child: Column(children: [
+                  child: Column(
+                      mainAxisSize: MainAxisSize.max,
+                      children: [
                     Expanded(
-                      child: Container(
-                        //container des temperature actuel
-                        decoration: BoxDecoration(
-                          color: Color(0xFF07549D).withOpacity(0.1),
-                          borderRadius: BorderRadius.all(Radius.circular(10)),
-                        ),
-                        height: 50,
-                        margin: EdgeInsets.all(0.5),
-                        child:
-                          Text((hourlyTemp.toList()[0][currentHour]).toString()+" °C")
-                      )
+                        child: Container(
+                          //container des temperature actuel
+                            decoration: BoxDecoration(
+                              color: Color(0xFF07549D).withOpacity(0.1),
+                              borderRadius: BorderRadius.all(Radius.circular(10)),
+                            ),
+                            height: 50,
+                            margin: EdgeInsets.all(0.5),
+                            child:
+                            Text((hourlyTemp.toList()[0][currentHour]).toString()+" °C")
+                        )
                     ),
                     Expanded(
                       child: Container(
@@ -87,6 +89,7 @@ class getContentTopContainers extends StatelessWidget {
             ]),
           ),
           Container(
+
             decoration: BoxDecoration(
             borderRadius: BorderRadius.all(Radius.circular(10))),
             height: 85,
@@ -115,9 +118,10 @@ class getContentTopContainers extends StatelessWidget {
                     borderRadius: BorderRadius.all(Radius.circular(10)),
                   ),
                   height: 85,
-                  margin: EdgeInsets.all(0.5),
+                  margin: EdgeInsets.all(0.5), //a linterieur
 
                   child: Column(
+                    mainAxisSize: MainAxisSize.max,
                     children: [
                       Expanded(
                         child: Container(
@@ -133,7 +137,7 @@ class getContentTopContainers extends StatelessWidget {
                               Lottie.asset(
                                   "assets/icone/sunrise.json"),
                               SizedBox(width: 8), // Adding some space between icon and text
-                             // Text((dailySunriseHour.toList()[0]).toString()),
+                              Text(DateFormat('HH:mm').format(DateTime.parse(dailySunriseHour[0]))),
 
                             ],
                           ),
@@ -153,7 +157,8 @@ class getContentTopContainers extends StatelessWidget {
                               Lottie.asset(
                                   "assets/icone/sunset.json"),
                               SizedBox(width: 8), // Adding some space between icon and text
-                             // Text((dailySunsetHour.toList()[0]).toString()),
+                              Text(DateFormat('HH:mm').format(DateTime.parse(dailySunsetHour[0]))),
+
 
                             ],
                           ),

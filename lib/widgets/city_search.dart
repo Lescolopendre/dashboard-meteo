@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:front/models/data_pollution.dart';
 import '../models/villes.dart';
 import '../models/ville_france.dart';
 
@@ -46,7 +47,8 @@ class CitySearch extends StatelessWidget {
       onSelected: (String selection) async {
         Ville selectedVille=villes.firstWhere((ville) => ville.nomAvecArticle == selection);
         final data = await GetDataVille(selectedVille!.latitude,selectedVille!.longitude).getData();
-        callback(selectedVille,data);
+        final datapollution=await GetDataPollution(selectedVille!.latitude,selectedVille!.longitude).getData();
+        callback(selectedVille,data,datapollution);
 
       },
     );
