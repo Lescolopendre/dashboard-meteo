@@ -10,6 +10,8 @@ class GraphTabs extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+
+
     return DefaultTabController(
         length: 2,
       child: Scaffold(
@@ -45,6 +47,7 @@ class GraphTabs extends StatelessWidget {
         ),
         body: TabBarView(
           children: [
+
             GraphTempDay(points: temp.toList()[0]),
             GraphRainDay(points: pluie.toList()[0]),
           ],

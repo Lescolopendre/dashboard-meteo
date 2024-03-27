@@ -1,13 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
-import 'package:front/models/data_pollution.dart';
-import 'package:lottie/lottie.dart';
-import 'package:weather_icons/weather_icons.dart';
 import 'dart:convert';
 import '../models/villes.dart';
 import '../widgets/city_search.dart';
 import '../models/ville_france.dart';
-import 'graph_temp.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/services.dart';
 import '../screens/top_left.dart';
@@ -34,8 +30,8 @@ class HomePageState extends State<HomePage> {
   Iterable<List<dynamic>> windSpeed = [];
   Iterable<List<dynamic>> humidity = [];
   Iterable<List<dynamic>> uvIndex = [];
-  Iterable<List<dynamic>> hourlyAqi = [];
   late var precipitationHourlyProba;
+  late var weather;
   late Future<List<Ville>> villes;
   late List<Ville> allVilles = [];
   bool isRectangleFirst = true;
@@ -46,7 +42,7 @@ class HomePageState extends State<HomePage> {
   List<dynamic> dailySunriseHour = [];
   List<dynamic> dailySunsetHour = [];
 
-  callback(Ville varCity, dataVille data,dataPollution datapollution) {
+  callback(Ville varCity, dataVille data) {
     setState(() {
       city = varCity.nomAvecArticle;
       selectedVille = varCity;
@@ -55,6 +51,8 @@ class HomePageState extends State<HomePage> {
       tempApparent=data.hourlyApparentTemp;
       tempMax = data.dailyMaxTemp;
       tempMin = data.dailyMinTemp;
+
+      weather = data.hourlyWeatherCode;
       windSpeed = data.hourlyWindSpeed;
       humidity = data.hourlyHumidity;
       uvIndex = data.hourlyUVIndex;
@@ -62,10 +60,8 @@ class HomePageState extends State<HomePage> {
       currentHour=DateTime.now().hour;
       dailySunriseHour= data.dailySunriseHour;
       dailySunsetHour= data.dailySunsetHour;
-      hourlyAqi= datapollution.hourlyAqi;
     });
   }
-
 
   @override
   void initState() {
@@ -85,7 +81,6 @@ class HomePageState extends State<HomePage> {
 
   void getDataForCity(Ville city) async {
     final data = await GetDataVille(city.latitude, city.longitude).getData();
-    final datapollution=await GetDataPollution(city.latitude,city.longitude).getData();
     return setState(() {
       selectedVille = city;
       time = data.hourlyTime;
@@ -93,7 +88,8 @@ class HomePageState extends State<HomePage> {
       tempApparent=data.hourlyApparentTemp;
       tempMax = data.dailyMaxTemp;
       tempMin = data.dailyMinTemp;
-      hourlyAqi= datapollution.hourlyAqi;
+
+      weather = data.hourlyWeatherCode;
       windSpeed = data.hourlyWindSpeed;
       humidity = data.hourlyHumidity;
       uvIndex = data.hourlyUVIndex;
@@ -188,11 +184,12 @@ class HomePageState extends State<HomePage> {
                                 dailySunsetHour: dailySunsetHour,
                               ), //recup donnée top_left
                             ),
+
                             SizedBox(width: 7),
                             // Espacement entre le carré et le rectangle
 
                             // Rectangle au milieu
-                            topCenterWidget(),
+                            TopCenterWidget(weather: weather.toList()[0]),
                             SizedBox(width: 7),
                             // Espacement entre le rectangle et le carré à droite
 
@@ -216,7 +213,7 @@ class HomePageState extends State<HomePage> {
                               ),
                               margin: EdgeInsets.all(7),
                               child:
-                                  getContentBottomContainers(hourlyApparentTemp: tempApparent, currentHour:currentHour, hourlyWindSpeed:windSpeed, hourlyHumidity:humidity,hourlyUVIndex:uvIndex, hourlyAqi: hourlyAqi), //recup donnée bottom_left
+                                  getContentBottomContainers(hourlyApparentTemp: tempApparent, currentHour:currentHour, hourlyWindSpeed:windSpeed, hourlyHumidity:humidity,hourlyUVIndex:uvIndex), //recup donnée bottom_left
                             ),
                             // Rectangle à droite (plus long)
                             Expanded(
