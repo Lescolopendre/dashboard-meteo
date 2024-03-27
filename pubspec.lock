@@ -9,6 +9,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "3.4.10"
+  air_quality:
+    dependency: "direct main"
+    description:
+      name: air_quality
+      sha256: da6e61b5c67dbf83487b6cdc8b47aca143009129c65fc690ff47eeb2005dbfcf
+      url: "https://pub.dev"
+    source: hosted
+    version: "4.0.0"
   async:
     dependency: transitive
     description:
@@ -281,7 +289,7 @@ packages:
     source: hosted
     version: "4.0.2"
   intl:
-    dependency: transitive
+    dependency: "direct main"
     description:
       name: intl
       sha256: "910f85bce16fb5c6f614e117efa303e85a1731bb0081edf3604a2ae6e9a3cc91"
