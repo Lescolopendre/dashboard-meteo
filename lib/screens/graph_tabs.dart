@@ -48,8 +48,8 @@ class GraphTabs extends StatelessWidget {
         body: TabBarView(
           children: [
 
-            GraphTempDay(points: temp.toList()[0]),
-            GraphRainDay(points: pluie.toList()[0]),
+            GraphTempDay(points: temp),
+            GraphRainDay(points: pluie),
           ],
         ),
       ),);
