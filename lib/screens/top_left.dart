@@ -107,7 +107,7 @@ class getContentTopContainers extends StatelessWidget {
                   height: 85,
                   margin: EdgeInsets.all(0.5),
                   child:
-                   //ajouter ivry comme la ville par défaut
+                   //ivry comme la ville par défaut
                   Text(city)
                 ),
               ),
