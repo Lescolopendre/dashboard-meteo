@@ -153,8 +153,8 @@ class getContentBottomContainers extends StatelessWidget {
                 width: double.infinity,
                 margin: EdgeInsets.all(3),
                 child:
-                  Text((hourlyAqi.toList()[0][currentHour]).toString()),
-
+                  //Text((hourlyAqi.toList()[0][currentHour]).toString()),
+                  getPollutionIndicator(currentHour: currentHour, hourlyAqi: hourlyAqi,),
               ),
             ]
         )

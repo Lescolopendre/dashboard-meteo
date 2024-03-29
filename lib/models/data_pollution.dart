@@ -5,9 +5,9 @@ import 'package:quiver/iterables.dart';
 
 class dataPollution {
   final Iterable<List<dynamic>> hourlyAqi;
-
   const dataPollution({
     required this.hourlyAqi
+
 
   });
   factory dataPollution.fromJson(Map<String, dynamic> json){
@@ -35,22 +35,8 @@ class GetDataPollution {
 }
 
 
-  String _getAQIIndex(double aqiValue) {
-    if (aqiValue >= 0 && aqiValue <= 50) {
-      return 'Good';
-    } else if (aqiValue > 50 && aqiValue <= 100) {
-      return 'Moderate';
-    } else if (aqiValue > 100 && aqiValue <= 150) {
-      return 'Unhealthy for Sensitive Groups';
-    } else if (aqiValue > 150 && aqiValue <= 200) {
-      return 'Unhealthy';
-    } else if (aqiValue > 200 && aqiValue <= 300) {
-      return 'Very Unhealthy';
-    } else if (aqiValue > 300) {
-      return 'Hazardous';
-    } else {
-      return 'Unknown';
-    }
-  }
+
+
+
 
 
