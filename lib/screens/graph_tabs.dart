@@ -46,6 +46,7 @@ class GraphTabs extends StatelessWidget {
           )
         ),
         body: TabBarView(
+          physics: const NeverScrollableScrollPhysics(),
           children: [
 
             GraphTempDay(points: temp),

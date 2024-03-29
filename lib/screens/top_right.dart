@@ -53,6 +53,7 @@ class TopRightWidget extends StatelessWidget {
             ),
             Expanded(
               child: TabBarView(
+                physics: const NeverScrollableScrollPhysics(),
                 children: [
                   //affiche map pluie
                   FranceMapWithPrecipitation(),
