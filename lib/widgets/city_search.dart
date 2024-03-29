@@ -16,11 +16,12 @@ class CitySearch extends StatelessWidget {
         if (textEditingValue.text == '') {
           return const Iterable<String>.empty();
         }
-        return villes.where((Ville option) {
-          return option.nomAvecArticle!
-              .toLowerCase()
-              .contains(textEditingValue.text.toLowerCase());
-        }).map((Ville ville) => ville.nomAvecArticle!);
+        return villes
+            .where((Ville option) =>
+            option.nomAvecArticle!
+                .toLowerCase()
+                .startsWith(textEditingValue.text.toLowerCase()))
+            .map((Ville ville) => ville.nomAvecArticle!);
       },
       fieldViewBuilder: (BuildContext context,
           TextEditingController textEditingController,
@@ -30,7 +31,7 @@ class CitySearch extends StatelessWidget {
           style: TextStyle(color: Colors.white),
           controller: textEditingController,
           decoration: InputDecoration(
-            prefixIcon: Icon(Icons.search,color: Colors.white70),
+            prefixIcon: Icon(Icons.search, color: Colors.white70),
             hintText: 'Rechercher une ville',
             hintStyle: TextStyle(color: Colors.white70),
             border: OutlineInputBorder(
@@ -45,11 +46,15 @@ class CitySearch extends StatelessWidget {
         );
       },
       onSelected: (String selection) async {
-        Ville selectedVille=villes.firstWhere((ville) => ville.nomAvecArticle == selection);
-        final data = await GetDataVille(selectedVille!.latitude,selectedVille!.longitude).getData();
-        final datapollution=await GetDataPollution(selectedVille!.latitude,selectedVille!.longitude).getData();
-        callback(selectedVille,data,datapollution);
-
+        Ville selectedVille =
+        villes.firstWhere((ville) => ville.nomAvecArticle == selection);
+        final data = await GetDataVille(selectedVille!.latitude,
+            selectedVille!.longitude)
+            .getData();
+        final datapollution = await GetDataPollution(
+            selectedVille!.latitude, selectedVille!.longitude)
+            .getData();
+        callback(selectedVille, data, datapollution);
       },
     );
   }
