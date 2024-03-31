@@ -36,8 +36,6 @@ class HomePageState extends State<HomePage> {
   Iterable<List<dynamic>> hourlyAqi = [];
   Iterable<List<dynamic>> precipitationHourlyProba = [];
   late var weather;
-  late var precipitationHourlyProba;
-  late var weather;
   late Future<List<Ville>> villes;
   late List<Ville> allVilles = [];
   bool isRectangleFirst = true;
@@ -347,6 +345,8 @@ class HomePageState extends State<HomePage> {
             ),
           ],
         ),
+    ],
+      ),
       ),
     );
   }
