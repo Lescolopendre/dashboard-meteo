@@ -82,7 +82,7 @@ class getPollutionIndicator extends StatelessWidget {
                       color: Colors.white, // Couleur du texte
                     ),
                   ),
-                  SizedBox(height: 15),
+                  SizedBox(height: 10),
                   Container(
                     width: containerWidth/1.2,
                     height: 10, // Adjust height as needed
