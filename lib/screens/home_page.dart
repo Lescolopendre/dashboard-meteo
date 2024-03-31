@@ -34,7 +34,7 @@ class HomePageState extends State<HomePage> {
   Iterable<List<dynamic>> humidity = [];
   Iterable<List<dynamic>> uvIndex = [];
   Iterable<List<dynamic>> hourlyAqi = [];
-  Iterable<List<dynamic>> precipitationHourlyProba = [];
+  late var precipitationHourlyProba;
   late var weather;
   late Future<List<Ville>> villes;
   late List<Ville> allVilles = [];
