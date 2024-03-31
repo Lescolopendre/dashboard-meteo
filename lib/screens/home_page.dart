@@ -248,9 +248,8 @@ class HomePageState extends State<HomePage> {
                                       ),
                                       margin: EdgeInsets.all(7),
                                       child: GraphTabs(
-                                        temp: temp.toList()[0],
-                                        pluie: precipitationHourlyProba
-                                            .toList()[0],
+                                        temp: temp,
+                                        pluie: precipitationHourlyProba,
                                       )),
                                 ),
                               ],
