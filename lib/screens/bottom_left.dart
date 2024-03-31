@@ -49,9 +49,19 @@ class getContentBottomContainers extends StatelessWidget {
                             ),
                             margin: EdgeInsets.all(3),
                             child: Center(
-                              child: Row(
+                              child: Column(
                                 mainAxisAlignment: MainAxisAlignment.center,
                                 children: [
+                                  Text(
+                                    "Temp apparente",
+                                    style: TextStyle(
+                                      fontSize: 12, // Taille de la police
+                                      fontWeight: FontWeight.w300, // Poids de la police
+                                      fontFamily: 'Roboto', // Famille de police
+                                      color: Colors.white.withOpacity(0.5), // Couleur du texte
+                                    ),
+
+                                  ),
                                   Text(
                                     (hourlyApparentTemp.toList()[0][currentHour]).toString() + " °C",
                                     style: TextStyle(
