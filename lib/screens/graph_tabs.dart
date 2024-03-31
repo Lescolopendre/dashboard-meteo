@@ -49,8 +49,9 @@ class GraphTabs extends StatelessWidget {
           physics: const NeverScrollableScrollPhysics(),
           children: [
 
-            GraphTempDay(points: temp),
-            GraphRainDay(points: pluie),
+
+            GraphTempDay(points: temp.toList()[0]),
+            GraphRainDay(points: pluie.toList()[0]),
           ],
         ),
       ),);

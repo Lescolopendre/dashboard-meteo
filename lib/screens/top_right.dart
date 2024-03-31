@@ -24,28 +24,23 @@ class TopRightWidget extends StatelessWidget {
               tabs: [
                 Tab(
                   child: Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      Lottie.asset("assets/icone/humidity.json"),
-                      // Adapter la taille de l'icône selon les besoins// Espacement entre l'icône et le texte de l'onglet
+                      Lottie.asset("assets/icone/humidity.json"), // Adapter la taille de l'icône selon les besoins// Espacement entre l'icône et le texte de l'onglet
                     ],
                   ),
                 ),
                 Tab(
                   child: Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      Lottie.asset("assets/icone/thermometer.json"),
-                      // Adapter la taille de l'icône selon les besoins// Espacement entre l'icône et le texte de l'onglet
+                      Lottie.asset("assets/icone/thermometer.json"), // Adapter la taille de l'icône selon les besoins// Espacement entre l'icône et le texte de l'onglet
                     ],
                   ),
                 ),
                 Tab(
                   child: Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
+
                     children: [
-                      Lottie.asset("assets/icone/wind.json"),
-                      // Adapter la taille de l'icône selon les besoins// Espacement entre l'icône et le texte de l'onglet
+                      Lottie.asset("assets/icone/wind.json"), // Adapter la taille de l'icône selon les besoins// Espacement entre l'icône et le texte de l'onglet
                     ],
                   ),
                 ),

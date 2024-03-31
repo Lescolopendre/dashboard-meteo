@@ -34,7 +34,7 @@ class HomePageState extends State<HomePage> {
   Iterable<List<dynamic>> humidity = [];
   Iterable<List<dynamic>> uvIndex = [];
   Iterable<List<dynamic>> hourlyAqi = [];
-  Iterable<List<dynamic>> precipitationHourlyProba = [];
+  late var precipitationHourlyProba;
   late var weather;
   late Future<List<Ville>> villes;
   late List<Ville> allVilles = [];
@@ -180,43 +180,35 @@ class HomePageState extends State<HomePage> {
                               BorderRadius.all(Radius.circular(10)),
                               color: Color(0xFFF5F5F5).withOpacity(0.1),
                             ),
-                            margin: EdgeInsets.all(7),
-                            child: getContentTopContainers(
-                              tempMin: tempMin,
-                              tempMax: tempMax,
-                              hourlyTemp: temp,
-                              currentHour: currentHour,
-                              city: city,
-                              dailySunriseHour: dailySunriseHour,
-                              dailySunsetHour: dailySunsetHour,
-                            ), //recup donnée top_left
-                          ),
+                            SizedBox(width: 7),
+                            // Espacement entre le carré et le rectangle
 
-                          SizedBox(width: 7),
-                          // Espacement entre le carré et le rectangle
+                            // Rectangle au milieu
+                            TopCenterWidget(weather: weather.toList()[0]),
+                            SizedBox(width: 7),
+                            // Espacement entre le rectangle et le carré à droite
 
-                          // Rectangle au milieu
-                          TopCenterWidget(weather: weather.toList()[0]),
-                          SizedBox(width: 7),
-                          // Espacement entre le rectangle et le carré à droite
-
-                          // Carré à droite
-                          TopRightWidget(),
-                          // Utilisation du widget défini dans top_right.dart
-                        ],
-                      ),
-                      SizedBox(height: 7),
-                      Row(
-                        children: [
-                          // Carré à gauche en bas
-                          Container(
-                            height: screenSize.height * 0.33,
-                            width: screenSize.width * 0.2,
-                            // Changer la largeur selon vos besoins
-                            decoration: BoxDecoration(
-                              borderRadius:
-                              BorderRadius.all(Radius.circular(10)),
-                              color: Color(0xFFF5F5F5).withOpacity(0.1),
+                            // Carré à droite
+                            TopRightWidget(),
+                            // Utilisation du widget défini dans top_right.dart
+                          ],
+                        ),
+                        SizedBox(height: 7),
+                        Row(
+                          children: [
+                            // Carré à gauche en bas
+                            Container(
+                              height: screenSize.height * 0.33,
+                              width: screenSize.width * 0.2,
+                              // Changer la largeur selon vos besoins
+                              decoration: BoxDecoration(
+                                borderRadius:
+                                    BorderRadius.all(Radius.circular(10)),
+                                color: Color(0xFFF5F5F5).withOpacity(0.1),
+                              ),
+                              margin: EdgeInsets.all(7),
+                              child:
+                                  getContentBottomContainers(hourlyApparentTemp: tempApparent, currentHour:currentHour, hourlyWindSpeed:windSpeed, hourlyHumidity:humidity,hourlyUVIndex:uvIndex, hourlyAqi: hourlyAqi,), //recup donnée bottom_left
                             ),
                             margin: EdgeInsets.all(7),
                             child:
