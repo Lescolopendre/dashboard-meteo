@@ -61,16 +61,10 @@ class getContentBottomContainers extends StatelessWidget {
                                   height: 50,
                                   margin: EdgeInsets.all(0.5),
                                   child:
-                                    //ajouter titre et icone
-                                    Text((hourlyApparentTemp
-                                        .toList()[0][currentHour]).toString() +
-                                        " °C",
-                                      style: TextStyle(
-                                        fontSize: 15, // Taille de la police
-                                        fontWeight: FontWeight.bold, // Poids de la police
-                                        fontFamily: 'Roboto', // Famille de police
-                                        color: Colors.white, // Couleur du texte
-                                      ),)
+                                      //ajouter titre et icone
+                                  Text((hourlyApparentTemp
+                                      .toList()[0][currentHour]).toString() +
+                                      " °C")
 
                               ),
                               ),
