@@ -52,17 +52,24 @@ class getContentTopContainers extends StatelessWidget {
                   child: Column(mainAxisSize: MainAxisSize.max, children: [
                     Expanded(
                         child: Container(
-                            //container des temperature actuel
-                            decoration: BoxDecoration(
-                              color: Color(0xFF07549D).withOpacity(0.1),
-                              borderRadius:
-                                  BorderRadius.all(Radius.circular(10)),
-                            ),
-                            height: 50,
-                            margin: EdgeInsets.all(0.5),
-                            child: Text((hourlyTemp.toList()[0][currentHour])
-                                    .toString() +
-                                " °C"))),
+                          //container des temperature actuel
+                          decoration: BoxDecoration(
+                            color: Color(0xFF07549D).withOpacity(0.1),
+                            borderRadius:
+                            BorderRadius.all(Radius.circular(10)),
+                          ),
+                          height: 50,
+                          margin: EdgeInsets.all(0.5),
+                          child: Text((hourlyTemp.toList()[0][currentHour])
+                              .toString() +
+                              " °C",
+                            style: TextStyle(
+                              fontSize: 20, // Taille de la police
+                              fontWeight: FontWeight.w400, // Poids de la police
+                              fontFamily: 'Roboto', // Famille de police
+                              color: Colors.white, // Couleur du texte
+                            ),),
+                        )),
                     Expanded(
                       child: Container(
                         //container des temperature max et min
@@ -106,7 +113,7 @@ class getContentTopContainers extends StatelessWidget {
             child: Row(children: [
               Expanded(
                 child: Container(
-                    //ville display
+                  //ville display
                     decoration: BoxDecoration(
                       color: Color(0xFF07549D).withOpacity(0.1),
                       borderRadius: BorderRadius.all(Radius.circular(10)),
@@ -114,8 +121,8 @@ class getContentTopContainers extends StatelessWidget {
                     height: 85,
                     margin: EdgeInsets.all(0.5),
                     child:
-                        //ivry comme la ville par défaut
-                        Text(city)),
+                    //ivry comme la ville par défaut
+                    Text(city)),
               ),
               Expanded(
                 child: Container(
@@ -176,5 +183,6 @@ class getContentTopContainers extends StatelessWidget {
             ]),
           ),
         ]));
+
   }
 }

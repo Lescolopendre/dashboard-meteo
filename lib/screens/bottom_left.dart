@@ -73,7 +73,7 @@ class getContentBottomContainers extends StatelessWidget {
                                     ),
                                   ),
                                   Padding(
-                                    padding: EdgeInsets.only(left: 10),
+                                    padding: EdgeInsets.only(left: 30),
                                     // Add padding to the left
                                     child: Text(
                                       (hourlyApparentTemp.toList()[0]
@@ -98,19 +98,17 @@ class getContentBottomContainers extends StatelessWidget {
                             decoration: BoxDecoration(
                               color: Color(0xFF07549D).withOpacity(0.05),
                               borderRadius:
-                                  BorderRadius.all(Radius.circular(10)),
+                              BorderRadius.all(Radius.circular(10)),
                             ),
                             margin: EdgeInsets.all(3),
-                            child: Align(
-                              alignment: Alignment.centerLeft,
-                              child: Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  Padding(
-                                    padding: EdgeInsets.only(left: 10),
-                                    // Add padding to the left
-
-                                    child: Text(
+                            child: Row(
+                              children: [
+                                Image.asset("assets/wind.png",height:30,width:30),
+                                SizedBox(width: 5),
+                                Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    Text(
                                       "Vent",
                                       style: TextStyle(
                                         fontSize: 12,
@@ -119,13 +117,9 @@ class getContentBottomContainers extends StatelessWidget {
                                         color: Colors.white.withOpacity(0.5),
                                       ),
                                     ),
-                                  ),
-                                  Padding(
-                                    padding: EdgeInsets.only(left: 10),
-                                    // Add padding to the left
-                                    child: Text(
+                                    Text(
                                       (hourlyWindSpeed.toList()[0][currentHour])
-                                              .toString() +
+                                          .toString() +
                                           " km/h",
                                       style: TextStyle(
                                         fontSize: 15,
@@ -134,9 +128,9 @@ class getContentBottomContainers extends StatelessWidget {
                                         color: Colors.white,
                                       ),
                                     ),
-                                  ),
-                                ],
-                              ),
+                                  ],
+                                ),
+                              ],
                             ),
                           ),
                         ),
@@ -154,43 +148,28 @@ class getContentBottomContainers extends StatelessWidget {
                             decoration: BoxDecoration(
                               color: Color(0xFF07549D).withOpacity(0.05),
                               borderRadius:
-                                  BorderRadius.all(Radius.circular(10)),
+                              BorderRadius.all(Radius.circular(10)),
                             ),
                             margin: EdgeInsets.all(3),
-                            child: Column(
-                              mainAxisAlignment: MainAxisAlignment.center,
+                            child: Row(
                               children: [
-                                Row(
+                                Image.asset("assets/humidity.png",height:40,width:40),
+                                SizedBox(width: 5),
+                                Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
-                                    Padding(padding: EdgeInsets.only(left: 10)),
-                                    Image.asset("assets/humidity.png",height:40,width:40),
-                                    SizedBox(width: 5),
-                                    Padding(
-                                      padding: EdgeInsets.only(left: 10),
-                                      // Add padding to the left
-                                      child: Text(
-                                        "Humidité",
-                                        style: TextStyle(
-                                          fontSize: 12,
-                                          fontWeight: FontWeight.w300,
-                                          fontFamily: 'Roboto',
-                                          color: Colors.white.withOpacity(0.5),
-                                        ),
+                                    Text(
+                                      "Humidité",
+                                      style: TextStyle(
+                                        fontSize: 12,
+                                        fontWeight: FontWeight.w300,
+                                        fontFamily: 'Roboto',
+                                        color: Colors.white.withOpacity(0.5),
                                       ),
                                     ),
-                                  ],
-                                ),
-                                Row(
-                                  mainAxisAlignment: MainAxisAlignment.center,
-                                  children: [
-                                    /*Lottie.asset(
-                                          "assets/wind.png",
-                                          height:50,
-                                          width:50
-                                      ),*/
                                     Text(
                                       (hourlyHumidity.toList()[0][currentHour])
-                                              .toString() +
+                                          .toString() +
                                           " %",
                                       style: TextStyle(
                                         fontSize: 15,
@@ -216,7 +195,7 @@ class getContentBottomContainers extends StatelessWidget {
                             child: Row(
                               children: [
                                 Lottie.asset("assets/icone/uv_index.json",
-                                    width: 50, height: 50),
+                                    width: 40, height: 40),
                                 SizedBox(width: 5),
                                 Column(
                                   crossAxisAlignment: CrossAxisAlignment.start,
@@ -262,6 +241,7 @@ class getContentBottomContainers extends StatelessWidget {
             child: getPollutionIndicator(
               currentHour: currentHour,
               hourlyAqi: hourlyAqi,
+
             ),
           ),
         ],
