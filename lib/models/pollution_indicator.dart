@@ -12,6 +12,7 @@ class getPollutionIndicator extends StatelessWidget {
   const getPollutionIndicator({super.key,
     required this.hourlyAqi, required this.currentHour,
 
+
   });
 
 
@@ -37,27 +38,95 @@ class getPollutionIndicator extends StatelessWidget {
     }
     //////////////////////////////////////////////
 
-    return Wrap(
-      spacing: 1.0, // gap between adjacent chips
-      runSpacing: 2.0, // gap between lines
-      direction: Axis.vertical,
-      children: <Widget>[
-        Align(
-         alignment:Alignment.topLeft,
-          child: Lottie.asset("assets/icone/smoke_particles.json",width: 70,height:70),
-       ),
-        Text("Qualité de l'air"),
-        Text(hourlyAqi.toList()[0][currentHour].toString()+ "   "+ addCom),
-        LinearPercentIndicator(
-          lineHeight: 5.0,
-          width: 20.0,
-          percent: (hourlyAqi.toList()[0][currentHour])/100,
-          progressColor: Colors.yellow,
-          backgroundColor: Colors.grey[300],
+    return LayoutBuilder(
+        builder: (BuildContext context, BoxConstraints constraints) { //senser s'adapter a la taille ecran
+          final containerWidth = constraints.maxWidth;
 
-        ),
-        ],
-        );
+          return Row(
+            children: [
+              /* Il prenait trop de place wesh puis pas si utile que ca la verdad
+              SizedBox(
+                width: 50, // Constrain icon width
+                child: Align(
+                  alignment: Alignment.topLeft,
+                  child: Lottie.asset(
+                      "assets/icone/smoke_particles.json",
+                      width: 50,
+                      height: 50
+                  ),
+                ),
+              ),
+              */
+              Padding(
+                padding: EdgeInsets.only(left: 10),
+              ),
+              Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  SizedBox(height: 5),
+                  Text("Qualité de l'air",
+                      style: TextStyle(
+                      fontSize: 12, // Taille de la police
+                      fontWeight: FontWeight.w300, // Poids de la police
+                      fontFamily: 'Roboto', // Famille de police
+                      color: Colors.white.withOpacity(0.5), // Couleur du texte
+                  ),
+                  ),
+                  SizedBox(height: 5),
+                  Text(
+                      hourlyAqi.toList()[0][currentHour].toString() + "   " + addCom,
+                    style: TextStyle(
+                      fontSize: 15, // Taille de la police
+                      fontWeight: FontWeight.bold, // Poids de la police
+                      fontFamily: 'Roboto', // Famille de police
+                      color: Colors.white, // Couleur du texte
+                    ),
+                  ),
+                  SizedBox(height: 15),
+                  Container(
+                    width: containerWidth/1.2,
+                    height: 10, // Adjust height as needed
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(10), // Round corners
+                      gradient: LinearGradient(
+                        colors: [
+                          Colors.blue.withOpacity(0.9),
+                          Colors.green.withOpacity(0.9),
+                          Colors.yellow.withOpacity(0.9),
+                          Colors.orange.withOpacity(0.9),
+                          Colors.red.withOpacity(0.9),
+                          Colors.purple.withOpacity(0.9),
+                        ],
+                        stops: [0.0,0.166,0.332,0.498,0.664, 1.0], // Set gradient stops
+                        begin: Alignment.centerLeft,
+                        end: Alignment.centerRight,
+                      ),
+                    ),
+                    child: Stack(
+                      children: [
+                        Positioned(
+                          left: ((hourlyAqi.toList()[0][currentHour]) / 100) * containerWidth/1.2,
+                          child: Container(
+                            width: 10, // Indicator width
+                            height: 10, // Indicator height
+                            decoration: BoxDecoration(
+                              color: Colors.white.withOpacity(0.8),
+                              shape: BoxShape.circle,
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                ],
+              ),
+            ],
+          );
+
+
+        }
+    );
+
 
 
   }
