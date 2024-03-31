@@ -112,6 +112,8 @@ flutter:
     - assets/icone/rain.json
     - assets/icone/sleet.json
     - assets/icone/snow.json
+    - assets/wind.png
+    - assets/smoke-particles.png
 
   #   - images/a_dot_burr.jpe g
   #   - images/a_dot_ham.jpeg

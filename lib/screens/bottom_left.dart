@@ -5,6 +5,7 @@ import 'package:weather_icons/weather_icons.dart';
 import '../models/data_pollution.dart';
 import 'package:percent_indicator/percent_indicator.dart';
 import '../models/pollution_indicator.dart';
+import 'package:lottie/lottie.dart';
 
 class getContentBottomContainers extends StatelessWidget {
   final hourlyApparentTemp;
@@ -71,6 +72,7 @@ class getContentBottomContainers extends StatelessWidget {
                                       color: Colors.white,
                                     ),
                                   ),
+
                                 ],
                               ),
                             ),
@@ -85,10 +87,33 @@ class getContentBottomContainers extends StatelessWidget {
                             ),
                             margin: EdgeInsets.all(3),
                             child: Center(
-                              child: Text((hourlyWindSpeed.toList()[0][currentHour]).toString() + " km/h"),
+                              child: Column(
+                                mainAxisAlignment: MainAxisAlignment.center, // Center the children vertically
+                                children: [
+                                  Text("Vent",
+                                    style: TextStyle(
+                                    fontSize: 12, // Taille de la police
+                                    fontWeight: FontWeight.w300, // Poids de la police
+                                    fontFamily: 'Roboto', // Famille de police
+                                    color: Colors.white.withOpacity(0.5), // Couleur du texte
+                                    ),
+                                  ),
+
+                                  Text(
+                                    (hourlyWindSpeed.toList()[0][currentHour]).toString() + " km/h",
+                                    style: TextStyle(
+                                      fontSize: 15,
+                                      fontWeight: FontWeight.bold,
+                                      fontFamily: 'Roboto',
+                                      color: Colors.white,
+                                    ),
+                                  ),
+                                ],
+                              ),
                             ),
                           ),
                         ),
+
                       ],
                     ),
                   ),
@@ -98,22 +123,41 @@ class getContentBottomContainers extends StatelessWidget {
                     margin: EdgeInsets.all(3),
                     child: Column(
                       children: [
-                        Expanded(
-                          child: Container(
-                            decoration: BoxDecoration(
-                              color: Color(0xFF07549D).withOpacity(0.1),
-                              borderRadius: BorderRadius.all(Radius.circular(10)),
-                            ),
-                            margin: EdgeInsets.all(3),
-                            child: Row(
-                              children: <Widget>[
-                                Icon(WeatherIcons.humidity, color: Colors.blue.shade100),
-                                SizedBox(width: 5),
-                                Text((hourlyHumidity.toList()[0][currentHour]).toString() + " %"),
-                              ],
+                          Expanded(
+                            child: Container(
+                              decoration: BoxDecoration(
+                                color: Color(0xFF07549D).withOpacity(0.1),
+                                borderRadius: BorderRadius.all(Radius.circular(10)),
+                              ),
+                              margin: EdgeInsets.all(3),
+                              child: Column(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: [
+                                  Row(
+                                    mainAxisAlignment: MainAxisAlignment.center,
+                                    children: [
+                                      Lottie.asset(
+                                          "assets/wind.png",
+                                          height:50,
+                                          width:50
+                                      ),
+                                      Text(
+                                        (hourlyHumidity.toList()[0][currentHour]).toString() + " %",
+                                        style: TextStyle(
+                                          fontSize: 15,
+                                          fontWeight: FontWeight.bold,
+                                          fontFamily: 'Roboto',
+                                          color: Colors.white,
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                ],
+                              ),
                             ),
                           ),
-                        ),
+
+
                         Expanded(
                           child: Container(
                             decoration: BoxDecoration(
