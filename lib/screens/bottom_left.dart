@@ -109,6 +109,7 @@ class getContentBottomContainers extends StatelessWidget {
                                   Padding(
                                     padding: EdgeInsets.only(left: 10),
                                     // Add padding to the left
+
                                     child: Text(
                                       "Vent",
                                       style: TextStyle(
@@ -162,8 +163,7 @@ class getContentBottomContainers extends StatelessWidget {
                                 Row(
                                   children: [
                                     Padding(padding: EdgeInsets.only(left: 10)),
-                                    Icon(WeatherIcons.humidity,
-                                        size: 15, color: Colors.blue),
+                                    Image.asset("assets/humidity.png",height:40,width:40),
                                     SizedBox(width: 5),
                                     Padding(
                                       padding: EdgeInsets.only(left: 10),

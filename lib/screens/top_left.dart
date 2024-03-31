@@ -12,12 +12,17 @@ class getContentTopContainers extends StatelessWidget {
   final dailySunsetHour;
   final dailySunriseHour;
 
-  const getContentTopContainers({super.key, required this.tempMax,
-    required this.tempMin, required this.hourlyTemp,
-    required this.currentHour, required this.city,
-    required this.dailySunsetHour, required this.dailySunriseHour,
+  const getContentTopContainers({
+    super.key,
+    required this.tempMax,
+    required this.tempMin,
+    required this.hourlyTemp,
+    required this.currentHour,
+    required this.city,
+    required this.dailySunsetHour,
+    required this.dailySunriseHour,
+  });
 
-    });
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -44,22 +49,20 @@ class getContentTopContainers extends StatelessWidget {
                   ),
                   height: 85,
                   margin: EdgeInsets.all(0.5),
-                  child: Column(
-                      mainAxisSize: MainAxisSize.max,
-                      children: [
+                  child: Column(mainAxisSize: MainAxisSize.max, children: [
                     Expanded(
                         child: Container(
-                          //container des temperature actuel
+                            //container des temperature actuel
                             decoration: BoxDecoration(
                               color: Color(0xFF07549D).withOpacity(0.1),
-                              borderRadius: BorderRadius.all(Radius.circular(10)),
+                              borderRadius:
+                                  BorderRadius.all(Radius.circular(10)),
                             ),
                             height: 50,
                             margin: EdgeInsets.all(0.5),
-                            child:
-                            Text((hourlyTemp.toList()[0][currentHour]).toString()+" °C")
-                        )
-                    ),
+                            child: Text((hourlyTemp.toList()[0][currentHour])
+                                    .toString() +
+                                " °C"))),
                     Expanded(
                       child: Container(
                         //container des temperature max et min
@@ -69,7 +72,12 @@ class getContentTopContainers extends StatelessWidget {
                         ),
                         height: 34,
                         margin: EdgeInsets.all(0.5),
-                        child: Text("min "+ (tempMin.toList()[0]).toString() +"°C" +" / max "+ (tempMax.toList()[0]).toString()+"°C"),
+                        child: Text("min " +
+                            (tempMin.toList()[0]).toString() +
+                            "°C" +
+                            " / max " +
+                            (tempMax.toList()[0]).toString() +
+                            "°C"),
                       ),
                     ),
                   ]),
@@ -89,9 +97,8 @@ class getContentTopContainers extends StatelessWidget {
             ]),
           ),
           Container(
-
             decoration: BoxDecoration(
-            borderRadius: BorderRadius.all(Radius.circular(10))),
+                borderRadius: BorderRadius.all(Radius.circular(10))),
             height: 85,
             width: double.infinity,
             // Pour occuper toute la largeur de la colonne
@@ -99,17 +106,16 @@ class getContentTopContainers extends StatelessWidget {
             child: Row(children: [
               Expanded(
                 child: Container(
-                  //ville display
-                  decoration: BoxDecoration(
-                    color: Color(0xFF07549D).withOpacity(0.1),
-                    borderRadius: BorderRadius.all(Radius.circular(10)),
-                  ),
-                  height: 85,
-                  margin: EdgeInsets.all(0.5),
-                  child:
-                   //ivry comme la ville par défaut
-                  Text(city)
-                ),
+                    //ville display
+                    decoration: BoxDecoration(
+                      color: Color(0xFF07549D).withOpacity(0.1),
+                      borderRadius: BorderRadius.all(Radius.circular(10)),
+                    ),
+                    height: 85,
+                    margin: EdgeInsets.all(0.5),
+                    child:
+                        //ivry comme la ville par défaut
+                        Text(city)),
               ),
               Expanded(
                 child: Container(
@@ -132,13 +138,13 @@ class getContentTopContainers extends StatelessWidget {
                           ),
                           height: 41.5,
                           margin: EdgeInsets.all(0.5),
-                          child:Row(
+                          child: Row(
                             children: <Widget>[
-                              Lottie.asset(
-                                  "assets/icone/sunrise.json"),
-                              SizedBox(width: 8), // Adding some space between icon and text
-                              Text(DateFormat('HH:mm').format(DateTime.parse(dailySunriseHour[0]))),
-
+                              Lottie.asset("assets/icone/sunrise.json"),
+                              SizedBox(width: 8),
+                              // Adding some space between icon and text
+                              Text(DateFormat('HH:mm')
+                                  .format(DateTime.parse(dailySunriseHour[0]))),
                             ],
                           ),
                         ),
@@ -152,14 +158,13 @@ class getContentTopContainers extends StatelessWidget {
                           ),
                           height: 41.5,
                           margin: EdgeInsets.all(0.5),
-                          child:Row(
+                          child: Row(
                             children: <Widget>[
-                              Lottie.asset(
-                                  "assets/icone/sunset.json"),
-                              SizedBox(width: 8), // Adding some space between icon and text
-                              Text(DateFormat('HH:mm').format(DateTime.parse(dailySunsetHour[0]))),
-
-
+                              Lottie.asset("assets/icone/sunset.json"),
+                              SizedBox(width: 8),
+                              // Adding some space between icon and text
+                              Text(DateFormat('HH:mm')
+                                  .format(DateTime.parse(dailySunsetHour[0]))),
                             ],
                           ),
                         ),
