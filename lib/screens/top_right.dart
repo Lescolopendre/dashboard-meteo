@@ -8,7 +8,7 @@ class TopRightWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-       height: MediaQuery.of(context).size.height * 0.33,
+      height: MediaQuery.of(context).size.height * 0.33,
       width: MediaQuery.of(context).size.width * 0.2,
       decoration: BoxDecoration(
         borderRadius: BorderRadius.all(Radius.circular(10)),
@@ -38,6 +38,7 @@ class TopRightWidget extends StatelessWidget {
                 ),
                 Tab(
                   child: Row(
+
                     children: [
                       Lottie.asset("assets/icone/wind.json"), // Adapter la taille de l'icône selon les besoins// Espacement entre l'icône et le texte de l'onglet
                     ],
@@ -47,6 +48,7 @@ class TopRightWidget extends StatelessWidget {
             ),
             Expanded(
               child: TabBarView(
+                physics: const NeverScrollableScrollPhysics(),
                 children: [
                   //affiche map pluie
                   FranceMapWithPrecipitation(),
@@ -54,7 +56,6 @@ class TopRightWidget extends StatelessWidget {
                   FranceMapWithTemp(),
                   //affiche map vent
                   FranceMapWithWind(),
-
                 ],
               ),
             ),
