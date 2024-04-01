@@ -198,36 +198,6 @@ class HomePageState extends State<HomePage> {
                             ), //recup donnée top_left
                           ),
 
-                          direction: Axis.horizontal,
-                          spacing: 2.0,
-                          runSpacing: 1.0,
-                          children: [
-                            Text("Aujourd'hui\t"),
-                            SizedBox(height: 10),
-                            Row(
-                              children: [
-                                // Carré à gauche
-                                Container(
-                                  height: screenSize.height * 0.33,
-                                  width: screenSize.width * 0.2,
-                                  decoration: BoxDecoration(
-                                    borderRadius:
-                                        BorderRadius.all(Radius.circular(10)),
-                                    color: Color(0xFFF5F5F5).withOpacity(0.1),
-                                  ),
-                                  margin: EdgeInsets.all(7),
-                                  child: getContentTopContainers(
-                                    tempMin: tempMin,
-                                    tempMax: tempMax,
-                                    hourlyTemp: temp,
-                                    currentHour: currentHour,
-                                    city: city,
-                                    dailySunriseHour: dailySunriseHour,
-                                    dailySunsetHour: dailySunsetHour,
-                                  ), //recup donnée top_left
-                                ),
-
-
                                 SizedBox(width: 7),
                                 // Espacement entre le carré et le rectangle
 
@@ -286,7 +256,7 @@ class HomePageState extends State<HomePage> {
                             ),
                           ],
                         )
-                      : Text(city),
+                      : Text(city)
                 ),
                 SizedBox(height: 20),
                 // Ajout d'un espacement entre les deux conteneurs
