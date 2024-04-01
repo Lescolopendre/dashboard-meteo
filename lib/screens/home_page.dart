@@ -171,7 +171,7 @@ class HomePageState extends State<HomePage> {
                     spacing: 2.0,
                     runSpacing: 1.0,
                     children: [
-                      Text("Aujourd'hui\t"),
+                      Text("Aujourd'hui\t"+" - "+city),
                       SizedBox(height: 10),
                       Row(
                         children: [
