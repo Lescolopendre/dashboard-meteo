@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
 import 'package:weather_icons/weather_icons.dart';
 import 'package:intl/intl.dart';
+import '../screens/top_center.dart';
 
 class getContentTopContainers extends StatelessWidget {
   final index;
@@ -12,6 +13,8 @@ class getContentTopContainers extends StatelessWidget {
   final dynamic city;
   final dailySunsetHour;
   final dailySunriseHour;
+  final dynamic weatherCode;
+  final dynamic hourValue;
 
   const getContentTopContainers({
     super.key,
@@ -22,6 +25,9 @@ class getContentTopContainers extends StatelessWidget {
     required this.city,
     required this.dailySunsetHour,
     required this.dailySunriseHour, required this.index,
+    required this.dailySunriseHour,
+    required this.hourValue,
+    required this.weatherCode
   });
 
   @override
@@ -80,11 +86,8 @@ class getContentTopContainers extends StatelessWidget {
                         borderRadius: BorderRadius.all(Radius.circular(10)),
                       ),
                       height: 85,
-                        child: Row(
-                          children: <Widget>[
-                            Lottie.asset("assets/icone/clear_day.json",height: 85,width:85),
-                          ],
-                        ),
+                        //child: getAnimationAsset(weatherCode:weatherCode, hourValue:hourValue)
+
                     ),
                   ),
                 ]),
@@ -226,4 +229,5 @@ class getContentTopContainers extends StatelessWidget {
               ),
             ]));
   }
+
 }

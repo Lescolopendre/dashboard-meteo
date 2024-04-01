@@ -42,6 +42,8 @@ class HomePageState extends State<HomePage> {
   List<dynamic> tempMax = [];
   List<dynamic> tempMin = [];
   late int currentHour;
+  late int weatherCode;
+  late int hourValue;
 
   List<dynamic> dailySunriseHour = [];
   List<dynamic> dailySunsetHour = [];
@@ -160,44 +162,43 @@ class HomePageState extends State<HomePage> {
             Row(
               children: [
                 Container(
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.all(Radius.circular(10)),
-                      color:
-                          Color(0xFFF5F5F5).withOpacity(0.2), //couleur bulle 1
-                    ),
-                    padding: EdgeInsets.fromLTRB(10, 5, 20, 20),
-                    width: screenSize.width - 100,
-                    margin: EdgeInsets.all(25),
-                    child: selectedVille != null
-                        ? LayoutBuilder(builder:
-                            (BuildContext context, BoxConstraints constraints) {
-                            return Column(
-                              children: [
-                                Text("Aujourd'hui\t" + " - \t" + city),
-                                Row(
-                                  children: [
-                                    // Carré à gauche
-                                    Container(
-                                      height: screenSize.height * 0.33,
-                                      width: constraints.maxWidth * 0.22,
-                                      decoration: BoxDecoration(
-                                        borderRadius: BorderRadius.all(
-                                            Radius.circular(10)),
-                                        color:
-                                            Color(0xFFF5F5F5).withOpacity(0.1),
-                                      ),
-                                      margin: EdgeInsets.all(5),
-                                      child: getContentTopContainers(
-                                        index: 0,
-                                        tempMin: tempMin,
-                                        tempMax: tempMax,
-                                        hourlyTemp: temp,
-                                        currentHour: currentHour,
-                                        city: city,
-                                        dailySunriseHour: dailySunriseHour,
-                                        dailySunsetHour: dailySunsetHour,
-                                      ), //recup donnée top_left
-                                    ),
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.all(Radius.circular(10)),
+                    color: Color(0xFFF5F5F5).withOpacity(0.2), //couleur bulle 1
+                  ),
+                  padding: EdgeInsets.fromLTRB(10, 5, 20, 20),
+                  width: screenSize.width - 100,
+                  margin: EdgeInsets.all(25),
+                  child: selectedVille != null
+                      ? Wrap(
+                    direction: Axis.horizontal,
+                    spacing: 2.0,
+                    runSpacing: 1.0,
+                    children: [
+                      Text("Aujourd'hui\t"+" - "+city),
+                      SizedBox(height: 10),
+                      Row(
+                        children: [
+                          // Carré à gauche
+                          Container(
+                            height: screenSize.height * 0.33,
+                            width: screenSize.width * 0.2,
+                            decoration: BoxDecoration(
+                              borderRadius:
+                              BorderRadius.all(Radius.circular(10)),
+                              color: Color(0xFFF5F5F5).withOpacity(0.1),
+                            ),
+                            margin: EdgeInsets.all(7),
+                            child: getContentTopContainers(
+                              tempMin: tempMin,
+                              tempMax: tempMax,
+                              hourlyTemp: temp,
+                              currentHour: currentHour,
+                              city: city,
+                              dailySunriseHour: dailySunriseHour,
+                              dailySunsetHour: dailySunsetHour,
+                            ), //recup donnée top_left
+                          ),
 
                                     // Rectangle au milieu
                                     TopCenterWidget(
