@@ -73,7 +73,11 @@ class getContentBottomContainers extends StatelessWidget {
                                     ),
                                   ),
                                   Padding(
+
+                                    padding: EdgeInsets.only(left: 30),
+
                                     padding: EdgeInsets.only(left: 10),
+
                                     // Add padding to the left
                                     child: Text(
                                       (hourlyApparentTemp.toList()[0]
@@ -92,7 +96,9 @@ class getContentBottomContainers extends StatelessWidget {
                               ),
                             ),
                           ),
+
                         ),
+                       ),
                         Expanded(
                           child: Container(
                             decoration: BoxDecoration(
@@ -148,11 +154,86 @@ class getContentBottomContainers extends StatelessWidget {
                     margin: EdgeInsets.all(3),
                     child: Column(
                       children: [
+
                         Expanded(
                           child: Container(
                             decoration: BoxDecoration(
                               color: Color(0xFF07549D).withOpacity(0.05),
                               borderRadius:
+
+                              BorderRadius.all(Radius.circular(10)),
+                            ),
+                            margin: EdgeInsets.all(3),
+                            child: Row(
+                              children: [
+                                Image.asset("assets/wind.png",height:30,width:30),
+                                SizedBox(width: 5),
+                                Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    Text(
+                                      "Vent",
+                                      style: TextStyle(
+                                        fontSize: 12,
+                                        fontWeight: FontWeight.w300,
+                                        fontFamily: 'Roboto',
+                                        color: Colors.white.withOpacity(0.5),
+                                      ),
+                                    ),
+                                    Text(
+                                      (hourlyWindSpeed.toList()[0][currentHour])
+                                          .toString() +
+                                          " km/h",
+                                      style: TextStyle(
+                                        fontSize: 15,
+                                        fontWeight: FontWeight.bold,
+                                        fontFamily: 'Roboto',
+                                        color: Colors.white,
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              ],
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+                Expanded(
+                  child: Container(
+                    margin: EdgeInsets.all(3),
+                    child: Column(
+                      children: [
+                        Expanded(
+                          child: Container(
+                            decoration: BoxDecoration(
+                              color: Color(0xFF07549D).withOpacity(0.05),
+                              borderRadius:
+                              BorderRadius.all(Radius.circular(10)),
+                            ),
+                            margin: EdgeInsets.all(3),
+                            child: Row(
+                              children: [
+                                Image.asset("assets/humidity.png",height:40,width:40),
+                                SizedBox(width: 5),
+                                Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    Text(
+                                      "Humidité",
+                                      style: TextStyle(
+                                        fontSize: 12,
+                                        fontWeight: FontWeight.w300,
+                                        fontFamily: 'Roboto',
+                                        color: Colors.white.withOpacity(0.5),
+                                      ),
+                                    ),
+                                    Text(
+                                      (hourlyHumidity.toList()[0][currentHour])
+                                          .toString() +
+
                                   BorderRadius.all(Radius.circular(10)),
                             ),
                             margin: EdgeInsets.all(3),
@@ -191,6 +272,7 @@ class getContentBottomContainers extends StatelessWidget {
                                     Text(
                                       (hourlyHumidity.toList()[0][currentHour])
                                               .toString() +
+
                                           " %",
                                       style: TextStyle(
                                         fontSize: 15,
@@ -216,7 +298,11 @@ class getContentBottomContainers extends StatelessWidget {
                             child: Row(
                               children: [
                                 Lottie.asset("assets/icone/uv_index.json",
+
+                                    width: 40, height: 40),
+
                                     width: 50, height: 50),
+
                                 SizedBox(width: 5),
                                 Column(
                                   crossAxisAlignment: CrossAxisAlignment.start,
@@ -262,6 +348,9 @@ class getContentBottomContainers extends StatelessWidget {
             child: getPollutionIndicator(
               currentHour: currentHour,
               hourlyAqi: hourlyAqi,
+
+
+
             ),
           ),
         ],
