@@ -37,7 +37,7 @@ class TopCenterWidget extends StatelessWidget {
                       .format(DateTime(2022, 1, 1, hourValue));
 
                   // Obtention du chemin de l'animation Lottie en fonction du code météo et de l'heure
-                  String animationAsset = _getAnimationAsset(weatherCode, hourValue);
+                  String animationAsset = getAnimationAsset(weatherCode, hourValue);
 
                   return Padding(
                     padding: const EdgeInsets.all(8.0),
@@ -60,7 +60,7 @@ class TopCenterWidget extends StatelessWidget {
   }
 
   // Fonction pour obtenir le chemin de l'animation Lottie en fonction du code météo et de l'heure
-  String _getAnimationAsset(int weatherCode, int hourValue) {
+  String getAnimationAsset(int weatherCode, int hourValue) {
     // Si c'est la nuit (entre 18h et 6h), affiche une icône de lune
     if (hourValue >= 18 || hourValue < 6) {
       switch (weatherCode) {
