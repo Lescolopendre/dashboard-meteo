@@ -6,7 +6,8 @@ import 'graph_pluie.dart';
 class GraphTabs extends StatelessWidget {
   final temp;
   final pluie;
-  const GraphTabs({super.key,required this.temp,required this.pluie});
+  final index;
+  const GraphTabs({super.key,required this.temp,required this.pluie,required this.index});
 
   @override
   Widget build(BuildContext context) {
@@ -46,8 +47,8 @@ class GraphTabs extends StatelessWidget {
         body: TabBarView(
           physics: const NeverScrollableScrollPhysics(),
           children: [
-            GraphTempDay(points: temp.toList()[0]),
-            GraphRainDay(points: pluie.toList()[0]),
+            GraphTempDay(points: temp.toList()[index]),
+            GraphRainDay(points: pluie.toList()[index]),
           ],
         ),
       ),);

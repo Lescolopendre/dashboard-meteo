@@ -6,11 +6,12 @@ import 'package:percent_indicator/percent_indicator.dart';
 
 class getPollutionIndicator extends StatelessWidget {
   final Iterable<List<dynamic>> hourlyAqi;
+  final index;
   final currentHour;
 
 
   const getPollutionIndicator({super.key,
-    required this.hourlyAqi, required this.currentHour,
+    required this.hourlyAqi, required this.currentHour,required this.index,
 
 
   });
@@ -19,7 +20,7 @@ class getPollutionIndicator extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     ////////////////////////////////polution level
-    var aqiValue= (hourlyAqi.toList()[0][currentHour]);
+    var aqiValue= (hourlyAqi.toList()[index][currentHour]);
     var addCom ;
     if (aqiValue >= 0 && aqiValue <= 50) {
       addCom='Good' ;
@@ -74,7 +75,7 @@ class getPollutionIndicator extends StatelessWidget {
                   ),
                   SizedBox(height: 5),
                   Text(
-                      hourlyAqi.toList()[0][currentHour].toString() + "   " + addCom,
+                      hourlyAqi.toList()[index][currentHour].toString() + "   " + addCom,
                     style: TextStyle(
                       fontSize: 15, // Taille de la police
                       fontWeight: FontWeight.bold, // Poids de la police
@@ -105,7 +106,7 @@ class getPollutionIndicator extends StatelessWidget {
                     child: Stack(
                       children: [
                         Positioned(
-                          left: ((hourlyAqi.toList()[0][currentHour]) / 100) * containerWidth/1.2,
+                          left: ((hourlyAqi.toList()[index][currentHour]) / 100) * containerWidth/1.2,
                           child: Container(
                             width: 10, // Indicator width
                             height: 10, // Indicator height

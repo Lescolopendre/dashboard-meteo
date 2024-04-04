@@ -14,7 +14,7 @@ class getContentBottomContainers extends StatelessWidget {
   final hourlyHumidity;
   final hourlyUVIndex;
   final hourlyAqi;
-
+  final index;
   const getContentBottomContainers({
     super.key,
     required this.hourlyApparentTemp,
@@ -22,7 +22,7 @@ class getContentBottomContainers extends StatelessWidget {
     required this.hourlyWindSpeed,
     required this.hourlyHumidity,
     required this.hourlyUVIndex,
-    required this.hourlyAqi,
+    required this.hourlyAqi, required this.index,
   });
 
   @override
@@ -74,7 +74,7 @@ class getContentBottomContainers extends StatelessWidget {
                                     padding: EdgeInsets.only(left: 30),
                                     // Add padding to the left
                                     child: Text(
-                                      (hourlyApparentTemp.toList()[0][currentHour]).toString() +" °C",
+                                      (hourlyApparentTemp.toList()[index][currentHour]).toString() +" °C",
                                       style: TextStyle(
                                         fontSize: 15,
                                         fontWeight: FontWeight.bold,
@@ -118,7 +118,7 @@ class getContentBottomContainers extends StatelessWidget {
                                     padding: EdgeInsets.only(left: 10),
                                     // Add padding to the left
                                     child: Text(
-                                      (hourlyWindSpeed.toList()[0][currentHour])
+                                      (hourlyWindSpeed.toList()[index][currentHour])
                                               .toString() +
                                           " km/h",
                                       style: TextStyle(
@@ -169,7 +169,7 @@ class getContentBottomContainers extends StatelessWidget {
                                       ),
                                     ),
                                     Text(
-                                      (hourlyHumidity.toList()[0][currentHour])
+                                      (hourlyHumidity.toList()[index][currentHour])
                                           .toString() +" %",
                                       style: TextStyle(
                                         fontSize: 15,
@@ -209,7 +209,7 @@ class getContentBottomContainers extends StatelessWidget {
                                       ),
                                     ),
                                     Text(
-                                      (hourlyUVIndex.toList()[0][currentHour])
+                                      (hourlyUVIndex.toList()[index][currentHour])
                                           .toString(),
                                       style: TextStyle(
                                         fontSize: 15,
@@ -238,6 +238,7 @@ class getContentBottomContainers extends StatelessWidget {
               borderRadius: BorderRadius.all(Radius.circular(10)),
             ),
             child: getPollutionIndicator(
+              index: index,
               currentHour: currentHour,
               hourlyAqi: hourlyAqi,
 
