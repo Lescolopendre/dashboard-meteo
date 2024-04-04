@@ -4,8 +4,8 @@ import 'package:intl/intl.dart';
 
 class TopCenterWidget extends StatelessWidget {
   final weather;
-
-  const TopCenterWidget({Key? key, required this.weather}) : super(key: key);
+  final BoxConstraints boxConstraints;
+  const TopCenterWidget({Key? key, required this.weather, required this.boxConstraints}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -13,7 +13,7 @@ class TopCenterWidget extends StatelessWidget {
 
     return Container(
       height: screenSize.height * 0.33,
-      width: screenSize.width * 0.475,
+      width: boxConstraints.maxWidth*0.5,
       margin: EdgeInsets.all(7),
       decoration: BoxDecoration(
         borderRadius: BorderRadius.all(Radius.circular(10)),

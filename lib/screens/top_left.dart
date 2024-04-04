@@ -4,6 +4,7 @@ import 'package:weather_icons/weather_icons.dart';
 import 'package:intl/intl.dart';
 
 class getContentTopContainers extends StatelessWidget {
+  final index;
   final tempMin;
   final tempMax;
   final hourlyTemp;
@@ -20,7 +21,7 @@ class getContentTopContainers extends StatelessWidget {
     required this.currentHour,
     required this.city,
     required this.dailySunsetHour,
-    required this.dailySunriseHour,
+    required this.dailySunriseHour, required this.index,
   });
 
   @override
@@ -57,7 +58,7 @@ class getContentTopContainers extends StatelessWidget {
                           children: [
                             SizedBox(height: 5),
                             Text(
-                              (hourlyTemp.toList()[0][currentHour]).toString() + "°",
+                              (hourlyTemp.toList()[index][currentHour]).toString() + "°",
                               textAlign: TextAlign.center,
                               style: TextStyle(
                                 fontSize: 30,
@@ -110,7 +111,7 @@ class getContentTopContainers extends StatelessWidget {
                       child:Padding(
                         padding:EdgeInsets.only(left: 10),
                         child:Text(
-                          "Min. " + (tempMin.toList()[0]).toString() + "° \n"+ "Max. " + (tempMax.toList()[0]).toString() + "°",
+                          "Min. " + (tempMin.toList()[index]).toString() + "° \n"+ "Max. " + (tempMax.toList()[index]).toString() + "°",
                           textAlign: TextAlign.left,
                           style: TextStyle(
                             fontSize: 15,
@@ -161,7 +162,7 @@ class getContentTopContainers extends StatelessWidget {
                                       ),
                                       Text(
                                         (DateFormat('HH:mm').format(
-                                            DateTime.parse(dailySunriseHour[0]))),
+                                            DateTime.parse(dailySunriseHour[index]))),
                                             style: TextStyle(
                                             fontSize: 12,
                                             fontWeight: FontWeight.w500,
@@ -202,7 +203,7 @@ class getContentTopContainers extends StatelessWidget {
                                       ),
                                       Text(
                                         (DateFormat('HH:mm').format(
-                                            DateTime.parse(dailySunsetHour[0]))),
+                                            DateTime.parse(dailySunsetHour[index]))),
                                         style: TextStyle(
                                           fontSize: 12,
                                           fontWeight: FontWeight.w500,
