@@ -197,6 +197,8 @@ class HomePageState extends State<HomePage> {
                               city: city,
                               dailySunriseHour: dailySunriseHour,
                               dailySunsetHour: dailySunsetHour,
+                              //weatherCode:weatherCode,
+                              //  hourValue:hourValue,
                             ), //recup donnée top_left
                           ),
 

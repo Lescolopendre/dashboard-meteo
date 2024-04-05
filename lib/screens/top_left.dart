@@ -13,8 +13,8 @@ class getContentTopContainers extends StatelessWidget {
   final dynamic city;
   final dailySunsetHour;
   final dailySunriseHour;
-  final dynamic weatherCode;
-  final dynamic hourValue;
+  //final dynamic weatherCode;
+  //final dynamic hourValue;
 
   const getContentTopContainers({
     super.key,
@@ -26,8 +26,8 @@ class getContentTopContainers extends StatelessWidget {
     required this.dailySunsetHour,
     required this.dailySunriseHour, required this.index,
     required this.dailySunriseHour,
-    required this.hourValue,
-    required this.weatherCode
+    //required this.hourValue,
+    //required this.weatherCode
   });
 
   @override
