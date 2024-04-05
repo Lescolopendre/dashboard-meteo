@@ -42,7 +42,7 @@ class HomePageState extends State<HomePage> {
   List<dynamic> tempMax = [];
   List<dynamic> tempMin = [];
   late int currentHour;
-
+  Iterable<List<dynamic>> hourlyWeatherCode=[];
   List<dynamic> dailySunriseHour = [];
   List<dynamic> dailySunsetHour = [];
 
@@ -67,6 +67,7 @@ class HomePageState extends State<HomePage> {
       dailySunriseHour = data.dailySunriseHour;
       dailySunsetHour = data.dailySunsetHour;
       hourlyAqi = datapollution.hourlyAqi;
+      hourlyWeatherCode= data.hourlyWeatherCode;
     });
   }
 
@@ -196,6 +197,8 @@ class HomePageState extends State<HomePage> {
                                   city: city,
                                   dailySunriseHour: dailySunriseHour,
                                   dailySunsetHour: dailySunsetHour,
+                                  weather: weather,
+                                  hourlyWeatherCode:hourlyWeatherCode
                                 ), //recup donnée top_left
                               ),
 
@@ -299,6 +302,8 @@ class HomePageState extends State<HomePage> {
                                   city: city,
                                   dailySunriseHour: dailySunriseHour,
                                   dailySunsetHour: dailySunsetHour,
+                                  weather:weather,
+                                  hourlyWeatherCode:hourlyWeatherCode,
                                 ), //recup donnée top_left
                               ),
 
