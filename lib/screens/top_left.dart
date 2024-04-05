@@ -25,7 +25,6 @@ class getContentTopContainers extends StatelessWidget {
     required this.city,
     required this.dailySunsetHour,
     required this.dailySunriseHour, required this.index,
-    required this.dailySunriseHour,
     //required this.hourValue,
     //required this.weatherCode
   });
