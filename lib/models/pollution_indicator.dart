@@ -78,12 +78,12 @@ class getPollutionIndicator extends StatelessWidget {
                       hourlyAqi.toList()[index][currentHour].toString() + "   " + addCom,
                     style: TextStyle(
                       fontSize: 15, // Taille de la police
-                      fontWeight: FontWeight.bold, // Poids de la police
+                      fontWeight: FontWeight.w500, // Poids de la police
                       fontFamily: 'Roboto', // Famille de police
                       color: Colors.white, // Couleur du texte
                     ),
                   ),
-                  SizedBox(height: 10),
+                  SizedBox(height: 8),
                   Container(
                     width: containerWidth/1.2,
                     height: 10, // Adjust height as needed

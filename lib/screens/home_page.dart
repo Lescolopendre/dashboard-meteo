@@ -279,7 +279,7 @@ class HomePageState extends State<HomePage> {
                         (BuildContext context, BoxConstraints constraints) {
                       return Column(
                         children: [
-                          Text("Aujourd'hui\t" + " - \t" + city),
+                          Text("Demain\t" + " - \t" + city),
                           Row(
                             children: [
                               // Carré à gauche
