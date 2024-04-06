@@ -141,7 +141,7 @@ class HomePageState extends State<HomePage> {
             ),
           ),
         ],
-        backgroundColor: Color(0xFF07549D),
+        backgroundColor: Colors.blue.shade800,
       ),
       body: Container(
         decoration: BoxDecoration(

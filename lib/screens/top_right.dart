@@ -43,7 +43,7 @@ class TopRightWidget extends StatelessWidget {
                   child: Row(
 
                     children: [
-                      Lottie.asset("assets/icone/wind.json"), // Adapter la taille de l'icône selon les besoins// Espacement entre l'icône et le texte de l'onglet
+                      Image.asset("assets/wind.png",height:40,width:40), // Adapter la taille de l'icône selon les besoins// Espacement entre l'icône et le texte de l'onglet
                     ],
                   ),
                 ),
