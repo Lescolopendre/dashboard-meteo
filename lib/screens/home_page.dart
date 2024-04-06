@@ -128,6 +128,9 @@ class HomePageState extends State<HomePage> {
             color: Colors.white,
           ),
         ),
+
+        leading: Image.asset("assets/gooly_meteo.png",height:70,width:70),
+        leadingWidth: 200,
         actions: [
           SizedBox(
             width: 300.0,
@@ -140,7 +143,7 @@ class HomePageState extends State<HomePage> {
               ),
             ),
           ),
-          Image.asset("assets/gooly_meteo.png",height:30,width:30),
+
         ],
         backgroundColor: Colors.blue.shade800,
       ),

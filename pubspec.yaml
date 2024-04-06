@@ -117,7 +117,9 @@ flutter:
     - assets/smoke-particles.png
     - assets/humidity.png
     - assets/gooly_meteo.png
-    - 
+    - assets/icon_gooly_meteo.png
+    -
+
 
 
   #   - images/a_dot_burr.jpe g
