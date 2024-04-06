@@ -47,7 +47,7 @@ class getContentBottomContainers extends StatelessWidget {
                         Expanded(
                           child: Container(
                             decoration: BoxDecoration(
-                              color: Color(0xFF07549D).withOpacity(0.05),
+                              //color: Color(0xFF07549D).withOpacity(0.05),
                               borderRadius:
                                   BorderRadius.all(Radius.circular(10)),
                             ),
@@ -71,7 +71,7 @@ class getContentBottomContainers extends StatelessWidget {
                                     ),
                                   ),
                                   Padding(
-                                    padding: EdgeInsets.only(left: 30),
+                                    padding: EdgeInsets.only(left: 15),
                                     // Add padding to the left
                                     child: Row(
                                       children: [

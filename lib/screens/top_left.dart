@@ -229,12 +229,13 @@ class getContentTopContainers extends StatelessWidget {
                   margin: EdgeInsets.all(3),
                   child: Row(
                       crossAxisAlignment: CrossAxisAlignment.stretch,
+                      mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         Expanded(
                           child: Container(
                             //ville display
                             decoration: BoxDecoration(
-                              //color: Color(0xFF07549D).withOpacity(0.1),
+                              color: Color(0xFF07549D).withOpacity(0.05),
                               borderRadius:
                                   BorderRadius.all(Radius.circular(10)),
                             ),
@@ -242,8 +243,11 @@ class getContentTopContainers extends StatelessWidget {
                             margin: EdgeInsets.all(3),
                             child: Column(
                               children:[
-                                Row(
+                                Padding(
+                                padding: EdgeInsets.only(left: 10, top:15),
+                                child:Row(
                                   children: [
+                                    SizedBox(width:5),
                                     Column(
                                       children: [
                                         Text("Min. ",
@@ -285,9 +289,12 @@ class getContentTopContainers extends StatelessWidget {
                                     ),
                                   ],
                                 ),
-                                SizedBox(width:2),
-                                Row(
+                                    ),
+                                Padding(
+                                  padding: EdgeInsets.only(left: 10),
+                                child:Row(
                                   children: [
+                                    SizedBox(width:5),
                                     Column(
                                       children: [
                                         Text("Max. ",
@@ -328,6 +335,7 @@ class getContentTopContainers extends StatelessWidget {
                                       ],
                                     ),
                                   ],
+                                ),
                                 ),
                               ],
                             ),
