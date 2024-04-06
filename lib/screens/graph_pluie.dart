@@ -30,7 +30,12 @@ class GraphRainDay extends StatelessWidget {
           ),
           titlesData: const FlTitlesData(
             topTitles: AxisTitles(
-              axisNameWidget: Text("Probabilité de précipitation",style: TextStyle(fontSize: 20),),
+              axisNameWidget: Text("Probabilité de précipitation",
+                style: TextStyle(fontSize: 15,
+                  fontWeight: FontWeight.w300,
+                  fontFamily: 'Roboto',
+                  color: Colors.white60,
+                ),),
               axisNameSize: 40,
               sideTitles: SideTitles(showTitles: false),
             ),
