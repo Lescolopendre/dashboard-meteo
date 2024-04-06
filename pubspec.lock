@@ -525,6 +525,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "1.2.0"
+  string_translate:
+    dependency: "direct main"
+    description:
+      name: string_translate
+      sha256: "56da6dc4c5ace6390182cfadd93370262662c6025e928940cede07b90a705ad6"
+      url: "https://pub.dev"
+    source: hosted
+    version: "1.0.0"
   term_glyph:
     dependency: transitive
     description:
