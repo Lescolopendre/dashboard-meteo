@@ -146,6 +146,7 @@ class HomePageState extends State<HomePage> {
             SizedBox(width:30),
         ],
         backgroundColor: Colors.blue.shade900,
+
       ),
       body: Container(
         decoration: BoxDecoration(
