@@ -42,7 +42,6 @@ class HomePageState extends State<HomePage> {
   List<dynamic> tempMax = [];
   List<dynamic> tempMin = [];
   late int currentHour;
-  Iterable<List<dynamic>> hourlyWeatherCode=[];
   List<dynamic> dailySunriseHour = [];
   List<dynamic> dailySunsetHour = [];
 
@@ -57,8 +56,6 @@ class HomePageState extends State<HomePage> {
       tempMin = data.dailyMinTemp;
       hourlyAqi = datapollution.hourlyAqi;
       weather = data.hourlyWeatherCode;
-      hourlyAqi = datapollution.hourlyAqi;
-      weather = data.hourlyWeatherCode;
       windSpeed = data.hourlyWindSpeed;
       humidity = data.hourlyHumidity;
       uvIndex = data.hourlyUVIndex;
@@ -66,8 +63,6 @@ class HomePageState extends State<HomePage> {
       currentHour = DateTime.now().hour;
       dailySunriseHour = data.dailySunriseHour;
       dailySunsetHour = data.dailySunsetHour;
-      hourlyAqi = datapollution.hourlyAqi;
-      hourlyWeatherCode= data.hourlyWeatherCode;
     });
   }
 
@@ -197,7 +192,8 @@ class HomePageState extends State<HomePage> {
                                   city: city,
                                   dailySunriseHour: dailySunriseHour,
                                   dailySunsetHour: dailySunsetHour,
-
+                                  weather:weather,
+                                  hourlyWeatherCode:weather,
                                 ), //recup donnée top_left
                               ),
 
@@ -278,7 +274,7 @@ class HomePageState extends State<HomePage> {
                         (BuildContext context, BoxConstraints constraints) {
                       return Column(
                         children: [
-                          Text("Aujourd'hui\t" + " - \t" + city),
+                          Text("Demain\t" + " - \t" + city),
                           Row(
                             children: [
                               // Carré à gauche
@@ -302,7 +298,7 @@ class HomePageState extends State<HomePage> {
                                   dailySunriseHour: dailySunriseHour,
                                   dailySunsetHour: dailySunsetHour,
                                   weather:weather,
-                                  hourlyWeatherCode:hourlyWeatherCode,
+                                  hourlyWeatherCode:weather,
                                 ), //recup donnée top_left
                               ),
 

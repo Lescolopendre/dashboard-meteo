@@ -104,7 +104,7 @@ class TopCenterWidget extends StatelessWidget {
         case 95:
         case 96:
         case 99:
-          return "assets/icone/thunderstorm.json";
+          return "assets/icone/thunderstorms.json";
         default:
           return "assets/icone/clear_day.json"; // Animation par défaut
       }
@@ -150,7 +150,7 @@ class TopCenterWidget extends StatelessWidget {
         case 95:
         case 96:
         case 99:
-          return "assets/icone/thunderstorm.json";
+          return "assets/icone/thunderstorms.json";
         default:
           return "assets/icone/clear_day.json"; // Animation par défaut
       }
