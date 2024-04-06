@@ -31,7 +31,13 @@ class GraphTempDay extends StatelessWidget {
           ),
           titlesData: const FlTitlesData(
             topTitles: AxisTitles(
-              axisNameWidget: Text("Température du jour",style: TextStyle(fontSize: 20),),
+              axisNameWidget: Text("Température du jour",
+                style: TextStyle(fontSize: 15,
+                  fontWeight: FontWeight.w300,
+                  fontFamily: 'Roboto',
+                  color: Colors.white60,
+
+                ),),
               axisNameSize: 40,
               sideTitles: SideTitles(showTitles: false),
             ),

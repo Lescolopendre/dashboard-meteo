@@ -46,7 +46,14 @@ class TopCenterWidget extends StatelessWidget {
                       children: [
                         Lottie.asset(animationAsset, width: 100, height: 100),
                         SizedBox(height: 10),
-                        Text(formattedHour),
+                        Text(formattedHour,
+                          style: TextStyle(
+                          fontSize: 15,
+                          fontWeight: FontWeight.w500,
+                          fontFamily: 'Roboto',
+                          color: Colors.white,
+                        ),
+                        ),
                       ],
                     ),
                   );
