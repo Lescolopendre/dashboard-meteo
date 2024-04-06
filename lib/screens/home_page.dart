@@ -14,7 +14,6 @@ import 'graph_tabs.dart';
 import 'package:flutter/painting.dart';
 import 'package:front/models/data_pollution.dart';
 import 'package:intl/intl.dart';
-import 'package:string_translate/string_translate.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({Key? key, required this.title}) : super(key: key);
@@ -116,43 +115,7 @@ class HomePageState extends State<HomePage> {
 
   @override
   Widget build(BuildContext context) {
-    final supportedLocales = <Locale>{
-      TranslationLocales.english,
-      TranslationLocales.french,
-    };
-    final Locale defaultLocale = supportedLocales.first;
-    final ownTranslations = <String, Map<Locale, String>>{
-      'Monday': {
-        TranslationLocales.french: 'Lundi',
-      },
-      'Tuesday': {
-        TranslationLocales.french: 'Mardi',
-      },
-      'Wednesday': {
-        TranslationLocales.french: 'Mercredi',
-      },
-      'Thursday': {
-        TranslationLocales.french: 'Jeudi',
-      },
-      'Friday': {
-        TranslationLocales.french: 'Vendredi',
-      },
-      'Saturday': {
-        TranslationLocales.french: 'Samedi',
-      },
-      'Sunday': {
-        TranslationLocales.french: 'Dimanche',
-      },
-    };
-    final Map<String, Map<Locale, String>> translations = {};
-    translations.addAll(ownTranslations);
-    translations.addAll(StandardTranslations.actions);
-    translations.addAll(StandardTranslations.error);
-    Translation.init(
-      supportedLocales: supportedLocales,
-      defaultLocale:defaultLocale,
-      translations: translations,
-    );
+
     var screenSize = MediaQuery.of(context).size;
     return Scaffold(
       appBar: AppBar(
@@ -315,7 +278,7 @@ class HomePageState extends State<HomePage> {
                       return Column(
                         children: [
                           Text(DateFormat('EEEE').format(
-                              DateTime.parse(time.toList()[i][0])).tr()+"\t" + " - \t" + city),
+                              DateTime.parse(time.toList()[i][0]))+"\t" + " - \t" + city),
                           Row(
                             children: [
                               // Carré à gauche
