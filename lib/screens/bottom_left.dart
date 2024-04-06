@@ -73,15 +73,29 @@ class getContentBottomContainers extends StatelessWidget {
                                   Padding(
                                     padding: EdgeInsets.only(left: 30),
                                     // Add padding to the left
-                                    child: Text(
-                                      (hourlyApparentTemp.toList()[index][currentHour]).toString() +" °C",
-                                      style: TextStyle(
-                                        fontSize: 15,
-                                        fontWeight: FontWeight.bold,
-                                        fontFamily: 'Roboto',
-                                        color: Colors.white,
-                                      ),
+                                    child: Row(
+                                      children: [
+                                        Text(
+                                          (hourlyApparentTemp.toList()[index][currentHour]).toString(),
+                                          style: TextStyle(
+                                            fontSize: 15,
+                                            fontWeight: FontWeight.w500,
+                                            fontFamily: 'Roboto',
+                                            color: Colors.white,
+                                          ),
+                                        ),
+                                        SizedBox(width:2),
+                                        Text("°C",
+                                          style: TextStyle(
+                                            fontSize: 10,
+                                            fontWeight: FontWeight.w300,
+                                            fontFamily: 'Roboto',
+                                            color: Colors.white.withOpacity(0.5),
+                                          ),
+                                        ),
+                                      ],
                                     ),
+
                                   ),
                                 ],
                               ),
@@ -96,15 +110,14 @@ class getContentBottomContainers extends StatelessWidget {
                                   BorderRadius.all(Radius.circular(10)),
                             ),
                             margin: EdgeInsets.all(3),
-                            child: Align(
-                              alignment: Alignment.centerLeft,
-                              child: Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  Padding(
-                                    padding: EdgeInsets.only(left: 10),
-                                    // Add padding to the left
-                                    child: Text(
+                            child: Row(
+                              children: [
+                                Image.asset("assets/wind.png",height:30,width:30),
+                                SizedBox(width: 5),
+                                Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    Text(
                                       "Vent",
                                       style: TextStyle(
                                         fontSize: 12,
@@ -113,24 +126,32 @@ class getContentBottomContainers extends StatelessWidget {
                                         color: Colors.white.withOpacity(0.5),
                                       ),
                                     ),
-                                  ),
-                                  Padding(
-                                    padding: EdgeInsets.only(left: 10),
-                                    // Add padding to the left
-                                    child: Text(
-                                      (hourlyWindSpeed.toList()[index][currentHour])
-                                              .toString() +
-                                          " km/h",
-                                      style: TextStyle(
-                                        fontSize: 15,
-                                        fontWeight: FontWeight.bold,
-                                        fontFamily: 'Roboto',
-                                        color: Colors.white,
-                                      ),
+                                    Row(
+                                      children:[
+                                        Text(
+                                          (hourlyWindSpeed.toList()[index][currentHour])
+                                              .toString(),
+                                          style: TextStyle(
+                                            fontSize: 15,
+                                            fontWeight: FontWeight.w500,
+                                            fontFamily: 'Roboto',
+                                            color: Colors.white,
+                                          ),
+                                        ),
+                                        SizedBox(width:2),
+                                        Text("Km/h",
+                                          style: TextStyle(
+                                            fontSize: 10,
+                                            fontWeight: FontWeight.w300,
+                                            fontFamily: 'Roboto',
+                                            color: Colors.white.withOpacity(0.5),
+                                          ),
+                                        )
+                                       ]
                                     ),
-                                  ),
-                                ],
-                              ),
+                                  ],
+                                ),
+                              ],
                             ),
                           ),
                         ),
@@ -168,15 +189,28 @@ class getContentBottomContainers extends StatelessWidget {
                                         color: Colors.white.withOpacity(0.5),
                                       ),
                                     ),
-                                    Text(
-                                      (hourlyHumidity.toList()[index][currentHour])
-                                          .toString() +" %",
-                                      style: TextStyle(
-                                        fontSize: 15,
-                                        fontWeight: FontWeight.bold,
-                                        fontFamily: 'Roboto',
-                                        color: Colors.white,
-                                      ),
+                                    Row(
+                                      children:[
+                                        Text(
+                                          (hourlyHumidity.toList()[index][currentHour])
+                                              .toString(),
+                                          style: TextStyle(
+                                            fontSize: 15,
+                                            fontWeight: FontWeight.w500,
+                                            fontFamily: 'Roboto',
+                                            color: Colors.white,
+                                          ),
+                                        ),
+                                        SizedBox(width:2),
+                                        Text("%",
+                                          style: TextStyle(
+                                          fontSize: 10,
+                                          fontWeight: FontWeight.w300,
+                                          fontFamily: 'Roboto',
+                                          color: Colors.white.withOpacity(0.5),
+                                        ),
+                                        ),
+                                      ],
                                     ),
                                   ],
                                 ),
@@ -213,7 +247,7 @@ class getContentBottomContainers extends StatelessWidget {
                                           .toString(),
                                       style: TextStyle(
                                         fontSize: 15,
-                                        fontWeight: FontWeight.bold,
+                                        fontWeight: FontWeight.w500,
                                         fontFamily: 'Roboto',
                                         color: Colors.white,
                                       ),

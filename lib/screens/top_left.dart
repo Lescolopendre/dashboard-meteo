@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
 import 'package:intl/intl.dart';
-import '../screens/top_center.dart';
+
 
 
 class getContentTopContainers extends StatelessWidget {
@@ -14,7 +14,8 @@ class getContentTopContainers extends StatelessWidget {
   final dailySunsetHour;
   final dailySunriseHour;
   final weather;
-  final hourlyWeatherCode;
+  final  hourlyWeatherCode;
+  
   const getContentTopContainers({
     super.key,
     required this.tempMax,
@@ -121,6 +122,7 @@ class getContentTopContainers extends StatelessWidget {
         case 96:
         case 99:
           return "assets/icone/thunderstorms.json";
+
         default:
           return "assets/icone/clear_day.json"; // Animation par défaut
       }
@@ -161,20 +163,44 @@ class getContentTopContainers extends StatelessWidget {
                         ),
                         child: Column(
                           mainAxisAlignment: MainAxisAlignment.center,
-                          //crossAxisAlignment: CrossAxisAlignment.start,
+                          crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             SizedBox(height: 5),
+                            Row(
+                              children: [
+                                Text(
+                                  (hourlyTemp.toList()[index][currentHour])
+                                      .toString(),
+                                  textAlign: TextAlign.center,
+                                  style: TextStyle(
+                                    fontSize: 35,
+                                    fontWeight: FontWeight.w500,
+                                    fontFamily: 'Roboto',
+                                    color: Colors.white,
+                                  ),
+                                ),
+                                SizedBox(width:2),
+                                Text("°C",
+                                  style: TextStyle(
+                                    fontSize: 20,
+                                    fontWeight: FontWeight.w500,
+                                    fontFamily: 'Roboto',
+                                    color: Colors.white.withOpacity(0.5)
+                                  ),
+                                )
+                              ],
+                            ),
                             Text(
-                              (hourlyTemp.toList()[index][currentHour])
-                                      .toString() +
-                                  "°",
-                              textAlign: TextAlign.center,
+                                getWordAsset(hourlyWeatherCode.toList()[index][currentHour], currentHour),
+                                textAlign: TextAlign.left,
+
                               style: TextStyle(
-                                fontSize: 30,
-                                fontWeight: FontWeight.w500,
-                                fontFamily: 'Roboto',
-                                color: Colors.white,
+                                fontSize: 10, // Taille de la police
+                                fontWeight: FontWeight.w500, // Poids de la police
+                                fontFamily: 'Roboto', // Famille de police
+                                color: Colors.white, // Couleur du texte
                               ),
+
                             ),
                           ],
                         ),
@@ -189,7 +215,6 @@ class getContentTopContainers extends StatelessWidget {
                         borderRadius: BorderRadius.all(Radius.circular(10)),
                       ),
                       height: 85,
-
                       child:  Lottie.asset(getAnimationAsset((hourlyWeatherCode.toList()[index][currentHour]), currentHour), width: 50, height: 50)
                     ),
                   ),
@@ -215,23 +240,98 @@ class getContentTopContainers extends StatelessWidget {
                             ),
                             height: 85,
                             margin: EdgeInsets.all(3),
-                            child: Padding(
-                              padding: EdgeInsets.only(left: 10),
-                              child: Text(
-                                "Min. " +
-                                    (tempMin.toList()[index]).toString() +
-                                    "° \n" +
-                                    "Max. " +
-                                    (tempMax.toList()[index]).toString() +
-                                    "°",
-                                textAlign: TextAlign.left,
-                                style: TextStyle(
-                                  fontSize: 15,
-                                  fontWeight: FontWeight.w400,
-                                  color: Colors.white,
+                            child: Column(
+                              children:[
+                                Row(
+                                  children: [
+                                    Column(
+                                      children: [
+                                        Text("Min. ",
+                                          style: TextStyle(
+                                            fontSize: 12,
+                                            fontWeight: FontWeight.w500,
+                                            fontFamily: 'Roboto',
+                                            color: Colors.white.withOpacity(0.9),
+                                          ),
+                                        ),
+                                      ],
+                                    ),
+                                    SizedBox(width:2),
+                                    Column(
+                                      children: [
+                                        Text((tempMin.toList()[index]).toString(),
+                                          style: TextStyle(
+                                            fontSize: 15,
+                                            fontWeight: FontWeight.w500,
+                                            fontFamily: 'Roboto',
+                                            color: Colors.white,
+                                          ),
+                                        ),
+                                      ],
+                                    ),
+                                    SizedBox(width:2),
+                                    Column(
+                                      children: [
+                                        SizedBox(width:2),
+                                        Text("°C",
+                                          style: TextStyle(
+                                            fontSize: 10,
+                                            fontWeight: FontWeight.w300,
+                                            fontFamily: 'Roboto',
+                                            color: Colors.white.withOpacity(0.5),
+                                          ),
+                                        ),
+                                      ],
+                                    ),
+                                  ],
                                 ),
-                              ),
+                                SizedBox(width:2),
+                                Row(
+                                  children: [
+                                    Column(
+                                      children: [
+                                        Text("Max. ",
+                                          style: TextStyle(
+                                            fontSize: 12,
+                                            fontWeight: FontWeight.w500,
+                                            fontFamily: 'Roboto',
+                                            color: Colors.white.withOpacity(0.9),
+                                          ),
+                                        ),
+                                      ],
+                                    ),
+                                    SizedBox(width:2),
+                                    Column(
+                                      children: [
+                                        Text((tempMax.toList()[index]).toString(),
+                                          style: TextStyle(
+                                            fontSize: 15,
+                                            fontWeight: FontWeight.w500,
+                                            fontFamily: 'Roboto',
+                                            color: Colors.white,
+                                          ),
+                                        ),
+                                      ],
+                                    ),
+                                    SizedBox(width:2),
+                                    Column(
+                                      children: [
+                                        SizedBox(width:2),
+                                        Text("°C",
+                                          style: TextStyle(
+                                            fontSize: 10,
+                                            fontWeight: FontWeight.w300,
+                                            fontFamily: 'Roboto',
+                                            color: Colors.white.withOpacity(0.5),
+                                          ),
+                                        ),
+                                      ],
+                                    ),
+                                  ],
+                                ),
+                              ],
                             ),
+
                           ),
                         ),
                         Expanded(
@@ -352,5 +452,102 @@ class getContentTopContainers extends StatelessWidget {
               ),
             ]));
   }
+  // Fonction pour obtenir le chemin de l'animation Lottie en fonction du code météo et de l'heure
+  String getWordAsset(int weatherCode, int hourly ) {
+    // Si c'est la nuit (entre 18h et 6h), affiche une icône de lune
+    if (hourly >= 18 || hourly< 6) {
+      switch (weatherCode) {
+        case 0:
+          return "Nuit éclaircie";
+        case 1:
+        case 2:
+          return "Nuit partiellement nuageuse";
+        case 3:
+          return "Couvert";
+        case 45:
+        case 48:
+          return "Brouillard";
+        case 51:
+        case 53:
+        case 55:
+          return "Bruine";
+        case 56:
+        case 57:
+          return "Neige fondue";
+        case 61:
+        case 63:
+        case 65:
+          return "Bruine";
+        case 66:
+        case 67:
+          return "Pluie";
+        case 71:
+        case 73:
+        case 75:
+          return "Neige";
+        case 77:
+          return "Neige";
+        case 80:
+        case 81:
+        case 82:
+          return "Pluie";
+        case 85:
+        case 86:
+          return "Neige";
+        case 95:
+        case 96:
+        case 99:
+          return "Orage";
+        default:
+          return "Journée dégagée"; // Animation par défaut
+      }
+    } else {
+      switch (weatherCode) {
+        case 0:
+          return "Journée dégagée";
+        case 1:
+        case 2:
+          return "Partiellement nuageux";
+        case 3:
+          return "Couvert";
+        case 45:
+        case 48:
+          return "Brouillard";
+        case 51:
+        case 53:
+        case 55:
+          return "Bruine";
+        case 56:
+        case 57:
+          return "Neige fondue";
+        case 61:
+        case 63:
+        case 65:
+          return "Neige fondue";
+        case 66:
+        case 67:
+          return "Pluie";
+        case 71:
+        case 73:
+        case 75:
+          return "Neige";
+        case 77:
+          return "Neige";
+        case 80:
+        case 81:
+        case 82:
+          return "Pluie";
+        case 85:
+        case 86:
+          return "Neige";
+        case 95:
+        case 96:
+        case 99:
+          return "Orage";
+        default:
+          return "Journée ensoleillée"; // Animation par défaut
+      }
+    }}
+
   }
 
