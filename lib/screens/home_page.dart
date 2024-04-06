@@ -140,6 +140,7 @@ class HomePageState extends State<HomePage> {
               ),
             ),
           ),
+          Image.asset("assets/gooly_meteo.png",height:30,width:30),
         ],
         backgroundColor: Colors.blue.shade800,
       ),
