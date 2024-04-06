@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
 import 'package:intl/intl.dart';
+import '../screens/top_center.dart';
 
 
 class getContentTopContainers extends StatelessWidget {
@@ -12,8 +13,6 @@ class getContentTopContainers extends StatelessWidget {
   final dynamic city;
   final dailySunsetHour;
   final dailySunriseHour;
-  final weather;
-  final  hourlyWeatherCode;
 
   const getContentTopContainers({
     super.key,
@@ -189,6 +188,7 @@ class getContentTopContainers extends StatelessWidget {
                         borderRadius: BorderRadius.all(Radius.circular(10)),
                       ),
                       height: 85,
+
                       child:  Lottie.asset(getAnimationAsset((hourlyWeatherCode.toList()[index][currentHour]), currentHour), width: 50, height: 50)
                     ),
                   ),
@@ -354,4 +354,7 @@ class getContentTopContainers extends StatelessWidget {
 
 
   }
+
+
+}
 
