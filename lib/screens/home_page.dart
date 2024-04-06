@@ -57,8 +57,6 @@ class HomePageState extends State<HomePage> {
       tempMin = data.dailyMinTemp;
       hourlyAqi = datapollution.hourlyAqi;
       weather = data.hourlyWeatherCode;
-      hourlyAqi = datapollution.hourlyAqi;
-      weather = data.hourlyWeatherCode;
       windSpeed = data.hourlyWindSpeed;
       humidity = data.hourlyHumidity;
       uvIndex = data.hourlyUVIndex;
@@ -197,8 +195,10 @@ class HomePageState extends State<HomePage> {
                                   city: city,
                                   dailySunriseHour: dailySunriseHour,
                                   dailySunsetHour: dailySunsetHour,
+
                                   weather: weather,
                                   hourlyWeatherCode:hourlyWeatherCode
+
                                 ), //recup donnée top_left
                               ),
 
@@ -304,6 +304,7 @@ class HomePageState extends State<HomePage> {
                                   dailySunsetHour: dailySunsetHour,
                                   weather:weather,
                                   hourlyWeatherCode:hourlyWeatherCode,
+
                                 ), //recup donnée top_left
                               ),
 
