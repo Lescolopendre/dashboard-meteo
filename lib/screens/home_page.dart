@@ -120,28 +120,33 @@ class HomePageState extends State<HomePage> {
     return Scaffold(
       appBar: AppBar(
         toolbarHeight: 72,
+        leading: Image.asset("assets/icon_gooly_meteo.png",height:70,width:70),
+        leadingWidth: 160,
         centerTitle: true,
-        title: Text(
-          "La Météo",
-          style: TextStyle(
-            fontSize: 25,
-            color: Colors.white,
-          ),
-        ),
-        actions: [
-          SizedBox(
-            width: 300.0,
-            child: Padding(
-              padding: EdgeInsets.all(8),
+        title: Container(
+          child:SizedBox(
+            width:700,
               child: Column(
                 children: <Widget>[
                   CitySearch(callback: callback, villes: allVilles),
                 ],
-              ),
             ),
           ),
+        ),
+        actions: [
+              IconButton(
+              icon: Icon(
+              Icons.help_outline,
+                  color: Colors.white60,
+                  size: 25
+                    ),
+                onPressed: (){
+                }
+            ),
+            SizedBox(width:30),
         ],
-        backgroundColor: Color(0xFF07549D),
+        backgroundColor: Colors.blue.shade900,
+
       ),
       body: Container(
         decoration: BoxDecoration(
@@ -375,4 +380,5 @@ class HomePageState extends State<HomePage> {
       ),
     );
   }
+
 }

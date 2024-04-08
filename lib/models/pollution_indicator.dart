@@ -45,19 +45,6 @@ class getPollutionIndicator extends StatelessWidget {
 
           return Row(
             children: [
-              /* Il prenait trop de place wesh puis pas si utile que ca la verdad
-              SizedBox(
-                width: 50, // Constrain icon width
-                child: Align(
-                  alignment: Alignment.topLeft,
-                  child: Lottie.asset(
-                      "assets/icone/smoke_particles.json",
-                      width: 50,
-                      height: 50
-                  ),
-                ),
-              ),
-              */
               Padding(
                 padding: EdgeInsets.only(left: 10),
               ),

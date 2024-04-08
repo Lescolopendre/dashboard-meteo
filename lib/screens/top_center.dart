@@ -43,6 +43,7 @@ class TopCenterWidget extends StatelessWidget {
           // Obtention du chemin de l'animation Lottie en fonction du code météo
           String animationAsset = getAnimationAsset(weatherCode);
 
+
           return Padding(
             padding: const EdgeInsets.all(8.0),
             child: Column(
