@@ -43,6 +43,9 @@ class HomePageState extends State<HomePage> {
   late int currentHour;
   List<dynamic> dailySunriseHour = [];
   List<dynamic> dailySunsetHour = [];
+  int selectedDayIndex = 0;
+
+  final List<String> libellesJours = ["Aujourd'hui", "Demain"];
 
   callback(Ville varCity, dataVille data, dataPollution datapollution) {
     setState(() {
@@ -74,7 +77,6 @@ class HomePageState extends State<HomePage> {
     villes.then((value) {
       setState(() {
         allVilles = value;
-        // Récupérer les données de la ville Ivry-sur-Seine une fois que la liste des villes est chargée
         Ville ivrySurSeine = allVilles
             .firstWhere((ville) => ville.nomAvecArticle == 'Ivry-sur-Seine');
         getDataForCity(ivrySurSeine);
@@ -115,7 +117,6 @@ class HomePageState extends State<HomePage> {
 
   @override
   Widget build(BuildContext context) {
-
     var screenSize = MediaQuery.of(context).size;
     return Scaffold(
       appBar: AppBar(
@@ -161,218 +162,135 @@ class HomePageState extends State<HomePage> {
           children: <Widget>[
             Row(
               children: [
+                // Bouton Jour Précédent
+                IconButton(
+                  icon: Icon(Icons.arrow_back),
+                  onPressed: () {
+                    setState(() {
+                      selectedDayIndex = selectedDayIndex > 0
+                          ? selectedDayIndex - 1
+                          : selectedDayIndex;
+                    });
+                  },
+                ),
                 Container(
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.all(Radius.circular(10)),
-                      color:
-                      Color(0xFFF5F5F5).withOpacity(0.2), //couleur bulle 1
-                    ),
-                    padding: EdgeInsets.fromLTRB(10, 5, 20, 20),
-                    width: screenSize.width - 100,
-                    margin: EdgeInsets.all(25),
-                    child: selectedVille != null
-                        ? LayoutBuilder(builder:
-                        (BuildContext context, BoxConstraints constraints) {
-                      return Column(
-                        children: [
-                          Text("Aujourd'hui\t" + " - \t" + city),
-                          Row(
-                            children: [
-                              // Carré à gauche
-                              Container(
-                                height: screenSize.height * 0.33,
-                                width: constraints.maxWidth * 0.22,
-                                decoration: BoxDecoration(
-                                  borderRadius: BorderRadius.all(
-                                      Radius.circular(10)),
-                                  color:
-                                  Color(0xFFF5F5F5).withOpacity(0.1),
-                                ),
-                                margin: EdgeInsets.all(5),
-                                child: getContentTopContainers(
-                                  index: 0,
-                                  tempMin: tempMin,
-                                  tempMax: tempMax,
-                                  hourlyTemp: temp,
-                                  currentHour: currentHour,
-                                  city: city,
-                                  dailySunriseHour: dailySunriseHour,
-                                  dailySunsetHour: dailySunsetHour,
-
-                                  weather: weather,
-                                  hourlyWeatherCode:weather
-
-                                ), //recup donnée top_left
-                              ),
-
-                              // Rectangle au milieu
-                              TopCenterWidget(
-                                weather: weather.toList()[0],
-                                boxConstraints: constraints,
-                              ),
-                              // Carré à droite
-                              TopRightWidget(
-                                boxConstraints: constraints,
-                              ),
-                              // Utilisation du widget défini dans top_right.dart
-                            ],
-                          ),
-                          //SizedBox(height: 10),
-                          Row(
-                            children: [
-                              // Carré à gauche en bas
-                              Container(
-                                height: constraints.maxHeight * 0.42,
-                                width: constraints.maxWidth * 0.22,
-                                // Changer la largeur selon vos besoins
-                                decoration: BoxDecoration(
-                                  borderRadius: BorderRadius.all(
-                                      Radius.circular(10)),
-                                  color:
-                                  Color(0xFFF5F5F5).withOpacity(0.1),
-                                ),
-                                margin: EdgeInsets.all(5),
-                                child: getContentBottomContainers(
-                                  index: 0,
-                                  hourlyApparentTemp: tempApparent,
-                                  currentHour: currentHour,
-                                  hourlyWindSpeed: windSpeed,
-                                  hourlyHumidity: humidity,
-                                  hourlyUVIndex: uvIndex,
-                                  hourlyAqi: hourlyAqi,
-                                ), //recup donnée bottom_left
-                              ),
-                              // Rectangle à droite (plus long)
-                              Container(
-                                  height: constraints.maxHeight * 0.42,
-                                  width: constraints.maxWidth * 0.75,
-                                  // Changer la largeur selon vos besoins
-                                  decoration: BoxDecoration(
-                                    borderRadius: BorderRadius.all(
-                                        Radius.circular(10)),
-                                    color: Color(0xFFF5F5F5)
-                                        .withOpacity(0.1),
-                                  ),
-                                  margin: EdgeInsets.all(7),
-                                  child: GraphTabs(
-                                    index: 0,
-                                    temp: temp,
-                                    pluie: precipitationHourlyProba,
-                                  )),
-                            ],
-                          ),
-                        ],
-                      );
-                    })
-                        : Text(city)),
-                // Ajout d'un espacement entre les deux conteneurs
-                // Répétez la structure pour le deuxième grand conteneur
-                for(var i=1;i<5;i++)
-                  Container(
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.all(Radius.circular(10)),
-                      color:
-                      Color(0xFFF5F5F5).withOpacity(0.2), //couleur bulle 1
-                    ),
-                    padding: EdgeInsets.fromLTRB(10, 5, 20, 20),
-                    width: screenSize.width - 100,
-                    margin: EdgeInsets.all(25),
-                    child: selectedVille != null
-                        ? LayoutBuilder(builder:
-                        (BuildContext context, BoxConstraints constraints) {
-                      return Column(
-                        children: [
-                          Text(DateFormat('EEEE').format(
-                              DateTime.parse(time.toList()[i][0]))+"\t" + " - \t" + city),
-                          Row(
-                            children: [
-                              // Carré à gauche
-                              Container(
-                                height: screenSize.height * 0.33,
-                                width: constraints.maxWidth * 0.22,
-                                decoration: BoxDecoration(
-                                  borderRadius: BorderRadius.all(
-                                      Radius.circular(10)),
-                                  color:
-                                  Color(0xFFF5F5F5).withOpacity(0.1),
-                                ),
-                                margin: EdgeInsets.all(5),
-                                child: getContentTopContainers(
-                                  index: i,
-                                  tempMin: tempMin,
-                                  tempMax: tempMax,
-                                  hourlyTemp: temp,
-                                  currentHour: currentHour,
-                                  city: city,
-                                  dailySunriseHour: dailySunriseHour,
-                                  dailySunsetHour: dailySunsetHour,
-                                  weather:weather,
-                                  hourlyWeatherCode:weather,
-
-                                ), //recup donnée top_left
-                              ),
-
-                              // Rectangle au milieu
-                              TopCenterWidget(
-                                weather: weather.toList()[i],
-                                boxConstraints: constraints,
-                              ),
-                              // Carré à droite
-                              TopRightWidget(
-                                boxConstraints: constraints,
-                              ),
-                              // Utilisation du widget défini dans top_right.dart
-                            ],
-                          ),
-                          //SizedBox(height: 10),
-                          Row(
-                            children: [
-                              // Carré à gauche en bas
-                              Container(
-                                height: constraints.maxHeight * 0.42,
-                                width: constraints.maxWidth * 0.22,
-                                // Changer la largeur selon vos besoins
-                                decoration: BoxDecoration(
-                                  borderRadius: BorderRadius.all(
-                                      Radius.circular(10)),
-                                  color:
-                                  Color(0xFFF5F5F5).withOpacity(0.1),
-                                ),
-                                margin: EdgeInsets.all(5),
-                                child: getContentBottomContainers(
-                                  index: i,
-                                  hourlyApparentTemp: tempApparent,
-                                  currentHour: currentHour,
-                                  hourlyWindSpeed: windSpeed,
-                                  hourlyHumidity: humidity,
-                                  hourlyUVIndex: uvIndex,
-                                  hourlyAqi: hourlyAqi,
-                                ), //recup donnée bottom_left
-                              ),
-                              // Rectangle à droite (plus long)
-                              Container(
-                                  height: constraints.maxHeight * 0.42,
-                                  width: constraints.maxWidth * 0.75,
-                                  // Changer la largeur selon vos besoins
-                                  decoration: BoxDecoration(
-                                    borderRadius: BorderRadius.all(
-                                        Radius.circular(10)),
-                                    color: Color(0xFFF5F5F5)
-                                        .withOpacity(0.1),
-                                  ),
-                                  margin: EdgeInsets.all(7),
-                                  child: GraphTabs(
-                                    index: i,
-                                    temp: temp,
-                                    pluie: precipitationHourlyProba,
-                                  )),
-                            ],
-                          ),
-                        ],
-                      );
-                    })
-                        : Text(city),
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.all(Radius.circular(10)),
+                    color:
+                    Color(0xFFF5F5F5).withOpacity(0.2), //couleur bulle 1
                   ),
+                  padding: EdgeInsets.fromLTRB(10, 5, 20, 20),
+                  width: screenSize.width - 100,
+                  margin: EdgeInsets.all(25),
+                  child: selectedVille != null
+                      ? LayoutBuilder(builder:
+                      (BuildContext context, BoxConstraints constraints) {
+                    return Column(
+                      children: [
+                        Text(
+                          selectedDayIndex < 2
+                              ? "${libellesJours[selectedDayIndex]} - $city"
+                              : "${DateFormat('EEEE').format(DateTime.parse(time.toList()[selectedDayIndex][0]))} - $city",
+                        ),
+                        Row(
+                          children: [
+                            // Carré à gauche
+                            Container(
+                              height: screenSize.height * 0.33,
+                              width: constraints.maxWidth * 0.22,
+                              decoration: BoxDecoration(
+                                borderRadius: BorderRadius.all(
+                                    Radius.circular(10)),
+                                color: Color(0xFFF5F5F5)
+                                    .withOpacity(0.1),
+                              ),
+                              margin: EdgeInsets.all(5),
+                              child: getContentTopContainers(
+                                index: selectedDayIndex,
+                                tempMin: tempMin,
+                                tempMax: tempMax,
+                                hourlyTemp: temp,
+                                currentHour: currentHour,
+                                city: city,
+                                dailySunriseHour: dailySunriseHour,
+                                dailySunsetHour: dailySunsetHour,
+                                weather: weather,
+                                hourlyWeatherCode: weather,
+                              ), //recup donnée top_left
+                            ),
+
+                            // Rectangle au milieu
+                            TopCenterWidget(
+                              weather: weather.toList()[selectedDayIndex],
+                              boxConstraints: constraints,
+                            ),
+                            // Carré à droite
+                            TopRightWidget(
+                              boxConstraints: constraints,
+                            ),
+                            // Utilisation du widget défini dans top_right.dart
+                          ],
+                        ),
+                        //SizedBox(height: 10),
+                        Row(
+                          children: [
+                            // Carré à gauche en bas
+                            Container(
+                              height: constraints.maxHeight * 0.42,
+                              width: constraints.maxWidth * 0.22,
+                              // Changer la largeur selon vos besoins
+                              decoration: BoxDecoration(
+                                borderRadius: BorderRadius.all(
+                                    Radius.circular(10)),
+                                color: Color(0xFFF5F5F5)
+                                    .withOpacity(0.1),
+                              ),
+                              margin: EdgeInsets.all(5),
+                              child: getContentBottomContainers(
+                                index: selectedDayIndex,
+                                hourlyApparentTemp: tempApparent,
+                                currentHour: currentHour,
+                                hourlyWindSpeed: windSpeed,
+                                hourlyHumidity: humidity,
+                                hourlyUVIndex: uvIndex,
+                                hourlyAqi: hourlyAqi,
+                              ), //recup donnée bottom_left
+                            ),
+                            // Rectangle à droite (plus long)
+                            Container(
+                                height: constraints.maxHeight * 0.42,
+                                width: constraints.maxWidth * 0.75,
+                                // Changer la largeur selon vos besoins
+                                decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.all(
+                                      Radius.circular(10)),
+                                  color: Color(0xFFF5F5F5)
+                                      .withOpacity(0.1),
+                                ),
+                                margin: EdgeInsets.all(7),
+                                child: GraphTabs(
+                                  index: selectedDayIndex,
+                                  temp: temp,
+                                  pluie: precipitationHourlyProba,
+                                )),
+                          ],
+                        ),
+                      ],
+                    );
+                  })
+                      : Text(city),
+                ),
+                // Bouton Jour Suivant
+                IconButton(
+                  icon: Icon(Icons.arrow_forward),
+                  onPressed: () {
+                    setState(() {
+                      selectedDayIndex = selectedDayIndex < 4
+                          ? selectedDayIndex + 1
+                          : selectedDayIndex;
+                    });
+                  },
+                ),
               ],
             )
           ],
