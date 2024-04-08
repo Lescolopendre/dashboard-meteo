@@ -3,164 +3,109 @@ import 'package:lottie/lottie.dart';
 import 'package:intl/intl.dart';
 
 class TopCenterWidget extends StatelessWidget {
-  final weather;
+  final List<dynamic> weather;
   final BoxConstraints boxConstraints;
+
   const TopCenterWidget({Key? key, required this.weather, required this.boxConstraints}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    final screenSize = MediaQuery.of(context).size;
+    // Obtention de l'heure actuelle
+    DateTime now = DateTime.now();
+    int currentHour = now.hour;
+
+    // Calcul de l'indice initial pour centrer sur l'heure actuelle
+    int initialHourIndex = currentHour - 12; // 12 heures à gauche et 11 heures à droite pour centrer
+    initialHourIndex = initialHourIndex < 0 ? initialHourIndex + 24 : initialHourIndex;
 
     return Container(
-      height: screenSize.height * 0.33,
-      width: boxConstraints.maxWidth*0.5,
+      height: MediaQuery.of(context).size.height * 0.33,
+      width: boxConstraints.maxWidth * 0.5,
       margin: EdgeInsets.all(7),
       decoration: BoxDecoration(
         borderRadius: BorderRadius.all(Radius.circular(10)),
         color: Color(0xFFF5F5F5).withOpacity(0.1),
       ),
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          Expanded(
-            child: Center(
-              child: ListView.builder(
-                scrollDirection: Axis.horizontal,
-                itemCount: weather.length,
-                itemBuilder: (BuildContext context, int index) {
-                  // Obtention du code météo pour cette heure
-                  int weatherCode = weather[index];
+      child: PageView.builder(
+        controller: PageController(
+          initialPage: currentHour,
+          viewportFraction: 0.2, // Réduire l'espace entre chaque heure
+        ),
+        itemCount: 24,
+        itemBuilder: (context, index) {
+          // Calcul de l'heure correspondante
+          int hourValue = (index + 24) % 24; // Gestion des heures négatives
+          String formattedHour = DateFormat('HH:00').format(DateTime(2022, 1, 1, hourValue));
 
-                  // Calcul de l'heure correspondante
-                  int hourValue = (index + 1) % 24;
-                  String formattedHour = DateFormat('HH:00')
-                      .format(DateTime(2022, 1, 1, hourValue));
+          // Obtention du code météo pour cette heure
+          int weatherCode = weather[hourValue];
 
-                  // Obtention du chemin de l'animation Lottie en fonction du code météo et de l'heure
-                  String animationAsset = getAnimationAsset(weatherCode, hourValue);
+          // Obtention du chemin de l'animation Lottie en fonction du code météo
+          String animationAsset = getAnimationAsset(weatherCode);
 
-                  return Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Lottie.asset(animationAsset, width: 100, height: 100),
-                        SizedBox(height: 10),
-                        Text(formattedHour,
-                          style: TextStyle(
-                          fontSize: 15,
-                          fontWeight: FontWeight.w500,
-                          fontFamily: 'Roboto',
-                          color: Colors.white,
-                        ),
-                        ),
-                      ],
-                    ),
-                  );
-                },
-              ),
+
+          return Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Lottie.asset(animationAsset, width: 100, height: 100),
+                SizedBox(height: 10),
+                Text(formattedHour),
+              ],
             ),
-          ),
-        ],
+          );
+        },
       ),
     );
   }
 
-  // Fonction pour obtenir le chemin de l'animation Lottie en fonction du code météo et de l'heure
-  String getAnimationAsset(int weatherCode, int hourValue) {
-    // Si c'est la nuit (entre 18h et 6h), affiche une icône de lune
-    if (hourValue >= 18 || hourValue < 6) {
-      switch (weatherCode) {
-        case 0:
-          return "assets/icone/clear_night.json";
-        case 1:
-        case 2:
-          return "assets/icone/partly_cloudy_night.json";
-        case 3:
-          return "assets/icone/overcast.json";
-        case 45:
-        case 48:
-          return "assets/icone/fog.json";
-        case 51:
-        case 53:
-        case 55:
-          return "assets/icone/drizzle.json";
-        case 56:
-        case 57:
-          return "assets/icone/sleet.json";
-        case 61:
-        case 63:
-        case 65:
-          return "assets/icone/drizzle.json";
-        case 66:
-        case 67:
-          return "assets/icone/rain.json";
-        case 71:
-        case 73:
-        case 75:
-          return "assets/icone/snow.json";
-        case 77:
-          return "assets/icone/snow.json";
-        case 80:
-        case 81:
-        case 82:
-          return "assets/icone/rain.json";
-        case 85:
-        case 86:
-          return "assets/icone/snow.json";
-        case 95:
-        case 96:
-        case 99:
-          return "assets/icone/thunderstorms.json";
-        default:
-          return "assets/icone/clear_day.json"; // Animation par défaut
-      }
-    } else {
-      switch (weatherCode) {
-        case 0:
-          return "assets/icone/clear_day.json";
-        case 1:
-        case 2:
-          return "assets/icone/partly_cloudy_day.json";
-        case 3:
-          return "assets/icone/overcast.json";
-        case 45:
-        case 48:
-          return "assets/icone/fog.json";
-        case 51:
-        case 53:
-        case 55:
-          return "assets/icone/drizzle.json";
-        case 56:
-        case 57:
-          return "assets/icone/sleet.json";
-        case 61:
-        case 63:
-        case 65:
-          return "assets/icone/drizzle.json";
-        case 66:
-        case 67:
-          return "assets/icone/rain.json";
-        case 71:
-        case 73:
-        case 75:
-          return "assets/icone/snow.json";
-        case 77:
-          return "assets/icone/snow.json";
-        case 80:
-        case 81:
-        case 82:
-          return "assets/icone/rain.json";
-        case 85:
-        case 86:
-          return "assets/icone/snow.json";
-        case 95:
-        case 96:
-        case 99:
-          return "assets/icone/thunderstorms.json";
-        default:
-          return "assets/icone/clear_day.json"; // Animation par défaut
-      }
+  // Fonction pour obtenir le chemin de l'animation Lottie en fonction du code météo
+  String getAnimationAsset(int weatherCode) {
+    switch (weatherCode) {
+      case 0:
+        return "assets/icone/clear_day.json";
+      case 1:
+      case 2:
+        return "assets/icone/partly_cloudy_day.json";
+      case 3:
+        return "assets/icone/overcast.json";
+      case 45:
+      case 48:
+        return "assets/icone/fog.json";
+      case 51:
+      case 53:
+      case 55:
+        return "assets/icone/drizzle.json";
+      case 56:
+      case 57:
+        return "assets/icone/sleet.json";
+      case 61:
+      case 63:
+      case 65:
+        return "assets/icone/drizzle.json";
+      case 66:
+      case 67:
+        return "assets/icone/rain.json";
+      case 71:
+      case 73:
+      case 75:
+        return "assets/icone/snow.json";
+      case 77:
+        return "assets/icone/snow.json";
+      case 80:
+      case 81:
+      case 82:
+        return "assets/icone/rain.json";
+      case 85:
+      case 86:
+        return "assets/icone/snow.json";
+      case 95:
+      case 96:
+      case 99:
+        return "assets/icone/thunderstorms.json";
+      default:
+        return "assets/icone/default_animation.json"; // Animation par défaut
     }
   }
 }
