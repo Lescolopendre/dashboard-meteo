@@ -127,24 +127,24 @@ class HomePageState extends State<HomePage> {
         title: Container(
           child:SizedBox(
             width:700,
-              child: Column(
-                children: <Widget>[
-                  CitySearch(callback: callback, villes: allVilles),
-                ],
+            child: Column(
+              children: <Widget>[
+                CitySearch(callback: callback, villes: allVilles),
+              ],
             ),
           ),
         ),
         actions: [
-              IconButton(
+          IconButton(
               icon: Icon(
-              Icons.help_outline,
+                  Icons.help_outline,
                   color: Colors.white60,
                   size: 25
-                    ),
-                onPressed: (){
-                }
-            ),
-            SizedBox(width:30),
+              ),
+              onPressed: (){
+              }
+          ),
+          SizedBox(width:30),
         ],
         backgroundColor: Colors.blue.shade900,
 
