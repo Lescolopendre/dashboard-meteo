@@ -166,6 +166,7 @@ class HomePageState extends State<HomePage> {
                       visible: selectedDayIndex != 0, // Rendre la flèche visible uniquement lorsque selectedDayIndex est différent de zéro
                       child: IconButton(
                         icon: Icon(Icons.arrow_back),
+                        iconSize: 30, // Taille de l'icône
                         onPressed: () {
                           setState(() {
                             if (selectedDayIndex > 0) {
@@ -197,9 +198,10 @@ class HomePageState extends State<HomePage> {
                 Expanded(
                   child: Center(
                     child: Visibility(
-                      visible: selectedDayIndex != 4, // Rendre la flèche visible uniquement lorsque selectedDayIndex est différent de zéro
+                      visible: selectedDayIndex != 4, // Rendre la flèche visible uniquement lorsque selectedDayIndex est différent de 4
                       child: IconButton(
                         icon: Icon(Icons.arrow_forward),
+                        iconSize: 30, // Taille de l'icône
                         onPressed: () {
                           setState(() {
                             if (selectedDayIndex < 4) {
@@ -211,6 +213,7 @@ class HomePageState extends State<HomePage> {
                     ),
                   ),
                 ),
+
               ],
             ),
             Expanded(
