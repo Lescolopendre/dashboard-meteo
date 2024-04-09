@@ -22,7 +22,8 @@ Notre application météo française, et si on supportait nos producteurs locaux
     - Carte intéractive des vents, températures et pluies, Pleut-il dans mon arrondissement?
  
 ## Tout pour le look
-![image](https://github.com/Lescolopendre/dashboard-meteo/assets/161606418/9e0df973-90b8-45eb-bf31-dac1d235bb04)
+![image](https://github.com/Lescolopendre/dashboard-meteo/assets/161606418/df2b958d-cceb-4ad9-9ac2-a0a17dbf5512)
+
 
 ## APIs utilisées
 
