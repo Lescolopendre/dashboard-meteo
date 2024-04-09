@@ -155,66 +155,70 @@ class HomePageState extends State<HomePage> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: [
-                // Bouton Jour Précédent
-                Expanded(
-                  child: Center(
-                    child: Visibility(
-                      visible: selectedDayIndex != 0, // Rendre la flèche visible uniquement lorsque selectedDayIndex est différent de zéro
-                      child: IconButton(
-                        icon: Icon(Icons.arrow_back),
-                        iconSize: 30, // Taille de l'icône
-                        onPressed: () {
-                          setState(() {
-                            if (selectedDayIndex > 0) {
-                              selectedDayIndex--;
-                            }
-                          });
-                        },
+            SizedBox(
+              height: 20, // Set the desired height
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  // Bouton Jour Précédent
+                  Expanded(
+                    child: Center(
+                      child: Visibility(
+                        visible: selectedDayIndex != 0,
+                        child: IconButton(
+                          icon: Icon(Icons.arrow_back),
+                          iconSize: 20,
+                          onPressed: () {
+                            setState(() {
+                              if (selectedDayIndex > 0) {
+                                selectedDayIndex--;
+                              }
+                            });
+                          },
+                        ),
                       ),
                     ),
                   ),
-                ),
-                // Zone de texte contenant la date et la ville
-                Expanded(
-                  child: Center(
-                    child: Text(
-                      selectedDayIndex < 2
-                          ? "${libellesJours[selectedDayIndex]} - $city"
-                          : "${DateFormat('EEEE').format(DateTime.parse(time.toList()[selectedDayIndex][0]))} - $city",
-                      style: TextStyle(
-                        fontSize: 18,
-                        fontWeight: FontWeight.bold,
-                        color: Colors.white,
-                      ),
-                      textAlign: TextAlign.center, // Centrer le texte
-                    ),
-                  ),
-                ),
-                // Bouton Jour Suivant
-                Expanded(
-                  child: Center(
-                    child: Visibility(
-                      visible: selectedDayIndex != 4, // Rendre la flèche visible uniquement lorsque selectedDayIndex est différent de 4
-                      child: IconButton(
-                        icon: Icon(Icons.arrow_forward),
-                        iconSize: 30, // Taille de l'icône
-                        onPressed: () {
-                          setState(() {
-                            if (selectedDayIndex < 4) {
-                              selectedDayIndex++;
-                            }
-                          });
-                        },
+                  // Zone de texte contenant la date et la ville
+                  Expanded(
+                    child: Center(
+                      child: Text(
+                        selectedDayIndex < 2
+                            ? "${libellesJours[selectedDayIndex]} - $city"
+                            : "${DateFormat('EEEE').format(DateTime.parse(time.toList()[selectedDayIndex][0]))} - $city",
+                        style: TextStyle(
+                          fontSize: 15,
+                          fontFamily: 'Roboto',
+                          color: Colors.white.withOpacity(0.9),
+                        ),
+                        textAlign: TextAlign.center,
                       ),
                     ),
                   ),
-                ),
-              ],
+                  // Bouton Jour Suivant
+                  Expanded(
+                    child: Center(
+                      child: Visibility(
+                        visible: selectedDayIndex != 4,
+                        child: IconButton(
+                          icon: Icon(Icons.arrow_forward),
+                          iconSize: 20,
+                          onPressed: () {
+                            setState(() {
+                              if (selectedDayIndex < 4) {
+                                selectedDayIndex++;
+                              }
+                            });
+                          },
+                        ),
+                      ),
+                    ),
+                  ),
+                ],
+              ),
             ),
+
             Expanded(
               child: ListView(
                 scrollDirection: Axis.horizontal,
@@ -225,11 +229,11 @@ class HomePageState extends State<HomePage> {
                         decoration: BoxDecoration(
                           borderRadius: BorderRadius.all(Radius.circular(10)),
                           color: Color(0xFFF5F5F5)
-                              .withOpacity(0.2), //couleur bulle 1
+                              .withOpacity(0.05), //couleur bulle 1
                         ),
-                        padding: EdgeInsets.fromLTRB(10, 5, 20, 20),
-                        width: screenSize.width - 100,
-                        margin: EdgeInsets.all(25),
+                        //padding: EdgeInsets.fromLTRB(5, 5, 5, 5),
+                        width: screenSize.width - 50,
+                        margin: EdgeInsets.all(20),
                         child: selectedVille != null
                             ? LayoutBuilder(builder: (BuildContext context,
                                 BoxConstraints constraints) {
