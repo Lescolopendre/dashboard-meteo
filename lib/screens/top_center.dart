@@ -5,8 +5,9 @@ import 'package:intl/intl.dart';
 class TopCenterWidget extends StatelessWidget {
   final List<dynamic> weather;
   final BoxConstraints boxConstraints;
+  final bool isExpanded;
 
-  const TopCenterWidget({Key? key, required this.weather, required this.boxConstraints}) : super(key: key);
+  const TopCenterWidget({Key? key, required this.weather, required this.boxConstraints, required this.isExpanded}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -14,13 +15,12 @@ class TopCenterWidget extends StatelessWidget {
     DateTime now = DateTime.now();
     int currentHour = now.hour;
 
-    // Calcul de l'indice initial pour centrer sur l'heure actuelle
-    int initialHourIndex = currentHour - 12; // 12 heures à gauche et 11 heures à droite pour centrer
-    initialHourIndex = initialHourIndex < 0 ? initialHourIndex + 24 : initialHourIndex;
+    // Calcul de la largeur en fonction de l'état d'expansion
+    double width = isExpanded ? MediaQuery.of(context).size.width * 0.685 : boxConstraints.maxWidth * 0.5;
 
     return Container(
       height: MediaQuery.of(context).size.height * 0.33,
-      width: boxConstraints.maxWidth * 0.5,
+      width: width, // Utilisation de la largeur calculée
       margin: EdgeInsets.all(7),
       decoration: BoxDecoration(
         borderRadius: BorderRadius.all(Radius.circular(10)),
@@ -42,7 +42,6 @@ class TopCenterWidget extends StatelessWidget {
 
           // Obtention du chemin de l'animation Lottie en fonction du code météo
           String animationAsset = getAnimationAsset(weatherCode);
-
 
           return Padding(
             padding: const EdgeInsets.all(8.0),
