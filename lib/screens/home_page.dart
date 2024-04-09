@@ -49,7 +49,7 @@ class HomePageState extends State<HomePage> {
 
   callback(Ville varCity, dataVille data, dataPollution datapollution) {
     setState(() {
-      city = "<${varCity.nomAvecArticle}>";
+      city = "${varCity.nomAvecArticle}";
       selectedVille = varCity;
       time = data.hourlyTime;
       temp = data.hourlyTemp;
@@ -263,15 +263,10 @@ class HomePageState extends State<HomePage> {
                                         ),
 
                                         // Rectangle au milieu
-                                        TopCenterWidget(
-                                          weather: weather
-                                              .toList()[selectedDayIndex],
-                                          boxConstraints: constraints,
-                                        ),
+                                        selectedDayIndex == 0 ? TopCenterWidget(weather: weather.toList()[selectedDayIndex], boxConstraints: constraints, isExpanded: false) : TopCenterWidget(weather: weather.toList()[selectedDayIndex], boxConstraints: constraints, isExpanded: true),
+
                                         // Carré à droite
-                                        TopRightWidget(
-                                          boxConstraints: constraints,
-                                        ),
+                                        selectedDayIndex == 0 ? TopRightWidget(boxConstraints: constraints,) : SizedBox(),
                                         // Utilisation du widget défini dans top_right.dart
                                       ],
                                     ),
