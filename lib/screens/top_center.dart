@@ -16,7 +16,7 @@ class TopCenterWidget extends StatelessWidget {
     int currentHour = now.hour;
 
     // Calcul de la largeur en fonction de l'état d'expansion
-    double width = isExpanded ? MediaQuery.of(context).size.width * 0.685 : boxConstraints.maxWidth * 0.5;
+    double width = isExpanded ? boxConstraints.maxWidth * 0.75 : boxConstraints.maxWidth * 0.5;
 
     return Container(
       height: MediaQuery.of(context).size.height * 0.33,
