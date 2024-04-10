@@ -28,7 +28,7 @@ class TopRightWidget extends StatelessWidget {
                 Tab(
                   child: Row(
                     children: [
-                      Lottie.asset("assets/icone/humidity.json"), // Adapter la taille de l'icône selon les besoins// Espacement entre l'icône et le texte de l'onglet
+                      Lottie.asset("assets/icone/raindrop.json"), // Adapter la taille de l'icône selon les besoins// Espacement entre l'icône et le texte de l'onglet
                     ],
                   ),
                 ),
