@@ -27,6 +27,7 @@ class TopRightWidget extends StatelessWidget {
               tabs: [
                 Tab(
                   child: Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       Lottie.asset("assets/icone/raindrop.json"), // Adapter la taille de l'icône selon les besoins// Espacement entre l'icône et le texte de l'onglet
                     ],
@@ -34,6 +35,7 @@ class TopRightWidget extends StatelessWidget {
                 ),
                 Tab(
                   child: Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       Lottie.asset("assets/icone/thermometer.json"), // Adapter la taille de l'icône selon les besoins// Espacement entre l'icône et le texte de l'onglet
                     ],
@@ -41,7 +43,7 @@ class TopRightWidget extends StatelessWidget {
                 ),
                 Tab(
                   child: Row(
-
+                    mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       Image.asset("assets/wind.png",height:40,width:40), // Adapter la taille de l'icône selon les besoins// Espacement entre l'icône et le texte de l'onglet
                     ],
