@@ -135,7 +135,7 @@ class HomePageState extends State<HomePage> {
             ),
           ),
         ),
-        git
+
         backgroundColor: Colors.blue.shade900,
       ),
       body: Container(
@@ -150,7 +150,7 @@ class HomePageState extends State<HomePage> {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             SizedBox(
-              height: 20, // Set the desired height
+              height: 35, // Set the desired height
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 crossAxisAlignment: CrossAxisAlignment.center,
