@@ -135,13 +135,7 @@ class HomePageState extends State<HomePage> {
             ),
           ),
         ),
-        actions: [
-          IconButton(
-            icon: Icon(Icons.help_outline, color: Colors.white60, size: 25),
-            onPressed: () {},
-          ),
-          SizedBox(width: 30),
-        ],
+        git
         backgroundColor: Colors.blue.shade900,
       ),
       body: Container(
