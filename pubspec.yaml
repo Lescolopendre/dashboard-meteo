@@ -119,6 +119,8 @@ flutter:
     - assets/humidity.png
     - assets/gooly_meteo.png
     - assets/icon_gooly_meteo.png
+    - windows/runner/resources/icon_gooly_meteo.ico
+
 
 
 
